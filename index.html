@@ -40,7 +40,13 @@
     .section { padding: 3rem 1.5rem; max-width: 1100px; margin: auto; }
     .gallery-container { display: flex; flex-direction: column; align-items: center; }
     .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; width: 100%; }
-    .gallery img { width: 100%; height: 250px; border-radius: 8px; object-fit: cover; }
+    .gallery img {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  object-fit: contain;
+  background-color: #f7f7f7;
+}
     .pagination { margin-top: 2rem; display: flex; gap: 0.5rem; justify-content: center; }
     .pagination button {
       padding: 0.5rem 1rem;
@@ -53,11 +59,11 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const images = [
-        'gallery0.png', 'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png', 'gallery6.png',
+        'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png', 'gallery6.png',
         'gallery7.png', 'gallery8.png', 'gallery9.png', 'gallery10.png', 'gallery11.png', 'gallery12.png',
         'gallery13.png', 'gallery14.png', 'gallery15.png', 'gallery16.png', 'gallery17.png', 'gallery18.png',
         'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png', 'gallery24.png',
-        'gallery25.png'
+        'gallery25.png', 'gallery26.png'
       ];
 
       const perPage = 12;
