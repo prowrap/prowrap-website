@@ -37,6 +37,19 @@
       object-fit: contain;
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
     }
+    .hero-widget-icons {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .hero-widget-icons img {
+      height: 100px;
+      width: 100px;
+      object-fit: contain;
+    }
     .section { padding: 3rem 1.5rem; max-width: 1100px; margin: auto; }
     .gallery-container { display: flex; flex-direction: column; align-items: center; }
     .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; width: 100%; }
@@ -153,6 +166,17 @@
 
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
+    <div class="hero-widget-icons">
+      <a href="https://instagram.com/your_instagram" target="_blank">
+        <img src="instagram.png" alt="인스타그램" />
+      </a>
+      <a href="https://pf.kakao.com/_yourkakao" target="_blank">
+        <img src="kakaotalk.png" alt="카카오톡 채널" />
+      </a>
+      <a href="https://blog.naver.com/your_blog" target="_blank">
+        <img src="naverblog.png" alt="네이버 블로그" />
+      </a>
+    </div>
   </div>
 
   <section id="gallery-section" class="section">
@@ -160,6 +184,21 @@
     <div class="gallery-container">
       <div id="gallery" class="gallery"></div>
       <div id="pagination" class="pagination"></div>
+    </div>
+  </section>
+
+  <!-- 기존 위젯 아이콘 유지 -->
+  <section class="section">
+    <div class="contact-links">
+      <a href="https://instagram.com/your_instagram" target="_blank">
+        <img src="instagram.png" alt="인스타그램" />
+      </a>
+      <a href="https://pf.kakao.com/_yourkakao" target="_blank">
+        <img src="kakaotalk.png" alt="카카오톡 채널" />
+      </a>
+      <a href="https://blog.naver.com/your_blog" target="_blank">
+        <img src="naverblog.png" alt="네이버 블로그" />
+      </a>
     </div>
   </section>
 
