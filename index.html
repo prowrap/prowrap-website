@@ -180,7 +180,8 @@
             currentPage = i;
             renderGallery();
             renderPagination();
-            window.scrollTo({ top: document.getElementById("gallery-section").offsetTop - 80, behavior: 'instant' });
+            // 스크롤 방지 - 주석 처리
+            // window.scrollTo({ top: document.getElementById("gallery-section").offsetTop - 80, behavior: 'instant' });
           });
           pagination.appendChild(btn);
         }
