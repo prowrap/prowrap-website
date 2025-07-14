@@ -7,7 +7,7 @@
   <style>
     body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
     header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-    header h1 { margin: 0; font-size: 0.99rem; font-weight: bold; }
+    header h1 { margin: 0; font-size: 0.66rem; font-weight: bold; }
     nav a { margin-left: 1.5rem; text-decoration: none; color: #333; font-weight: 500; }
     .hero { 
       margin-top: 80px; 
@@ -162,7 +162,6 @@
           img.src = src;
           img.alt = "시공 사진";
           img.loading = "lazy";
-          img.onerror = () => { img.src = ""; img.style.visibility = "hidden"; };
           img.addEventListener("click", () => openModal(src));
           gallery.appendChild(img);
         });
@@ -204,3 +203,53 @@
     });
   </script>
 </head>
+<body>
+  <header>
+    <h1 style="font-size: 0.99rem;">ProWrap | Real Film. Real Finish.</h1>
+    <nav>
+      <a href="#gallery-section">시공 사례</a>
+      <a href="#contact">문의하기</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <img src="logo.png" alt="ProWrap 타이틀 이미지">
+    <div class="hero-widget-icons">
+      <a href="https://www.instagram.com/prowrap.ilsan?igsh=MTNpbXh4d2F1djhzNA%3D%3D&utm_source=qr" target="_blank">
+        <img src="instagram.png" alt="인스타그램" />
+      </a>
+      <a href="http://pf.kakao.com/_xoxilmn" target="_blank">
+        <img src="kakaotalk.png" alt="카카오톡 채널" />
+      </a>
+      <a href="https://m.blog.naver.com/milli1018" target="_blank">
+        <img src="naverblog.png" alt="네이버 블로그" />
+      </a>
+    </div>
+  </div>
+
+  <section id="gallery-section" class="section">
+    <h2>시공 갤러리</h2>
+    <div class="gallery-container">
+      <div id="gallery" class="gallery"></div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </section>
+
+  <div id="imageModal" class="modal">
+    <span id="modalClose" class="modal-close">&times;</span>
+    <img id="modalImg" class="modal-content" alt="확대 이미지" />
+  </div>
+
+  <section id="contact" class="section">
+    <h2>찾아오시는 길</h2>
+    <iframe src="https://map.naver.com/p/entry/place/1110038627?c=15.00,0,0,0,dh" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </section>
+
+  <footer>
+    <p><strong>회사명:</strong> Prowrap Interior Film<br>
+    <strong>주소:</strong> 경기도 고양시 덕양구 의장로 146 1903호<br>
+    <strong>연락처:</strong> 인스타그램 · 카카오톡 · 네이버 블로그</p>
+    <p>&copy; 2025 ProWrap Interior Film. All rights reserved.</p>
+  </footer>
+</body>
+</html>
