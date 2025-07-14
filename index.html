@@ -4,15 +4,214 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prowrap Interior Film</title>
+  <style>
+    body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
+    header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+    header h1 { margin: 0; font-size: 1.5rem; font-weight: bold; }
+    nav a { margin-left: 1.5rem; text-decoration: none; color: #333; font-weight: 500; }
+    .hero { 
+      margin-top: 80px; 
+      width: 100%;
+      height: 500px; 
+      background: url('https://images.unsplash.com/photo-1600585152936-1c1d1e6d7158?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 0;
+    }
+    .hero img {
+      height: 100px;
+      max-width: 95%;
+      position: relative;
+      z-index: 1;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+    }
+    .hero-widget-icons {
+      position: absolute;
+      bottom: 20px;
+      left: calc(50% + 540px);
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .hero-widget-icons img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+    }
+    .section { padding: 3rem 1.5rem; max-width: 1100px; margin: auto; }
+    .gallery-container { display: flex; flex-direction: column; align-items: center; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; width: 100%; }
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      object-fit: contain;
+      background-color: #f7f7f7;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.02);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      margin: 5% auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2100;
+    }
+    .pagination { margin-top: 2rem; display: flex; gap: 0.5rem; justify-content: center; }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .contact-links img {
+      height: 150px;
+      width: 150px;
+      object-fit: contain;
+      image-rendering: auto;
+    }
+    .contact-links a {
+      display: inline-block;
+      margin: 0.5rem 1rem 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #eee;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.3s;
+    }
+    .contact-links a:hover {
+      background-color: #ddd;
+    }
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    footer {
+      background-color: #f9f9f9;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const images = [
+        'gallery0.png', 'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png',
+        'gallery6.png', 'gallery7.png', 'gallery8.png', 'gallery9.png', 'gallery10.png', 'gallery11.png',
+        'gallery12.png', 'gallery13.png', 'gallery14.png', 'gallery15.png', 'gallery16.png', 'gallery17.png',
+        'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
+        'gallery24.png', 'gallery25.png'
+      ];
+
+      const perPage = 12;
+      let currentPage = 1;
+
+      function renderGallery() {
+        const gallery = document.getElementById("gallery");
+        gallery.innerHTML = "";
+        const start = (currentPage - 1) * perPage;
+        const end = start + perPage;
+        const visible = images.slice(start, end);
+
+        visible.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "시공 사진";
+          img.loading = "lazy";
+          img.addEventListener("click", () => openModal(src));
+          gallery.appendChild(img);
+        });
+      }
+
+      function renderPagination() {
+        const totalPages = Math.ceil(images.length / perPage);
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.textContent = i;
+          if (i === currentPage) btn.style.fontWeight = 'bold';
+          btn.addEventListener("click", () => {
+            currentPage = i;
+            renderGallery();
+            renderPagination();
+          });
+          pagination.appendChild(btn);
+        }
+      }
+
+      function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        modalImg.src = src;
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+      }
+
+      renderGallery();
+      renderPagination();
+
+      document.getElementById("modalClose").addEventListener("click", closeModal);
+    });
+  </script>
 </head>
 <body>
   <header>
-    <h1 style="font-family: 'Segoe UI', sans-serif; font-weight: 500; font-size: 1.8rem; letter-spacing: -0.5px; color: #222;">Prowrap Interior Film</h1>
+    <h1>Prowrap Interior Film</h1>
     <nav>
       <a href="#gallery-section">시공 사례</a>
       <a href="#contact">문의하기</a>
     </nav>
   </header>
+
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
     <div class="hero-widget-icons">
@@ -41,15 +240,16 @@
     <img id="modalImg" class="modal-content" alt="확대 이미지" />
   </div>
 
-  <section id="contact" class="section">
-    <h2>찾아오시는 길</h2>
-    <iframe src="https://maps.google.com/maps?q=경기도 고양시 덕양구 의장로 146 1903호&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-  </section>
+ <section id="contact" class="section">
+  <h2>찾아오시는 길</h2>
+  <iframe src="https://map.naver.com/p/entry/place/1110038627?c=15.00,0,0,0,dh" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+</section>
+
 
   <footer>
     <p><strong>회사명:</strong> Prowrap Interior Film<br>
     <strong>주소:</strong> 경기도 고양시 덕양구 의장로 146 1903호<br>
-    <strong>연락처:</strong> 인스타그램 · \xb7 카카오톡 · \xb7 네이버 블로그</p>
+    <strong>연락처:</strong> 인스타그램 · 카카오톡 · 네이버 블로그</p>
     <p>&copy; 2025 ProWrap Interior Film. All rights reserved.</p>
   </footer>
 </body>
