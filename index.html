@@ -147,6 +147,70 @@
       .hero-widget-icons { flex-direction: row; flex-wrap: wrap; }
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const images = [
+        'gallery0.png', 'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png',
+        'gallery6.png', 'gallery7.png', 'gallery8.png', 'gallery9.png', 'gallery10.png', 'gallery11.png',
+        'gallery12.png', 'gallery13.png', 'gallery14.png', 'gallery15.png', 'gallery16.png', 'gallery17.png',
+        'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
+        'gallery24.png', 'gallery25.png'
+      ];
+      const perPage = window.innerWidth <= 768 ? 6 : 12;
+      let currentPage = 1;
+
+      function renderGallery() {
+        const gallery = document.getElementById("gallery");
+        gallery.innerHTML = "";
+        const start = (currentPage - 1) * perPage;
+        const end = start + perPage;
+        const visible = images.slice(start, end);
+
+        visible.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "시공 사진";
+          img.loading = "lazy";
+          img.addEventListener("click", () => openModal(src));
+          gallery.appendChild(img);
+        });
+      }
+
+      function renderPagination() {
+        const totalPages = Math.ceil(images.length / perPage);
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.textContent = i;
+          if (i === currentPage) btn.style.fontWeight = 'bold';
+          btn.addEventListener("click", () => {
+            currentPage = i;
+            renderGallery();
+            renderPagination();
+          });
+          pagination.appendChild(btn);
+        }
+      }
+
+      function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        modalImg.src = src;
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+      }
+
+      renderGallery();
+      renderPagination();
+
+      document.getElementById("modalClose").addEventListener("click", closeModal);
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -173,6 +237,19 @@
         <img src="naverblog.png" alt="네이버 블로그" />
       </a>
     </div>
+  </div>
+
+  <section id="gallery-section" class="section">
+    <h2>갤러리</h2>
+    <div class="gallery-container">
+      <div id="gallery" class="gallery"></div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </section>
+
+  <div id="imageModal" class="modal">
+    <span id="modalClose" class="modal-close">&times;</span>
+    <img id="modalImg" class="modal-content" alt="확대 이미지" />
   </div>
 
   <section id="contact" class="section">
