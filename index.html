@@ -137,26 +137,14 @@
       color: #666;
     }
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
-      }
-      nav a {
-        margin: 0.5rem 0 0 0;
-        font-size: 0.9rem;
-      }
       .hero-widget-icons {
         position: static;
-        margin-top: 1rem;
         justify-content: center;
+        margin-top: 2rem;
         flex-wrap: wrap;
       }
-      .hero img {
-        height: 80px;
-      }
       .gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -169,7 +157,7 @@
         'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
         'gallery24.png', 'gallery25.png'
       ];
-      const perPage = 12;
+      const perPage = window.innerWidth <= 768 ? 6 : 12;
       let currentPage = 1;
 
       function renderGallery() {
@@ -237,20 +225,6 @@
 
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
-    <div class="hero-widget-icons">
-      <a href="https://www.instagram.com/prowrap.ilsan?igsh=MTNpbXh4d2F1djhzNA%3D%3D&utm_source=qr" target="_blank">
-        <img src="instagram.png" alt="인스타그램" />
-      </a>
-      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank">
-        <img src="youtube.png" alt="유튜브 채널" />
-      </a>
-      <a href="http://pf.kakao.com/_xoxilmn" target="_blank">
-        <img src="kakaotalk.png" alt="카카오톡 채널" />
-      </a>
-      <a href="https://m.blog.naver.com/milli1018" target="_blank">
-        <img src="naverblog.png" alt="네이버 블로그" />
-      </a>
-    </div>
   </div>
 
   <section id="gallery-section" class="section">
@@ -268,6 +242,20 @@
 
   <section id="contact" class="section">
     <h2>찾아오시는 길</h2>
+    <div class="hero-widget-icons">
+      <a href="https://www.instagram.com/prowrap.ilsan?igsh=MTNpbXh4d2F1djhzNA%3D%3D&utm_source=qr" target="_blank">
+        <img src="instagram.png" alt="인스타그램" />
+      </a>
+      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank">
+        <img src="youtube.png" alt="유튜브 채널" />
+      </a>
+      <a href="http://pf.kakao.com/_xoxilmn" target="_blank">
+        <img src="kakaotalk.png" alt="카카오톡 채널" />
+      </a>
+      <a href="https://m.blog.naver.com/milli1018" target="_blank">
+        <img src="naverblog.png" alt="네이버 블로그" />
+      </a>
+    </div>
     <iframe src="https://map.naver.com/p/entry/place/1110038627?c=15.00,0,0,0,dh" allowfullscreen></iframe>
   </section>
 
