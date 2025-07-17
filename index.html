@@ -7,7 +7,7 @@
   <style>
     body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
     header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-    header h1 { margin: 0; font-size: 0.99rem; font-weight: bold; }
+    header h1 { margin: 0; font-size: 0.66rem; font-weight: bold; }
     nav a { margin-left: 1.5rem; text-decoration: none; color: #333; font-weight: 500; }
     .hero { 
       margin-top: 80px; 
@@ -137,6 +137,71 @@
       color: #666;
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const images = [
+        'gallery0.png', 'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png',
+        'gallery6.png', 'gallery7.png', 'gallery8.png', 'gallery9.png', 'gallery10.png', 'gallery11.png',
+        'gallery12.png', 'gallery13.png', 'gallery14.png', 'gallery15.png', 'gallery16.png', 'gallery17.png',
+        'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
+        'gallery24.png', 'gallery25.png'
+      ];
+
+      const perPage = 12;
+      let currentPage = 1;
+
+      function renderGallery() {
+        const gallery = document.getElementById("gallery");
+        gallery.innerHTML = "";
+        const start = (currentPage - 1) * perPage;
+        const end = start + perPage;
+        const visible = images.slice(start, end);
+
+        visible.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "시공 사진";
+          img.loading = "lazy";
+          img.addEventListener("click", () => openModal(src));
+          gallery.appendChild(img);
+        });
+      }
+
+      function renderPagination() {
+        const totalPages = Math.ceil(images.length / perPage);
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.textContent = i;
+          if (i === currentPage) btn.style.fontWeight = 'bold';
+          btn.addEventListener("click", () => {
+            currentPage = i;
+            renderGallery();
+            renderPagination();
+          });
+          pagination.appendChild(btn);
+        }
+      }
+
+      function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        modalImg.src = src;
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+      }
+
+      renderGallery();
+      renderPagination();
+
+      document.getElementById("modalClose").addEventListener("click", closeModal);
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -147,22 +212,21 @@
     </nav>
   </header>
 
-  <div class="hero">
-    <img src="logo.png" alt="ProWrap 타이틀 이미지">
-    <div class="hero-widget-icons">
-      <a href="https://www.instagram.com/prowrap.ilsan" target="_blank">
-        <img src="instagram.png" alt="인스타그램" />
-      </a>
-      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank">
-        <img src="youtube-icon.png" alt="유튜브 채널" />
-      </a>
-      <a href="http://pf.kakao.com/_xoxilmn" target="_blank">
-        <img src="kakaotalk.png" alt="카카오톡 채널" />
-      </a>
-      <a href="https://m.blog.naver.com/milli1018" target="_blank">
-        <img src="naverblog.png" alt="네이버 블로그" />
-      </a>
-    </div>
+   <div class="hero-widget-icons">
+  <a href="https://www.instagram.com/prowrap_kr?igsh=MTNpbXh4d2F1djhzNA%3D%3D&utm_source=qr" target="_blank">
+    <img src="instagram.png" alt="인스타그램" />
+  </a>
+  <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank">
+    <img src="youtube.png" alt="유튜브 채널" />
+  </a>
+  <a href="http://pf.kakao.com/_xoxilmn" target="_blank">
+    <img src="kakaotalk.png" alt="카카오톡 채널" />
+  </a>
+  <a href="https://m.blog.naver.com/milli1018" target="_blank">
+    <img src="naverblog.png" alt="네이버 블로그" />
+  </a>
+</div>
+
   </div>
 
   <section id="gallery-section" class="section">
@@ -180,13 +244,13 @@
 
   <section id="contact" class="section">
     <h2>찾아오시는 길</h2>
-    <iframe src="https://map.naver.com/p/entry/place/1110038627?c=15.00,0,0,0,dh" allowfullscreen></iframe>
+    <iframe src="https://map.naver.com/p/entry/place/1110038627?c=15.00,0,0,0,dh" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
   </section>
 
   <footer>
     <p><strong>회사명:</strong> Prowrap Interior Film<br>
     <strong>주소:</strong> 경기도 고양시 덕양구 의장로 146 1903호<br>
-    <strong>연락처:</strong> 인스타그램 · 카카오톡 · 네이버 블로그 · 유튜브</p>
+    <strong>연락처:</strong> 인스타그램 · 카카오톡 · 네이버 블로그</p>
     <p>&copy; 2025 ProWrap Interior Film. All rights reserved.</p>
   </footer>
 </body>
