@@ -7,7 +7,7 @@
   <style>
     body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
     header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-    header h1 { margin: 0; font-size: 0.99rem; font-weight: bold; }
+    header h1 { margin: 0; font-size: 1.2rem; font-weight: bold; }
     nav a { margin-left: 1.5rem; text-decoration: none; color: #333; font-weight: 500; }
     .hero { 
       margin-top: 80px; 
@@ -40,11 +40,11 @@
     .hero-widget-icons {
       position: absolute;
       bottom: 20px;
-      left: calc(50% + 540px);
-      transform: translateX(-50%);
+      right: 20px;
       z-index: 2;
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .hero-widget-icons img {
       height: 50px;
@@ -140,24 +140,17 @@
       .gallery {
         grid-template-columns: repeat(2, 1fr);
       }
-      .mobile-widget-icons {
-        display: flex;
+      .hero-widget-icons {
+        position: static;
         justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-      }
-    }
-    @media (min-width: 769px) {
-      .mobile-widget-icons {
-        display: none;
+        margin-top: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1 style="font-size: 1.2rem;">PROWRAP | Real Film. Real Finish</h1>
+    <h1>PROWRAP | Real Film. Real Finish</h1>
     <nav>
       <a href="#gallery-section">갤러리</a>
       <a href="#contact">찾아오시는 길</a>
@@ -167,7 +160,7 @@
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
     <div class="hero-widget-icons">
-      <a href="https://www.instagram.com/prowrap.ilsan?igsh=MTNpbXh4d2F1djhzNA%3D%3D&utm_source=qr" target="_blank">
+      <a href="https://www.instagram.com/prowrap.ilsan" target="_blank">
         <img src="instagram.png" alt="인스타그램" />
       </a>
       <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank">
@@ -184,20 +177,6 @@
 
   <section id="contact" class="section">
     <h2>찾아오시는 길</h2>
-    <div class="mobile-widget-icons">
-      <a href="https://www.instagram.com/prowrap.ilsan?igsh=MTNpbXh4d2F1djhzNA%3D%3D&utm_source=qr" target="_blank">
-        <img src="instagram.png" alt="인스타그램" />
-      </a>
-      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank">
-        <img src="youtube.png" alt="유튜브 채널" />
-      </a>
-      <a href="http://pf.kakao.com/_xoxilmn" target="_blank">
-        <img src="kakaotalk.png" alt="카카오톡 채널" />
-      </a>
-      <a href="https://m.blog.naver.com/milli1018" target="_blank">
-        <img src="naverblog.png" alt="네이버 블로그" />
-      </a>
-    </div>
     <iframe src="https://map.naver.com/p/entry/place/1110038627?c=15.00,0,0,0,dh" allowfullscreen></iframe>
   </section>
 
