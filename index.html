@@ -6,15 +6,18 @@
   <title>Prowrap Interior Film</title>
   <style>
     body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
-    header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-    header h1 { margin: 0; font-size: 1.2rem; font-weight: bold; }
-    nav a { margin-left: 1.5rem; text-decoration: none; color: #333; font-weight: 500; }
+    header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; flex-wrap: wrap; }
+    header h1 { margin: 0; font-size: 1.2rem; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    nav { display: flex; flex-wrap: wrap; }
+    nav a { margin-left: 1.5rem; text-decoration: none; color: #333; font-weight: 500; white-space: nowrap; }
+
     .hero { 
       margin-top: 80px; 
       width: 100%;
       height: 500px; 
       background: url('https://images.unsplash.com/photo-1600585152936-1c1d1e6d7158?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover; 
       display: flex; 
+      flex-direction: column;
       align-items: center; 
       justify-content: center; 
       position: relative;
@@ -38,13 +41,13 @@
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
     }
     .hero-widget-icons {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
+      position: relative;
+      margin-top: 1rem;
       z-index: 2;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .hero-widget-icons img {
       height: 50px;
@@ -137,14 +140,11 @@
       color: #666;
     }
     @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .hero-widget-icons {
-        position: static;
-        justify-content: center;
-        margin-top: 1.5rem;
-      }
+      header { flex-direction: column; align-items: flex-start; padding: 1rem; }
+      nav { justify-content: center; width: 100%; margin-top: 0.5rem; }
+      nav a { margin: 0 1rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .hero-widget-icons { flex-direction: row; flex-wrap: wrap; }
     }
   </style>
 </head>
