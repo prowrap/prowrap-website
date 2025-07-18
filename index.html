@@ -243,34 +243,34 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const images = [
-  { src: 'gallery0.png', desc:  },
-  { src: 'gallery1.png', desc:  },
-  { src: 'gallery2.png', desc: '' }, // 설명 없는 경우
-  { src: 'gallery3.png', desc:  },
-        { src: 'gallery4.png', desc:  },
-  { src: 'gallery5.png', desc:  },
-  { src: 'gallery6.png', desc: '' }, // 설명 없는 경우
-  { src: 'gallery7.png', desc:  },
-          { src: 'gallery8.png', desc:  },
-  { src: 'gallery9.png', desc:  },
-  { src: 'gallery10.png', desc: '' }, // 설명 없는 경우
-  { src: 'gallery11.png', desc:  },
-        { src: 'gallery12.png', desc: },
-  { src: 'gallery13.png', desc:  },
-  { src: 'gallery14.png', desc: '' }, // 설명 없는 경우
-  { src: 'gallery15.png', desc:  },
-          { src: 'gallery16.png', desc: },
-  { src: 'gallery17.png', desc:  },
-  { src: 'gallery18.png', desc:  }, // 설명 없는 경우
-  { src: 'gallery19.png', desc:  },
-        { src: 'gallery20.png', desc:  },
-  { src: 'gallery21.png', desc:  },
-  { src: 'gallery22.png', desc:  }, // 설명 없는 경우
-  { src: 'gallery33.png', desc:  },
-        { src: 'gallery24.png', desc:  },
-        { src: 'gallery25.png', desc:  },
-      ];
+    const images = [
+  { src: 'gallery0.png', desc: '' },
+  { src: 'gallery1.png', desc: '' },
+  { src: 'gallery2.png', desc: '' },
+  { src: 'gallery3.png', desc: '' },
+  { src: 'gallery4.png', desc: '' },
+  { src: 'gallery5.png', desc: '' },
+  { src: 'gallery6.png', desc: '' },
+  { src: 'gallery7.png', desc: '' },
+  { src: 'gallery8.png', desc: '' },
+  { src: 'gallery9.png', desc: '' },
+  { src: 'gallery10.png', desc: '' },
+  { src: 'gallery11.png', desc: '' },
+  { src: 'gallery12.png', desc: '' },
+  { src: 'gallery13.png', desc: '' },
+  { src: 'gallery14.png', desc: '' },
+  { src: 'gallery15.png', desc: '' },
+  { src: 'gallery16.png', desc: '' },
+  { src: 'gallery17.png', desc: '' },
+  { src: 'gallery18.png', desc: '' },
+  { src: 'gallery19.png', desc: '' },
+  { src: 'gallery20.png', desc: '' },
+  { src: 'gallery21.png', desc: '' },
+  { src: 'gallery22.png', desc: '' },
+  { src: 'gallery23.png', desc: '' },
+  { src: 'gallery24.png', desc: '' },
+  { src: 'gallery25.png', desc: '' }
+];
       AOS.init({ duration: 800, once: true });
       const perPage = window.innerWidth <= 768 ? 10 : 12;
       let currentPage = 1;
