@@ -10,7 +10,8 @@
 <meta property="og:url" content="https://prowrap.site/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ProWrap Interior Film" />
-
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <!-- SEO Meta Tags -->
   <meta name="description" content="ProWrap는 인테리어 필름 전문 브랜드로, 고급스러운 마감과 시공 갤러리를 제공합니다. 실시간 문의 및 위치 정보도 확인하세요.">
   <meta name="keywords" content="ProWrap, 인테리어 필름, 인테리어 시공, 고양시 인테리어, 시공 사례, 필름 마감">
@@ -203,26 +204,27 @@
         'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
         'gallery24.png', 'gallery25.png'
       ];
+      AOS.init({ duration: 800, once: true });
       const perPage = window.innerWidth <= 768 ? 10 : 12;
       let currentPage = 1;
 
-      function renderGallery() {
-        const gallery = document.getElementById("gallery");
-        gallery.innerHTML = "";
-        const start = (currentPage - 1) * perPage;
-        const end = start + perPage;
-        const visible = images.slice(start, end);
+     function renderGallery() {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+  const start = (currentPage - 1) * perPage;
+  const end = start + perPage;
+  const visible = images.slice(start, end);
 
-        visible.forEach(src => {
-          const img = document.createElement("img");
-          img.src = src;
-          img.alt = "시공 사진";
-          img.loading = "lazy";
-          img.addEventListener("click", () => openModal(src));
-          gallery.appendChild(img);
-        });
-      }
-
+  visible.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "시공 사진";
+    img.loading = "lazy";
+    img.setAttribute("data-aos", "zoom-in");
+    img.addEventListener("click", () => openModal(src));
+    gallery.appendChild(img);
+  });
+}
       function renderPagination() {
         const totalPages = Math.ceil(images.length / perPage);
         const pagination = document.getElementById("pagination");
