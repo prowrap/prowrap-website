@@ -259,23 +259,19 @@
       
 .gallery-desc {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  color: #d3d3d3; /* 연회색 텍스트 */
-  background-color: rgba(0, 0, 0, 0.5); /* 어두운 반투명 배경 */
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  color: #d0d0d0; /* 연한 회색 */
+  background: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
+  padding: 0.6rem 0;
   font-size: 1rem;
   font-weight: 400;
-  text-align: center;
-  white-space: pre-wrap;
-  line-height: 1.5;
-  max-width: 90%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 2;
+  font-family: 'Noto Sans KR', sans-serif;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 .gallery-item:hover .gallery-desc {
   opacity: 1;
@@ -324,7 +320,7 @@
   const end = start + perPage;
   const visible = images.slice(start, end);
 
- visible.forEach(({ src, desc }) => {
+visible.forEach(({ src, desc }) => {
   const wrapper = document.createElement("div");
   wrapper.classList.add("gallery-item");
 
@@ -332,17 +328,20 @@
   img.src = src;
   img.alt = "시공 사진";
   img.loading = "lazy";
-  img.setAttribute("data-aos", "zoom-in"); // 
+  img.setAttribute("data-aos", "zoom-in");
   img.addEventListener("click", () => openModal(src));
 
-  const caption = document.createElement("p");
-  caption.className = "gallery-desc";
-  caption.textContent = desc || ""; 
+  if (desc) {
+    const caption = document.createElement("p");
+    caption.className = "gallery-desc";
+    caption.textContent = desc;
+    wrapper.appendChild(caption);
+  }
 
   wrapper.appendChild(img);
-  wrapper.appendChild(caption);
   gallery.appendChild(wrapper);
 });
+
 }
       function renderPagination() {
         const totalPages = Math.ceil(images.length / perPage);
