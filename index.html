@@ -239,76 +239,17 @@
   .review-card.mobile-hidden {
     display: none;
 }
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.gallery-item img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-}
-      
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
-      
-.gallery-desc {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  text-align: center;
-  color: #d0d0d0; /* 연한 회색 */
-  background: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
-  padding: 0.6rem 0;
-  font-size: 1rem;
-  font-weight: 400;
-  font-family: 'Noto Sans KR', sans-serif;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-.gallery-item:hover .gallery-desc {
-  opacity: 1;
-  pointer-events: auto;
-  }
   </style>
   
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-    const images = [
-  { src: 'gallery0.png', desc: '안녕하세요123' },
-  { src: 'gallery1.png', desc: '' },
-  { src: 'gallery2.png', desc: '' },
-  { src: 'gallery3.png', desc: '' },
-  { src: 'gallery4.png', desc: '' },
-  { src: 'gallery5.png', desc: '' },
-  { src: 'gallery6.png', desc: '' },
-  { src: 'gallery7.png', desc: '' },
-  { src: 'gallery8.png', desc: '' },
-  { src: 'gallery9.png', desc: '' },
-  { src: 'gallery10.png', desc: '' },
-  { src: 'gallery11.png', desc: '' },
-  { src: 'gallery12.png', desc: '' },
-  { src: 'gallery13.png', desc: '' },
-  { src: 'gallery14.png', desc: '' },
-  { src: 'gallery15.png', desc: '' },
-  { src: 'gallery16.png', desc: '' },
-  { src: 'gallery17.png', desc: '' },
-  { src: 'gallery18.png', desc: '' },
-  { src: 'gallery19.png', desc: '' },
-  { src: 'gallery20.png', desc: '' },
-  { src: 'gallery21.png', desc: '' },
-  { src: 'gallery22.png', desc: '' },
-  { src: 'gallery23.png', desc: '' },
-  { src: 'gallery24.png', desc: '' },
-  { src: 'gallery25.png', desc: '' }
-];
+      const images = [
+        'gallery0.png', 'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png',
+        'gallery6.png', 'gallery7.png', 'gallery8.png', 'gallery9.png', 'gallery10.png', 'gallery11.png',
+        'gallery12.png', 'gallery13.png', 'gallery14.png', 'gallery15.png', 'gallery16.png', 'gallery17.png',
+        'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
+        'gallery24.png', 'gallery25.png'
+      ];
       AOS.init({ duration: 800, once: true });
       const perPage = window.innerWidth <= 768 ? 10 : 12;
       let currentPage = 1;
@@ -320,28 +261,15 @@
   const end = start + perPage;
   const visible = images.slice(start, end);
 
-visible.forEach(({ src, desc }) => {
-  const wrapper = document.createElement("div");
-  wrapper.classList.add("gallery-item");
-
-  const img = document.createElement("img");
-  img.src = src;
-  img.alt = "시공 사진";
-  img.loading = "lazy";
-  img.setAttribute("data-aos", "zoom-in");
-  img.addEventListener("click", () => openModal(src));
-
-  if (desc) {
-    const caption = document.createElement("p");
-    caption.className = "gallery-desc";
-    caption.textContent = desc;
-    wrapper.appendChild(caption);
-  }
-
- wrapper.appendChild(img);      // 이미지 먼저
-if (desc) wrapper.appendChild(caption);  // 그다음 설명
-});
-
+  visible.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "시공 사진";
+    img.loading = "lazy";
+    img.setAttribute("data-aos", "zoom-in");
+    img.addEventListener("click", () => openModal(src));
+    gallery.appendChild(img);
+  });
 }
       function renderPagination() {
         const totalPages = Math.ceil(images.length / perPage);
