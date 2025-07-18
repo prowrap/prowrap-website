@@ -21,14 +21,15 @@
   <meta property="og:image" content="https://yourdomain.com/logo.png" />
   <meta property="og:url" content="https://yourdomain.com" />
   <meta name="twitter:card" content="summary_large_image" />
-  <!-- head 태그 안에 추가 -->
+ <!-- 이 줄은 <head> 안에 넣어야 해 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<style>
-  body { font-family: 'Noto Sans KR', sans-serif; }
-</style>
+
 
 
   <style>
+  body {
+    font-family: 'Noto Sans KR', sans-serif !important;
+  }
     body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
     header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: flex-start; align-items: center; z-index: 1000; flex-wrap: wrap; gap: 2rem; }
     header h1 { margin: 0; font-size: 0.99rem; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
