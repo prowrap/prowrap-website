@@ -38,20 +38,27 @@
   <div id="views-count"></div>
 
   <script>
-    function login() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+  function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => {
-          db.collection('siteData').doc('pageViews').get().then(doc => {
-            document.getElementById('views-count').innerHTML = '총 조회수: ' + doc.data().count;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        db.collection('siteData').doc('pageViews').get()
+          .then(doc => {
+            if (doc.exists && doc.data().count !== undefined) {
+              document.getElementById('views-count').innerHTML = '총 조회수: ' + doc.data().count;
+            } else {
+              alert('조회수 데이터가 없습니다.');
+            }
+          })
+          .catch(error => {
+            alert('Firestore 데이터 불러오기 오류: ' + error.message);
           });
-        })
-        .catch(error => {
-          alert('로그인 실패: ' + error.message);
-        });
-    }
-  </script>
-</body>
-</html>
+      })
+      .catch(error => {
+        alert('로그인 실패: ' + error.message);
+      });
+  }
+</script>
+
