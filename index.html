@@ -239,7 +239,7 @@
   .review-card.mobile-hidden {
     display: none;
 }
-      .gallery-item {
+.gallery-item {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
@@ -252,30 +252,35 @@
   display: block;
   transition: transform 0.3s ease;
 }
-
+      
 .gallery-item:hover img {
   transform: scale(1.05);
 }
-
+      
 .gallery-desc {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #e0e0e0; /* 연회색 */
-  background-color: rgba(0, 0, 0, 0.5); /* 더 부드럽게 */
-  padding: 0.6rem 1rem;
+  color: #d3d3d3; /* 연회색 텍스트 */
+  background-color: rgba(0, 0, 0, 0.5); /* 어두운 반투명 배경 */
+  padding: 0.7rem 1.2rem;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 400;
   text-align: center;
   white-space: pre-wrap;
-  line-height: 1.6;
-  max-width: 85%;
+  line-height: 1.5;
+  max-width: 90%;
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
+  z-index: 2;
 }
+.gallery-item:hover .gallery-desc {
+  opacity: 1;
+  pointer-events: auto;
+  }
   </style>
   
   <script>
@@ -327,12 +332,12 @@
   img.src = src;
   img.alt = "시공 사진";
   img.loading = "lazy";
-  img.setAttribute("data-aos", "zoom-in"); // 👉 스크롤 애니메이션 유지
+  img.setAttribute("data-aos", "zoom-in"); // 
   img.addEventListener("click", () => openModal(src));
 
   const caption = document.createElement("p");
   caption.className = "gallery-desc";
-  caption.textContent = desc || ""; // 설명이 없으면 빈칸
+  caption.textContent = desc || ""; 
 
   wrapper.appendChild(img);
   wrapper.appendChild(caption);
