@@ -338,8 +338,8 @@ visible.forEach(({ src, desc }) => {
     wrapper.appendChild(caption);
   }
 
-  wrapper.appendChild(img);
-  gallery.appendChild(wrapper);
+ wrapper.appendChild(img);      // 이미지 먼저
+if (desc) wrapper.appendChild(caption);  // 그다음 설명
 });
 
 }
