@@ -21,6 +21,24 @@
     header h1 { margin: 0; font-size: 1.2rem; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     nav { display: flex; flex-wrap: wrap; margin-left: 0.5rem; }
     nav a { margin-left: 1rem; text-decoration: none; color: #333; font-weight: 500; white-space: nowrap; }
+<style>
+  .map-mobile { display: none; }
+  .map-pc { display: block; }
+
+  @media (max-width: 768px) {
+    .map-mobile {
+      display: block;
+      width: 100%;
+      min-height: 400px;
+      height: 50vh;
+      border: none;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    .map-pc { display: none; }
+  }
+
+</style>
 
     .hero { 
       margin-top: 80px; 
@@ -135,16 +153,22 @@
     .contact-links a:hover {
       background-color: #ddd;
     }
-    <iframe 
-  src="https://map.naver.com/v5/search/고양시 덕양구 의장로 146" 
-  width="100%" 
-  height="400" 
-  style="border:0;" 
-  allowfullscreen 
-  loading="lazy" 
+   <!-- PC용 지도 -->
+<iframe 
+  class="map-pc"
+  src="https://map.naver.com/p/entry/address/14123212.1664669,4528125.5698111,%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%9D%98%EC%9E%A5%EB%A1%9C%20146?c=15.00,0,0,0,dh" 
+  allowfullscreen>
+</iframe>
+
+<!-- 모바일용 지도 -->
+<iframe 
+  class="map-mobile"
+  src="https://map.naver.com/v5/search/고양시 덕양구 의장로 146"
+  allowfullscreen
+  loading="lazy"
   referrerpolicy="no-referrer-when-downgrade">
 </iframe>
-    }
+ }
     footer {
       background-color: #f9f9f9;
       padding: 2rem;
