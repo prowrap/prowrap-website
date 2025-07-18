@@ -239,36 +239,87 @@
   .review-card.mobile-hidden {
     display: none;
 }
+      .gallery-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-desc {
+  font-size: 0.95rem;
+  color: #888;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .gallery-desc {
+    display: none;
+  }
+}
   </style>
   
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const images = [
-        'gallery0.png', 'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png',
-        'gallery6.png', 'gallery7.png', 'gallery8.png', 'gallery9.png', 'gallery10.png', 'gallery11.png',
-        'gallery12.png', 'gallery13.png', 'gallery14.png', 'gallery15.png', 'gallery16.png', 'gallery17.png',
-        'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
-        'gallery24.png', 'gallery25.png'
-      ];
+         { src: 'gallery0.png', desc: '' },
+  { src: 'gallery1.png', desc: '' },
+  { src: 'gallery2.png', desc: '' },
+  { src: 'gallery3.png', desc: '' },
+  { src: 'gallery4.png', desc: '' },
+  { src: 'gallery5.png', desc: '' },
+  { src: 'gallery6.png', desc: '' },
+  { src: 'gallery7.png', desc: '' },
+  { src: 'gallery8.png', desc: '' },
+  { src: 'gallery9.png', desc: '' },
+  { src: 'gallery10.png', desc: '' },
+  { src: 'gallery11.png', desc: '' },
+  { src: 'gallery12.png', desc: '' },
+  { src: 'gallery13.png', desc: '' },
+  { src: 'gallery14.png', desc: '' },
+  { src: 'gallery15.png', desc: '' },
+  { src: 'gallery16.png', desc: '' },
+  { src: 'gallery17.png', desc: '' },
+  { src: 'gallery18.png', desc: '' },
+  { src: 'gallery19.png', desc: '' },
+  { src: 'gallery20.png', desc: '' },
+  { src: 'gallery21.png', desc: '' },
+  { src: 'gallery22.png', desc: '' },
+  { src: 'gallery23.png', desc: '' },
+  { src: 'gallery24.png', desc: '' },
+  { src: 'gallery25.png', desc: '' }
+];
       AOS.init({ duration: 800, once: true });
       const perPage = window.innerWidth <= 768 ? 10 : 12;
       let currentPage = 1;
 
-     function renderGallery() {
+    function renderGallery() {
   const gallery = document.getElementById("gallery");
   gallery.innerHTML = "";
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
   const visible = images.slice(start, end);
 
-  visible.forEach(src => {
+  visible.forEach(({ src, desc }) => {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("gallery-item");
+
     const img = document.createElement("img");
     img.src = src;
-    img.alt = "시공 사진";
+    img.alt = desc;
     img.loading = "lazy";
     img.setAttribute("data-aos", "zoom-in");
     img.addEventListener("click", () => openModal(src));
-    gallery.appendChild(img);
+
+    const caption = document.createElement("p");
+    caption.className = "gallery-desc";
+    caption.textContent = desc;
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(caption);
+    gallery.appendChild(wrapper);
   });
 }
       function renderPagination() {
@@ -301,11 +352,10 @@
       }
 
       renderGallery();
-      renderPagination();
-
-      document.getElementById("modalClose").addEventListener("click", closeModal);
-    });
-  </script>
+renderPagination();
+document.getElementById("modalClose").addEventListener("click", closeModal);
+</script>
+  
 </head>
 <body>
   <header>
