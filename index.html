@@ -258,8 +258,15 @@
 
 .logo-wrap img {
   height: 25px;
-  width: 25px;         /* ← 이 줄만 추가해줘! */
+  width: 25px;
   object-fit: contain;
+}
+
+@media screen and (min-width: 768px) {
+  .logo-wrap img {
+    height: 35px;
+    width: 35px;
+  }
 }
 
 .logo-wrap h1 {
