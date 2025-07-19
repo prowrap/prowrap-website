@@ -247,47 +247,45 @@
   .review-card.mobile-hidden {
     display: none;
 }
-.logo-wrap {
-  display: inline-flex;
+      
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  gap: 0.4rem;
-  text-decoration: none;
-  color: inherit;
+  z-index: 1000;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.logo-wrap img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-}
-
-.logo-text {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1;
-  display: inline-block;
+header h1 {
+  margin: 0;
+  font-size: 0.99rem;
+  font-weight: bold;
   white-space: nowrap;
-
-  /* 여기 추가: 글자 미세 위치 조정 */
-  position: relative;
-  top: 5px;  /* ← 필요에 따라 0px, 2px, -1px 등으로 조절 가능 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* 클릭 시 보라색 되는 문제 해결 */
-a {
-  color: inherit;
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0.5rem;
+}
+
+nav a {
+  margin-left: 1rem;
   text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
-a:visited,
-a:active,
-a:link {
-  color: inherit;
-}
-
-a:hover {
-  text-decoration: underline;
-}
   </style>
   
   <script>
@@ -358,16 +356,14 @@ a:hover {
 </head>
 <body>
 <header>
- <a href="/" class="logo-wrap">
-  <img src="logohead.png" alt="ProWrap 로고" />
-  <span class="logo-text">PROWRAP | Real Film Real Finish</span>
-</a>
+  <h1>PROWRAP | Real Film Real Finish</h1>
   <nav>
     <a href="#gallery-section">갤러리</a>
     <a href="#reviews">리뷰</a>
     <a href="#contact">찾아오시는 길</a>
   </nav>
 </header>
+
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
     <div class="hero-widget-icons">
