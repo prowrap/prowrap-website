@@ -249,17 +249,17 @@
 }
 .logo-wrap {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-shrink: 0;
+  align-items: center;      /* ⬅️ 수직 정렬 핵심 */
+  gap: 0.5rem;              /* 이미지와 글자 간격 */
   text-decoration: none;
   color: inherit;
 }
 
 .logo-wrap img {
-  height: 30px;
+  height: 30px;             /* PC 기준 */
   width: 30px;
   object-fit: contain;
+  display: block;
 }
 /* 모바일에서는 25px */
 @media screen and (max-width: 767px) {
@@ -272,9 +272,8 @@
   margin: 0;
   font-size: 0.95rem;
   font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1;           /* 텍스트 수직 정렬 보정 */
+  display: inline-block;
 }
   </style>
   
