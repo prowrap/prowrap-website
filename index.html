@@ -248,25 +248,28 @@
     display: none;
 }
 .logo-wrap {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
   color: inherit;
-  white-space: nowrap; /* ✅ 줄바꿈 방지 */
+  white-space: nowrap;
 }
 
 .logo-wrap img {
   height: 30px;
   width: 30px;
   object-fit: contain;
+  display: block;
 }
 
-.logo-wrap span {
+.logo-wrap h1 {
+  margin: 0;
   font-size: 0.95rem;
   font-weight: bold;
-  display: inline-block;
   line-height: 1;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 767px) {
@@ -275,7 +278,7 @@
     width: 25px;
   }
 
-  .logo-wrap span {
+  .logo-wrap h1 {
     font-size: 0.85rem;
   }
 }
@@ -348,10 +351,10 @@
   </script>
 </head>
 <body>
- <header>
+<header>
   <a href="/" class="logo-wrap">
     <img src="logohead.png" alt="ProWrap 로고" />
-    <span>PROWRAP | Real Film Real Finish</span>
+    <h1>PROWRAP | Real Film Real Finish</h1>
   </a>
   <nav>
     <a href="#gallery-section">갤러리</a>
@@ -359,7 +362,6 @@
     <a href="#contact">찾아오시는 길</a>
   </nav>
 </header>
-
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
     <div class="hero-widget-icons">
