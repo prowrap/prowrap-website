@@ -247,34 +247,38 @@
   .review-card.mobile-hidden {
     display: none;
 }
-.branding {
+.logo-wrap {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap; /* ✅ 줄바꿈 방지 */
 }
 
-.branding img {
+.logo-wrap img {
   height: 30px;
   width: 30px;
   object-fit: contain;
 }
 
+.logo-wrap span {
+  font-size: 0.95rem;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1;
+}
+
 @media screen and (max-width: 767px) {
-  .branding img {
+  .logo-wrap img {
     height: 25px;
     width: 25px;
   }
-}
 
-.branding h1 {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: bold;
-  line-height: 1;
-  white-space: nowrap;
+  .logo-wrap span {
+    font-size: 0.85rem;
+  }
 }
-
   </style>
   
   <script>
@@ -344,11 +348,11 @@
   </script>
 </head>
 <body>
-  <header>
-  <div class="branding">
+ <header>
+  <a href="/" class="logo-wrap">
     <img src="logohead.png" alt="ProWrap 로고" />
-    <h1>PROWRAP | Real Film Real Finish</h1>
-  </div>
+    <span>PROWRAP | Real Film Real Finish</span>
+  </a>
   <nav>
     <a href="#gallery-section">갤러리</a>
     <a href="#reviews">리뷰</a>
