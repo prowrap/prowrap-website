@@ -247,34 +247,34 @@
   .review-card.mobile-hidden {
     display: none;
 }
-.logo-wrap {
+.branding {
   display: flex;
-  align-items: center;      /* ⬅️ 수직 정렬 핵심 */
-  gap: 0.5rem;              /* 이미지와 글자 간격 */
-  text-decoration: none;
-  color: inherit;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
 }
 
-.logo-wrap img {
-  height: 30px;             /* PC 기준 */
+.branding img {
+  height: 30px;
   width: 30px;
   object-fit: contain;
-  display: block;
 }
-/* 모바일에서는 25px */
+
 @media screen and (max-width: 767px) {
-  .logo-wrap img {
+  .branding img {
     height: 25px;
     width: 25px;
   }
 }
-.logo-wrap h1 {
+
+.branding h1 {
   margin: 0;
   font-size: 0.95rem;
   font-weight: bold;
-  line-height: 1;           /* 텍스트 수직 정렬 보정 */
-  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
 }
+
   </style>
   
   <script>
@@ -345,17 +345,16 @@
 </head>
 <body>
   <header>
-  <a href="#" class="logo-wrap">
+  <div class="branding">
     <img src="logohead.png" alt="ProWrap 로고" />
     <h1>PROWRAP | Real Film Real Finish</h1>
-  </a>
+  </div>
   <nav>
     <a href="#gallery-section">갤러리</a>
     <a href="#reviews">리뷰</a>
     <a href="#contact">찾아오시는 길</a>
   </nav>
 </header>
-
 
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
