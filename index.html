@@ -62,7 +62,7 @@
     .map-btn.kakao { background-color: #FEE500; color: black; }
   </style>
   <script>
- document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
       const gallery = document.getElementById("gallery");
       const pagination = document.getElementById("pagination");
       const totalItems = 26; // gallery0 ~ gallery25
@@ -83,7 +83,7 @@
           mainLink.href = `${base}-1.png`;
           mainLink.className = "glightbox";
           mainLink.setAttribute("data-gallery", groupId);
-          mainLink.setAttribute("data-title");
+          // mainLink.setAttribute("data-title", "시공 전"); // 제거됨
           const thumb = document.createElement("img");
           thumb.src = `${base}.png`;
           thumb.alt = "대표 이미지";
@@ -94,7 +94,7 @@
             hiddenLink.href = `${base}-${j}.png`;
             hiddenLink.className = "glightbox";
             hiddenLink.setAttribute("data-gallery", groupId);
-            hiddenLink.setAttribute("data-title", `시공 컷 ${j}`);
+            // hiddenLink.setAttribute("data-title", `시공 컷 ${j}`); // 제거됨
             hiddenLink.style.display = "none";
             container.appendChild(hiddenLink);
           }
