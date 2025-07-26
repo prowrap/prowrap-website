@@ -4,306 +4,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prowrap Interior Film</title>
-<meta property="og:title" content="ProWrap | Real Film Real Finish" />
-<meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
-<meta property="og:image" content="https://prowrap.site/og-image.png" />
-<meta property="og:url" content="https://prowrap.site/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="ProWrap Interior Film" />
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <!-- SEO Meta Tags -->
+  <meta property="og:title" content="ProWrap | Real Film Real Finish" />
+  <meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
+  <meta property="og:image" content="https://prowrap.site/og-image.png" />
+  <meta property="og:url" content="https://prowrap.site/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ProWrap Interior Film" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <meta name="description" content="ProWrap는 인테리어 필름 전문 브랜드로, 고급스러운 마감과 시공 갤러리를 제공합니다. 실시간 문의 및 위치 정보도 확인하세요.">
   <meta name="keywords" content="ProWrap, 인테리어 필름, 인테리어 시공, 고양시 인테리어, 시공 사례, 필름 마감">
   <meta name="author" content="ProWrap Interior Film">
-  <meta property="og:title" content="ProWrap | Real Film Real Finish" />
-  <meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
-  <meta property="og:image" content="https://yourdomain.com/logo.png" />
-  <meta property="og:url" content="https://yourdomain.com" />
-  <meta name="twitter:card" content="summary_large_image" />
- <!-- 이 줄은 <head> 안에 넣어야 해 -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <style>
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    font-family: 'Noto Sans KR', sans-serif !important;
-  }
-    body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: #fff; color: #333; }
     header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: flex-start; align-items: center; z-index: 1000; flex-wrap: wrap; gap: 2rem; }
     header h1 { margin: 0; font-size: 0.99rem; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     nav { display: flex; flex-wrap: wrap; margin-left: 0.5rem; }
     nav a { margin-left: 1rem; text-decoration: none; color: #333; font-weight: 500; white-space: nowrap; }
-
-    .hero { 
-      margin-top: 80px; 
-      width: 100%;
-      height: 500px; 
-      background: url('https://images.unsplash.com/photo-1600585152936-1c1d1e6d7158?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover; 
-      display: flex; 
-      flex-direction: column;
-      align-items: center; 
-      justify-content: center; 
-      position: relative;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.7);
-      z-index: 0;
-    }
-    .hero img {
-      height: 100px;
-      max-width: 95%;
-      position: relative;
-      z-index: 1;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
-    }
-    .hero-widget-icons {
-      position: relative;
-      margin-top: 1rem;
-      z-index: 2;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .hero-widget-icons img {
-      height: 50px;
-      width: 50px;
-      object-fit: contain;
-    }
+    .hero { margin-top: 80px; width: 100%; height: 500px; background: url('https://images.unsplash.com/photo-1600585152936-1c1d1e6d7158?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+    .hero::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.7); z-index: 0; }
+    .hero img { height: 100px; max-width: 95%; position: relative; z-index: 1; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25)); }
+    .hero-widget-icons { position: relative; margin-top: 1rem; z-index: 2; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .hero-widget-icons img { height: 50px; width: 50px; object-fit: contain; }
     .section { padding: 3rem 1.5rem; max-width: 1100px; margin: auto; }
     .gallery-container { display: flex; flex-direction: column; align-items: center; }
     .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; width: 100%; }
-    .gallery img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      border-radius: 8px;
-      object-fit: contain;
-      background-color: #f7f7f7;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .gallery img:hover {
-      transform: scale(1.02);
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-    .modal-content {
-      margin: 5% auto;
-      display: block;
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-    }
-    .modal-close {
-      position: absolute;
-      top: 30px;
-      right: 50px;
-      color: #fff;
-      font-size: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 2100;
-    }
+    .gallery-item { display: flex; flex-direction: column; align-items: center; }
+    .gallery-item img { width: 100%; aspect-ratio: 4/3; border-radius: 8px; object-fit: contain; background-color: #f7f7f7; cursor: pointer; transition: transform 0.3s ease; }
+    .gallery-item img:hover { transform: scale(1.02); }
     .pagination { margin-top: 2rem; display: flex; gap: 0.5rem; justify-content: center; }
-    .pagination button {
-      padding: 0.5rem 1rem;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .contact-links img {
-      height: 150px;
-      width: 150px;
-      object-fit: contain;
-      image-rendering: auto;
-    }
-    .contact-links a {
-      display: inline-block;
-      margin: 0.5rem 1rem 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #eee;
-      border-radius: 5px;
-      text-decoration: none;
-      color: #333;
-      transition: background 0.3s;
-    }
-    .contact-links a:hover {
-      background-color: #ddd;
-    }
-    iframe {
-      width: 100%;
-      min-height: 400px;
-      height: 50vh;
-      border: none;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-    footer {
-      background-color: #f9f9f9;
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid #ddd;
-      font-size: 0.9rem;
-      color: #666;
-    }
-     .review-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .review-card {
-      background: #f7f7f7;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
-    }
-
-    .review-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .review-text {
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .review-author {
-      font-size: 0.9rem;
-      color: #888;
-      text-align: right;
-    }
+    .pagination button { padding: 0.5rem 1rem; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; }
+    .contact-links img { height: 150px; width: 150px; object-fit: contain; image-rendering: auto; }
+    .contact-links a { display: inline-block; margin: 0.5rem 1rem 0.5rem 0; padding: 0.5rem 1rem; background-color: #eee; border-radius: 5px; text-decoration: none; color: #333; transition: background 0.3s; }
+    .contact-links a:hover { background-color: #ddd; }
+    iframe { width: 100%; min-height: 400px; height: 50vh; border: none; border-radius: 10px; margin-top: 1rem; }
+    footer { background-color: #f9f9f9; padding: 2rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.9rem; color: #666; }
+    .review-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .review-card { background: #f7f7f7; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: transform 0.2s ease; }
+    .review-card:hover { transform: translateY(-5px); }
+    .review-text { font-size: 1rem; color: #333; line-height: 1.6; margin-bottom: 1rem; }
+    .review-author { font-size: 0.9rem; color: #888; text-align: right; }
     @media (max-width: 768px) {
       header { flex-direction: column; align-items: flex-start; padding: 1rem; }
       nav { justify-content: center; width: 100%; margin-top: 0.5rem; margin-left: 0; }
       nav a { margin: 0 1rem; }
       .gallery { grid-template-columns: repeat(2, 1fr); }
       .hero-widget-icons { flex-direction: row; flex-wrap: wrap; }
+      .review-card.mobile-hidden { display: none; }
     }
-  .map-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.map-btn {
-  padding: 0.8rem 1.4rem;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  width: 100%;               /* 버튼을 컨테이너 너비에 맞춤 */
-  max-width: 300px;          /* 최대 너비 설정 */
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.map-btn.naver {
-  background-color: #03c75a;
-  color: white;
-}
-
-.map-btn.kakao {
-  background-color: #FEE500;
-  color: black;
-}
-    @media (max-width: 768px) {
-  .review-card.mobile-hidden {
-    display: none;
-}
+    .map-buttons { display: flex; flex-direction: column; gap: 0.7rem; align-items: center; margin-top: 1rem; }
+    .map-btn { padding: 0.8rem 1.4rem; border-radius: 5px; font-weight: 600; font-size: 1rem; text-decoration: none; width: 100%; max-width: 300px; text-align: center; box-sizing: border-box; }
+    .map-btn.naver { background-color: #03c75a; color: white; }
+    .map-btn.kakao { background-color: #FEE500; color: black; }
   </style>
-  
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const images = [
-        'gallery0.png', 'gallery1.png', 'gallery2.png', 'gallery3.png', 'gallery4.png', 'gallery5.png',
-        'gallery6.png', 'gallery7.png', 'gallery8.png', 'gallery9.png', 'gallery10.png', 'gallery11.png',
-        'gallery12.png', 'gallery13.png', 'gallery14.png', 'gallery15.png', 'gallery16.png', 'gallery17.png',
-        'gallery18.png', 'gallery19.png', 'gallery20.png', 'gallery21.png', 'gallery22.png', 'gallery23.png',
-        'gallery24.png', 'gallery25.png'
-      ];
-      AOS.init({ duration: 800, once: true });
-      const perPage = window.innerWidth <= 768 ? 10 : 12;
-      let currentPage = 1;
-
-     function renderGallery() {
-  const gallery = document.getElementById("gallery");
-  gallery.innerHTML = "";
-  const start = (currentPage - 1) * perPage;
-  const end = start + perPage;
-  const visible = images.slice(start, end);
-
-  visible.forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = "시공 사진";
-    img.loading = "lazy";
-    img.setAttribute("data-aos", "zoom-in");
-    img.addEventListener("click", () => openModal(src));
-    gallery.appendChild(img);
-  });
-}
-      function renderPagination() {
-        const totalPages = Math.ceil(images.length / perPage);
-        const pagination = document.getElementById("pagination");
-        pagination.innerHTML = "";
-
-        for (let i = 1; i <= totalPages; i++) {
-          const btn = document.createElement("button");
-          btn.textContent = i;
-          if (i === currentPage) btn.style.fontWeight = 'bold';
-          btn.addEventListener("click", () => {
-            currentPage = i;
-            renderGallery();
-            renderPagination();
-          });
-          pagination.appendChild(btn);
+      const gallery = document.getElementById("gallery");
+      const totalItems = 10; // gallery0 ~ gallery9
+      for (let i = 0; i < totalItems; i++) {
+        const groupId = `group${i}`;
+        const base = `gallery${i}`;
+        const container = document.createElement("div");
+        container.className = "gallery-item";
+        const mainLink = document.createElement("a");
+        mainLink.href = `${base}-1.png`;
+        mainLink.className = "glightbox";
+        mainLink.setAttribute("data-gallery", groupId);
+        mainLink.setAttribute("data-title", "시공 전");
+        const thumb = document.createElement("img");
+        thumb.src = `${base}.png`;
+        thumb.alt = "대표 이미지";
+        mainLink.appendChild(thumb);
+        container.appendChild(mainLink);
+        for (let j = 2; j <= 3; j++) {
+          const hiddenLink = document.createElement("a");
+          hiddenLink.href = `${base}-${j}.png`;
+          hiddenLink.className = "glightbox";
+          hiddenLink.setAttribute("data-gallery", groupId);
+          hiddenLink.setAttribute("data-title", `시공 컷 ${j}`);
+          hiddenLink.style.display = "none";
+          container.appendChild(hiddenLink);
         }
+        gallery.appendChild(container);
       }
-
-      function openModal(src) {
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImg");
-        modalImg.src = src;
-        modal.style.display = "block";
-      }
-
-      function closeModal() {
-        document.getElementById("imageModal").style.display = "none";
-      }
-
-      renderGallery();
-      renderPagination();
-
-      document.getElementById("modalClose").addEventListener("click", closeModal);
+      AOS.init({ duration: 800, once: true });
+      GLightbox({ selector: '.glightbox' });
     });
   </script>
 </head>
