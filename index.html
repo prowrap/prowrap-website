@@ -61,11 +61,11 @@
     .map-btn.naver { background-color: #03c75a; color: white; }
     .map-btn.kakao { background-color: #FEE500; color: black; }
   </style>
-  <script>
+   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const gallery = document.getElementById("gallery");
       const pagination = document.getElementById("pagination");
-      const totalItems = 26; // gallery25 ~ gallery0
+      const totalItems = 26; // gallery0 ~ gallery25
       const itemsPerPage = 15;
       let currentPage = 1;
 
@@ -75,15 +75,15 @@
         const end = Math.min(start + itemsPerPage, totalItems);
 
         for (let i = start; i < end; i++) {
-          const groupId = `group${i}`;
-          const base = `gallery${i}`;
+          const reversedIndex = totalItems - 1 - i; // 큰 번호부터 순서대로
+          const groupId = `group${reversedIndex}`;
+          const base = `gallery${reversedIndex}`;
           const container = document.createElement("div");
           container.className = "gallery-item";
           const mainLink = document.createElement("a");
           mainLink.href = `${base}-1.png`;
           mainLink.className = "glightbox";
           mainLink.setAttribute("data-gallery", groupId);
-          // mainLink.setAttribute("data-title", "시공 전"); // 제거됨
           const thumb = document.createElement("img");
           thumb.src = `${base}.png`;
           thumb.alt = "대표 이미지";
@@ -94,7 +94,6 @@
             hiddenLink.href = `${base}-${j}.png`;
             hiddenLink.className = "glightbox";
             hiddenLink.setAttribute("data-gallery", groupId);
-            // hiddenLink.setAttribute("data-title", `시공 컷 ${j}`); // 제거됨
             hiddenLink.style.display = "none";
             container.appendChild(hiddenLink);
           }
