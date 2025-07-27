@@ -79,8 +79,11 @@
           const groupId = `group${reversedIndex}`;
           const reversedIndex = totalItems - 1 - i;
 const base = `gallery${reversedIndex}`;
-const folder = "images"; C:\Users\우선찬\OneDrive\문서\GitHub\prowrap-website\prowrap-website
+const folder = "images"; // 오직 이거만 있어야 해
+const base = `gallery${reversedIndex}`;
 
+mainLink.href = `${folder}/${base}-1.png`;
+thumb.src = `${folder}/${base}.png`;
           const container = document.createElement("div");
           container.className = "gallery-item";
           const mainLink = document.createElement("a");
