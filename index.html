@@ -243,13 +243,26 @@
 }
   </style>
   
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    <script>
+    document.addEventListener("DOMContentLoaded", async function () {
       const gallery = document.getElementById("gallery");
       const pagination = document.getElementById("pagination");
-      const totalItems = 26; // gallery0 ~ gallery25
       const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
       let currentPage = 1;
+
+      // 자동 이미지 수 계산
+      let totalItems = 0;
+      try {
+        const response = await fetch('./');
+        const text = await response.text();
+        const matches = text.match(/gallery\d+\.png/g);
+        const numbers = matches?.map(name => parseInt(name.replace(/gallery(\d+)\.png/, '$1')));
+        if (numbers && numbers.length > 0) {
+          totalItems = Math.max(...numbers) + 1;
+        }
+      } catch (e) {
+        console.error("이미지 자동 로딩 실패:", e);
+      }
 
       function renderGalleryPage(page) {
         gallery.innerHTML = "";
@@ -257,10 +270,10 @@
         const end = Math.min(start + itemsPerPage, totalItems);
 
         for (let i = start; i < end; i++) {
-          const reversedIndex = totalItems - 1 - i; // 큰 번호부터 순서대로
+          const reversedIndex = totalItems - 1 - i;
           const groupId = `group${reversedIndex}`;
           const base = `gallery${reversedIndex}`;
-          const folder = "."; // index.html과 이미지가 같은 폴더에 있을 때
+          const folder = ".";
 
           const container = document.createElement("div");
           container.className = "gallery-item";
@@ -293,7 +306,8 @@
           selector: '.glightbox',
           touchNavigation: true,
           loop: true,
-          zoomable: true
+          zoomable: true,
+          arrows: true // 모바일에서 좌우 화살표가 보이게
         });
       }
 
