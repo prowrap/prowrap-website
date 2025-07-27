@@ -242,12 +242,30 @@
     display: none;
 }
   </style>
-  
+   <style>
+    .gprev, .gnext {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+    .gprev svg, .gnext svg {
+      width: 40px !important;
+      height: 40px !important;
+    }
+    .glightbox-clean .gprev,
+    .glightbox-clean .gnext {
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      background: rgba(0,0,0,0.5) !important;
+      border-radius: 50% !important;
+    }
+  </style>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const gallery = document.getElementById("gallery");
       const pagination = document.getElementById("pagination");
-      const totalItems = 26; // gallery0 ~ gallery25
+      const totalItems = 26;
       const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
       let currentPage = 1;
 
@@ -289,24 +307,13 @@
           gallery.appendChild(container);
         }
 
-        const lightbox = GLightbox({
+        GLightbox({
           selector: '.glightbox',
           touchNavigation: true,
           loop: true,
           zoomable: true,
           arrows: true
         });
-
-        // 모바일에서도 화살표 강제 표시 (스타일 조정)
-        const arrowStyle = document.createElement('style');
-        arrowStyle.textContent = `
-          .gprev, .gnext {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-          }
-        `;
-        document.head.appendChild(arrowStyle);
       }
 
       function renderPagination() {
