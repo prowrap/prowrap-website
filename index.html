@@ -94,15 +94,21 @@
             hiddenLink.href = `${base}-${j}.png`;
             hiddenLink.className = "glightbox";
             hiddenLink.setAttribute("data-gallery", groupId);
-            hiddenLink.style.display = "none";
+            hiddenLink.style.visibility = 'hidden';
+hiddenLink.style.height = '0';
+hiddenLink.style.overflow = 'hidden';
+
             container.appendChild(hiddenLink);
           }
           gallery.appendChild(container);
         }
 
-        GLightbox({ selector: '.glightbox' });
-      }
-
+       GLightbox({
+  selector: '.glightbox',
+  touchNavigation: true,
+  loop: true,
+  zoomable: true
+});
       function renderPagination() {
         const totalPages = Math.ceil(totalItems / itemsPerPage);
         pagination.innerHTML = "";
