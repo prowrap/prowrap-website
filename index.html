@@ -260,7 +260,7 @@
           const reversedIndex = totalItems - 1 - i; // 큰 번호부터 순서대로
           const groupId = `group${reversedIndex}`;
           const base = `gallery${reversedIndex}`;
-          const folder = "images"; // 이미지 폴더 경로
+          const folder = "."; // index.html과 이미지가 같은 폴더에 있을 때
 
           const container = document.createElement("div");
           container.className = "gallery-item";
