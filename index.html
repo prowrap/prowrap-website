@@ -243,7 +243,7 @@
 }
   </style>
   
-<script>
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
       const gallery = document.getElementById("gallery");
       const pagination = document.getElementById("pagination");
@@ -282,9 +282,7 @@
             hiddenLink.href = `${folder}/${base}-${j}.png`;
             hiddenLink.className = "glightbox";
             hiddenLink.setAttribute("data-gallery", groupId);
-            hiddenLink.style.visibility = 'hidden';
-            hiddenLink.style.height = '0';
-            hiddenLink.style.overflow = 'hidden';
+            hiddenLink.style.display = 'none';
             container.appendChild(hiddenLink);
           }
 
