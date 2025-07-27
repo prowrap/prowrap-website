@@ -84,7 +84,8 @@ const folder = "images"; C:\Users\우선찬\OneDrive\문서\GitHub\prowrap-websi
           const container = document.createElement("div");
           container.className = "gallery-item";
           const mainLink = document.createElement("a");
-          mainLink.href = `${folder}/${base}-1.png`;
+         const folder = "images";
+mainLink.href = `${folder}/${base}-1.png`;
 thumb.src = `${folder}/${base}.png`;
           mainLink.className = "glightbox";
           mainLink.setAttribute("data-gallery", groupId);
