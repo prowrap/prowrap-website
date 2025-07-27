@@ -78,12 +78,7 @@
           const reversedIndex = totalItems - 1 - i; // 큰 번호부터 순서대로
           const groupId = `group${reversedIndex}`;
           const reversedIndex = totalItems - 1 - i;
-const base = `gallery${reversedIndex}`;
-const folder = "images"; // 오직 이거만 있어야 해
-const base = `gallery${reversedIndex}`;
-
-mainLink.href = `${folder}/${base}-1.png`;
-thumb.src = `${folder}/${base}.png`;
+const folder = "images";
           const container = document.createElement("div");
           container.className = "gallery-item";
           const mainLink = document.createElement("a");
