@@ -265,9 +265,28 @@
   document.addEventListener("DOMContentLoaded", function () {
     const gallery = document.getElementById("gallery");
     const pagination = document.getElementById("pagination");
-    const totalItems = 29;
+    let totalItems = 0; // 자동 감지로 변경
     const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
     let currentPage = 1;
+
+    // 대표 이미지 개수 자동 감지 함수
+    function detectTotalItems(callback) {
+      let index = 0;
+      function checkNext() {
+        const imgPath = `./gallery${index}.png`;
+        const testImg = new Image();
+        testImg.onload = function () {
+          index++;
+          checkNext(); // 다음 번호 확인
+        };
+        testImg.onerror = function () {
+          totalItems = index; // 존재하는 개수 저장
+          callback(); // 감지 완료 후 콜백 실행
+        };
+        testImg.src = imgPath;
+      }
+      checkNext();
+    }
 
     function renderGalleryPage(page) {
       gallery.innerHTML = "";
@@ -315,10 +334,8 @@
             addNextImage(); // 다음 이미지 확인
           };
           testImg.onerror = function () {
-            // 이미지가 없으면 중단
             loadedCount++;
             if (loadedCount === (end - start)) {
-              // 모든 갤러리 아이템 생성 후 GLightbox 초기화
               GLightbox({
                 selector: '.glightbox',
                 touchNavigation: true,
@@ -351,9 +368,12 @@
       }
     }
 
-    renderGalleryPage(currentPage);
-    renderPagination();
-    AOS.init({ duration: 800, once: true });
+    // 실행: 먼저 대표 이미지 개수 감지 후 렌더링
+    detectTotalItems(() => {
+      renderGalleryPage(currentPage);
+      renderPagination();
+      AOS.init({ duration: 800, once: true });
+    });
   });
 </script>
 </head>
