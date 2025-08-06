@@ -261,81 +261,83 @@
       border-radius: 50% !important;
     }
   </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const gallery = document.getElementById("gallery");
-      const pagination = document.getElementById("pagination");
-      const totalItems = 27;
-      const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
-      let currentPage = 1;
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const gallery = document.getElementById("gallery");
+    const pagination = document.getElementById("pagination");
+    const totalItems = 27;
+    const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
+    let currentPage = 1;
 
-      function renderGalleryPage(page) {
-        gallery.innerHTML = "";
-        const start = (page - 1) * itemsPerPage;
-        const end = Math.min(start + itemsPerPage, totalItems);
+    function renderGalleryPage(page) {
+      gallery.innerHTML = "";
+      const start = (page - 1) * itemsPerPage;
+      const end = Math.min(start + itemsPerPage, totalItems);
 
-        for (let i = start; i < end; i++) {
-          const reversedIndex = totalItems - 1 - i;
-          const groupId = `group${reversedIndex}`;
-          const base = `gallery${reversedIndex}`;
-          const folder = ".";
+      for (let i = start; i < end; i++) {
+        const reversedIndex = totalItems - 1 - i;
+        const groupId = `group${reversedIndex}`;
+        const base = `gallery${reversedIndex}`;
+        const folder = ".";
 
-          const container = document.createElement("div");
-          container.className = "gallery-item";
+        const container = document.createElement("div");
+        container.className = "gallery-item";
 
-          const mainLink = document.createElement("a");
-          mainLink.href = `${folder}/${base}-1.png`;
-          mainLink.className = "glightbox";
-          mainLink.setAttribute("data-gallery", groupId);
+        // 대표 이미지 클릭 시 대표 이미지부터 열리도록 변경
+        const mainLink = document.createElement("a");
+        mainLink.href = `${folder}/${base}.png`;
+        mainLink.className = "glightbox";
+        mainLink.setAttribute("data-gallery", groupId);
 
-          const thumb = document.createElement("img");
-          thumb.src = `${folder}/${base}.png`;
-          thumb.alt = "대표 이미지";
+        const thumb = document.createElement("img");
+        thumb.src = `${folder}/${base}.png`;
+        thumb.alt = "대표 이미지";
 
-          mainLink.appendChild(thumb);
-          container.appendChild(mainLink);
+        mainLink.appendChild(thumb);
+        container.appendChild(mainLink);
 
-          for (let j = 2; j <= 3; j++) {
-            const hiddenLink = document.createElement("a");
-            hiddenLink.href = `${folder}/${base}-${j}.png`;
-            hiddenLink.className = "glightbox";
-            hiddenLink.setAttribute("data-gallery", groupId);
-            hiddenLink.style.display = 'none';
-            container.appendChild(hiddenLink);
-          }
-
-          gallery.appendChild(container);
+        // 대표 이미지 다음에 -1, -2, -3 순서로 표시
+        for (let j = 1; j <= 3; j++) {
+          const hiddenLink = document.createElement("a");
+          hiddenLink.href = `${folder}/${base}-${j}.png`;
+          hiddenLink.className = "glightbox";
+          hiddenLink.setAttribute("data-gallery", groupId);
+          hiddenLink.style.display = 'none';
+          container.appendChild(hiddenLink);
         }
 
-        GLightbox({
-          selector: '.glightbox',
-          touchNavigation: true,
-          loop: true,
-          zoomable: true,
-          arrows: true
+        gallery.appendChild(container);
+      }
+
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        zoomable: true,
+        arrows: true
+      });
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      pagination.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === currentPage) btn.style.fontWeight = 'bold';
+        btn.addEventListener("click", () => {
+          currentPage = i;
+          renderGalleryPage(currentPage);
         });
+        pagination.appendChild(btn);
       }
+    }
 
-      function renderPagination() {
-        const totalPages = Math.ceil(totalItems / itemsPerPage);
-        pagination.innerHTML = "";
-        for (let i = 1; i <= totalPages; i++) {
-          const btn = document.createElement("button");
-          btn.textContent = i;
-          if (i === currentPage) btn.style.fontWeight = 'bold';
-          btn.addEventListener("click", () => {
-            currentPage = i;
-            renderGalleryPage(currentPage);
-          });
-          pagination.appendChild(btn);
-        }
-      }
-
-      renderGalleryPage(currentPage);
-      renderPagination();
-      AOS.init({ duration: 800, once: true });
-    });
-  </script>
+    renderGalleryPage(currentPage);
+    renderPagination();
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
 </head>
 <body>
   <header>
