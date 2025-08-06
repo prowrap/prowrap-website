@@ -283,7 +283,7 @@
         const container = document.createElement("div");
         container.className = "gallery-item";
 
-        // 대표 이미지 클릭 시 대표 이미지부터 열리도록 변경
+        // 대표 이미지
         const mainLink = document.createElement("a");
         mainLink.href = `${folder}/${base}.png`;
         mainLink.className = "glightbox";
@@ -296,15 +296,28 @@
         mainLink.appendChild(thumb);
         container.appendChild(mainLink);
 
-        // 대표 이미지 다음에 -1, -2, -3 순서로 표시
-        for (let j = 1; j <= 7; j++) {
-          const hiddenLink = document.createElement("a");
-          hiddenLink.href = `${folder}/${base}-${j}.png`;
-          hiddenLink.className = "glightbox";
-          hiddenLink.setAttribute("data-gallery", groupId);
-          hiddenLink.style.display = 'none';
-          container.appendChild(hiddenLink);
+        // 서브 이미지 자동 감지
+        let j = 1;
+        function addNextImage() {
+          const imgPath = `${folder}/${base}-${j}.png`;
+          const testImg = new Image();
+          testImg.onload = function () {
+            const hiddenLink = document.createElement("a");
+            hiddenLink.href = imgPath;
+            hiddenLink.className = "glightbox";
+            hiddenLink.setAttribute("data-gallery", groupId);
+            hiddenLink.style.display = 'none';
+            container.appendChild(hiddenLink);
+
+            j++;
+            addNextImage(); // 다음 이미지 확인
+          };
+          testImg.onerror = function () {
+            // 이미지가 없으면 중단
+          };
+          testImg.src = imgPath;
         }
+        addNextImage();
 
         gallery.appendChild(container);
       }
