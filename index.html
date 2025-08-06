@@ -262,119 +262,114 @@
     }
   </style>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const gallery = document.getElementById("gallery");
-    const pagination = document.getElementById("pagination");
-    let totalItems = 0; // 자동 감지로 변경
-    const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
-    let currentPage = 1;
+document.addEventListener("DOMContentLoaded", function () {
+  const gallery = document.getElementById("gallery");
+  const pagination = document.getElementById("pagination");
+  let totalItems = 0;
+  const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
+  let currentPage = 1;
+  const folder = "."; // ← 이미지가 HTML과 같은 폴더면 그대로 두고, 아니라면 경로 수정
 
-    // 대표 이미지 개수 자동 감지 함수
-    function detectTotalItems(callback) {
-      let index = 0;
-      function checkNext() {
-        const imgPath = `./gallery${index}.png`;
+  function detectTotalItems(callback) {
+    let index = 0;
+    function checkNext() {
+      const imgPath = `${folder}/gallery${index}.png`;
+      const testImg = new Image();
+      testImg.onload = function () {
+        index++;
+        checkNext();
+      };
+      testImg.onerror = function () {
+        totalItems = index;
+        callback();
+      };
+      testImg.src = imgPath;
+    }
+    checkNext();
+  }
+
+  function renderGalleryPage(page) {
+    gallery.innerHTML = "";
+    const start = (page - 1) * itemsPerPage;
+    const end = Math.min(start + itemsPerPage, totalItems);
+    let loadedCount = 0;
+
+    for (let i = start; i < end; i++) {
+      const reversedIndex = totalItems - 1 - i;
+      const groupId = `group${reversedIndex}`;
+      const base = `gallery${reversedIndex}`;
+
+      const container = document.createElement("div");
+      container.className = "gallery-item";
+
+      const mainLink = document.createElement("a");
+      mainLink.href = `${folder}/${base}.png`;
+      mainLink.className = "glightbox";
+      mainLink.setAttribute("data-gallery", groupId);
+
+      const thumb = document.createElement("img");
+      thumb.src = `${folder}/${base}.png`;
+      thumb.alt = "대표 이미지";
+
+      mainLink.appendChild(thumb);
+      container.appendChild(mainLink);
+
+      let j = 1;
+      function addNextImage() {
+        const imgPath = `${folder}/${base}-${j}.png`;
         const testImg = new Image();
         testImg.onload = function () {
-          index++;
-          checkNext(); // 다음 번호 확인
+          const hiddenLink = document.createElement("a");
+          hiddenLink.href = imgPath;
+          hiddenLink.className = "glightbox";
+          hiddenLink.setAttribute("data-gallery", groupId);
+          hiddenLink.style.display = 'none';
+          container.appendChild(hiddenLink);
+
+          j++;
+          addNextImage();
         };
         testImg.onerror = function () {
-          totalItems = index; // 존재하는 개수 저장
-          callback(); // 감지 완료 후 콜백 실행
+          loadedCount++;
+          if (loadedCount === (end - start)) {
+            GLightbox({
+              selector: '.glightbox',
+              touchNavigation: true,
+              loop: true,
+              zoomable: true,
+              arrows: true
+            });
+          }
         };
         testImg.src = imgPath;
       }
-      checkNext();
+      addNextImage();
+
+      gallery.appendChild(container);
     }
+  }
 
-    function renderGalleryPage(page) {
-      gallery.innerHTML = "";
-      const start = (page - 1) * itemsPerPage;
-      const end = Math.min(start + itemsPerPage, totalItems);
-
-      let loadedCount = 0; // 로드된 아이템 개수
-
-      for (let i = start; i < end; i++) {
-        const reversedIndex = totalItems - 1 - i;
-        const groupId = `group${reversedIndex}`;
-        const base = `gallery${reversedIndex}`;
-        const folder = ".";
-
-        const container = document.createElement("div");
-        container.className = "gallery-item";
-
-        // 대표 이미지
-        const mainLink = document.createElement("a");
-        mainLink.href = `${folder}/${base}.png`;
-        mainLink.className = "glightbox";
-        mainLink.setAttribute("data-gallery", groupId);
-
-        const thumb = document.createElement("img");
-        thumb.src = `${folder}/${base}.png`;
-        thumb.alt = "대표 이미지";
-
-        mainLink.appendChild(thumb);
-        container.appendChild(mainLink);
-
-        // 서브 이미지 자동 감지
-        let j = 1;
-        function addNextImage() {
-          const imgPath = `${folder}/${base}-${j}.png`;
-          const testImg = new Image();
-          testImg.onload = function () {
-            const hiddenLink = document.createElement("a");
-            hiddenLink.href = imgPath;
-            hiddenLink.className = "glightbox";
-            hiddenLink.setAttribute("data-gallery", groupId);
-            hiddenLink.style.display = 'none';
-            container.appendChild(hiddenLink);
-
-            j++;
-            addNextImage(); // 다음 이미지 확인
-          };
-          testImg.onerror = function () {
-            loadedCount++;
-            if (loadedCount === (end - start)) {
-              GLightbox({
-                selector: '.glightbox',
-                touchNavigation: true,
-                loop: true,
-                zoomable: true,
-                arrows: true
-              });
-            }
-          };
-          testImg.src = imgPath;
-        }
-        addNextImage();
-
-        gallery.appendChild(container);
-      }
+  function renderPagination() {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    pagination.innerHTML = "";
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      if (i === currentPage) btn.style.fontWeight = 'bold';
+      btn.addEventListener("click", () => {
+        currentPage = i;
+        renderGalleryPage(currentPage);
+      });
+      pagination.appendChild(btn);
     }
+  }
 
-    function renderPagination() {
-      const totalPages = Math.ceil(totalItems / itemsPerPage);
-      pagination.innerHTML = "";
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        if (i === currentPage) btn.style.fontWeight = 'bold';
-        btn.addEventListener("click", () => {
-          currentPage = i;
-          renderGalleryPage(currentPage);
-        });
-        pagination.appendChild(btn);
-      }
-    }
-
-    // 실행: 먼저 대표 이미지 개수 감지 후 렌더링
-    detectTotalItems(() => {
-      renderGalleryPage(currentPage);
-      renderPagination();
-      AOS.init({ duration: 800, once: true });
-    });
+  detectTotalItems(() => {
+    renderGalleryPage(currentPage);
+    renderPagination();
+    AOS.init({ duration: 800, once: true });
   });
+});
 </script>
 </head>
 <body>
