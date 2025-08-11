@@ -94,6 +94,47 @@
       .hero img { height: 72px; }
       #gallery-section { padding-top: 1.25rem; }
     }
+    /* Gallery pagination – 모양 통일 */
+.pagination { display:flex; gap: 8px; justify-content:center; align-items:center; }
+
+.pagination button{
+  appearance: none;               /* 브라우저 기본 제거 */
+  -webkit-appearance: none;
+  border: 1px solid #d0d0d0;
+  background: #f5f5f5;
+  color: #222;
+  min-width: 40px;                /* 정사각형 버튼 */
+  min-height: 40px;
+  padding: 0;                     /* 숫자만 가운데 */
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+}
+
+.pagination button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.06);
+  border-color: #c7c7c7;
+  background: #f9f9f9;
+}
+
+/* 현재 페이지 스타일 */
+.pagination button.is-active{
+  background: #111; 
+  color: #fff;
+  border-color: #111;
+}
+
+/* 접근성: 포커스 */
+.pagination button:focus{
+  outline: 2px solid #5b9aff;
+  outline-offset: 2px;
+}
   </style>
 
   <style>
@@ -229,16 +270,27 @@
       }
 
       function renderPagination() {
-        const totalPages = Math.ceil(existing.length / itemsPerPage);
-        pagination.innerHTML = "";
-        for (let i = 1; i <= totalPages; i++) {
-          const btn = document.createElement("button");
-          btn.textContent = i;
-          if (i === currentPage) btn.style.fontWeight = "bold";
-          btn.addEventListener("click", () => { currentPage = i; renderGalleryPage(currentPage); });
-          pagination.appendChild(btn);
-        }
-      }
+  const totalPages = Math.ceil(existing.length / itemsPerPage);
+  pagination.innerHTML = "";
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+
+    // ✅ 현재 페이지 표시
+    if (i === currentPage) {
+      btn.classList.add("is-active");
+      btn.setAttribute("aria-current", "page");
+    }
+
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderGalleryPage(currentPage);
+      renderPagination(); // 다시 그리면서 active 갱신
+    });
+
+    pagination.appendChild(btn);
+  }
+}
 
       // 시작
       detectExisting(() => {
