@@ -354,7 +354,9 @@ nav a {
   border-color: #ddd;
 }
 .social-links img{
-  width: 24px; height: 24px; object-fit: contain;
+  max-width: 100px;  /* 최대 크기 제한 (원본 크기보다 커지지 않게) */
+  height: auto;
+  object-fit: contain;
 }
 .social-links span{
   font-size: 0.95rem; font-weight: 600;
