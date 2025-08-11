@@ -183,14 +183,15 @@
 
       // 썸네일 오버레이(메인)에서 사용할 제목들 — 필요한 만큼만 채워넣기
       const captions = {
-        0: "거실 우드 필름 시공",
-        1: "주방 화이트 필름 시공",
-        2: "현관 필름 시공"
+        0: "송도 준토스핏 신발장시공_현대SPW48",
+        1: "인천 대회의",
+        2: "컷테니스 홍대점 라켓테이블_예림HF2205"
+        3: "경기광주 샷시프레임_현대S260"
         // 3: "...", 4: "...", 계속 추가 가능
       };
 
       function detectExisting(callback) {
-        const MAX_GUESS = 120;
+       const MAX_GUESS = Infinity; // 제한 없이 계속 탐색
         let i = 0, missStreak = 0, MISS_LIMIT = 40;
 
         function probe() {
