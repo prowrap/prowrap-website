@@ -170,153 +170,39 @@
   </style>
 
   <script>
-    // 최상단(스크립트 내부) 어딘가에 추가
+const folder = "gallery/"; // ✅ 실제 이미지 폴더 경로
+const existing = [];
+let currentPage = 1;
+const itemsPerPage = 9;
 let lightbox = null;
-function initLightbox() {
-  if (lightbox && typeof lightbox.destroy === 'function') lightbox.destroy();
-  lightbox = GLightbox({
-    selector: ".glightbox",
-    touchNavigation: true,
-    loop: true,
-    zoomable: true,
-    arrows: true
-  });
-}
-    document.addEventListener("DOMContentLoaded", function () {
-      const gallery = document.getElementById("gallery");
-      const pagination = document.getElementById("pagination");
 
-      const folder = " "; // 이미지 폴더 경로
-      const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
-      let currentPage = 1;
-
-      // 존재 이미지 인덱스 수집
-      const existing = [];
-  // 사진 번호를 자동으로 탐색(무제한)하는 함수
- // ✅ 이걸로 교체 (중복 선언 제거하고, 이 버전만 유지)
+// ✅ 이미지 존재 여부 감지
 function detectExisting(callback) {
-  let i = 0;
-  let missStreak = 0;
-  const MISS_LIMIT = 100; // 연속 실패 허용(너무 크면 404 탐색 길어져 느려짐)
-
-  (function probe () {
+  let i = 0, missStreak = 0;
+  const MISS_LIMIT = 40;
+  (function probe() {
     const test = new Image();
-    test.onload = () => { existing.push(i); missStreak = 0; i++; probe(); };
-    test.onerror = () => {
-      missStreak++; i++;
-      if (missStreak < MISS_LIMIT) probe();
-      else { existing.sort((a,b)=>b-a); callback(); }
+    test.onload = () => {
+      existing.push(i);
+      missStreak = 0;
+      i++;
+      probe();
     };
-    // 🔴 절대 슬래시 넣지 말 것: folder가 " "라서 /가 앞에 붙으면 루트 찾음
+    test.onerror = () => {
+      missStreak++;
+      i++;
+      if (missStreak < MISS_LIMIT) {
+        probe();
+      } else {
+        existing.sort((a, b) => a - b);
+        callback();
+      }
+    };
     test.src = `${folder}gallery${i}.png`;
   })();
 }
 
-      test.onload = () => {
-        // i번 파일이 존재
-        existing.push(i);
-        missStreak = 0;     // 성공했으니 실패 카운터 리셋
-        i++;                // 다음 번호
-        probe();            // 계속 탐색
-      };
-
-      test.onerror = () => {
-        // i번 파일이 없음
-        missStreak++;
-        i++;                // 다음 번호
-        if (missStreak < MISS_LIMIT) {
-          probe();          // 아직 끝 아님 → 계속
-        } else {
-          // 연속 MISS_LIMIT번 실패 → 끝
-          existing.sort((a, b) => b - a); // 큰 번호(최신) 우선
-          callback();
-        }
-      };
-
-      test.src = `${folder}/gallery${i}.png`;  // 예: gallery0.png, gallery1.png ...
-    })();
-  }
-      // 썸네일 오버레이(메인)에서 사용할 제목들 — 필요한 만큼만 채워넣기
-      const captions = {
-        0: "송도 준토스핏 신발장시공_현대SPW48",
-        1: "인천 대회의장_예림HF2205",
-        2: "컷테니스 홍대점 라켓테이블_현대S178",
-        3: "경기광주 샷시프레임_현대S260"
-        // 3: "...", 4: "...", 계속 추가 가능
-      };
-
-      function detectExisting(callback) {
-       const MAX_GUESS = Infinity; // 제한 없이 계속 탐색
-        let i = 0, missStreak = 0, MISS_LIMIT = 40;
-
-        function probe() {
-          if (i >= MAX_GUESS || missStreak >= MISS_LIMIT) {
-            existing.sort((a, b) => b - a);
-            callback();
-            return;
-          }
-          const test = new Image();
-          test.onload  = () => { existing.push(i); missStreak = 0; i++; probe(); };
-          test.onerror = () => { missStreak++; i++; probe(); };
-          test.src = `${folder}/gallery${i}.png`;
-        }
-        probe();
-      }
-
-      function renderGalleryPage(page) {
-        gallery.innerHTML = "";
-        const start = (page - 1) * itemsPerPage;
-        const end = Math.min(start + itemsPerPage, existing.length);
-
-        let loadedCount = 0;
-        for (let k = start; k < end; k++) {
-          const idx = existing[k];
-          const groupId = `group${idx}`;
-          const base = `gallery${idx}`;
-
-          const container = document.createElement("div");
-          container.className = "gallery-item";
-          container.setAttribute("data-caption", captions[idx] || ""); // ✅ 썸네일 하단 박스에 들어갈 제목
-
-          // 메인 썸네일 링크 (라이트박스 제목 속성 없음)
-          const mainLink = document.createElement("a");
-        mainLink.href = `${folder}${base}.png`;
-          mainLink.className = "glightbox";
-          mainLink.setAttribute("data-gallery", groupId);
-
-        const thumb = document.createElement("img");
-thumb.src = `${folder}${base}.png`;
-thumb.alt = captions[idx] || "대표 이미지";
-thumb.loading  = "lazy";   // ✅ 지연로딩
-thumb.decoding = "async";  // ✅ 비동기 디코딩
-
-          mainLink.appendChild(thumb);
-          container.appendChild(mainLink);
-
-          // 서브 이미지 자동 연결 (제목 속성 넣지 않음)
-          let j = 1;
-// ✅ addNextImage 에서는 GLightbox 호출/loadedCount 로직 다 삭제
-function addNextImage() {
-  const imgPath = `${folder}${base}-${j}.png`; // 슬래시 제거 주의!
-  const testImg = new Image();
-  testImg.onload = function () {
-    const hiddenLink = document.createElement("a");
-    hiddenLink.href = imgPath;
-    hiddenLink.className = "glightbox";
-    hiddenLink.setAttribute("data-gallery", groupId);
-    hiddenLink.style.display = "none";
-    container.appendChild(hiddenLink);
-    j++; addNextImage();
-  };
-  testImg.onerror = function () {
-    // 끝. 아무 것도 안 함
-  };
-  testImg.src = imgPath;
-}
-
-// ✅ for 루프가 모두 끝난 다음, 한 번만 초기화
-requestAnimationFrame(() => initLightbox());
-          let lightbox = null;
+// ✅ GLightbox 초기화
 function initLightbox() {
   if (lightbox && typeof lightbox.destroy === 'function') lightbox.destroy();
   lightbox = GLightbox({
@@ -327,45 +213,85 @@ function initLightbox() {
     arrows: true
   });
 }
-          addNextImage();
 
-          gallery.appendChild(container);
-        }
-      }
+// ✅ 갤러리 페이지 렌더링
+function renderGalleryPage(page) {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+  const start = (page - 1) * itemsPerPage;
+  const end = Math.min(start + itemsPerPage, existing.length);
 
-      function renderPagination() {
-  const totalPages = Math.ceil(existing.length / itemsPerPage);
+  for (let idx = start; idx < end; idx++) {
+    const base = `gallery${existing[idx]}`;
+    const container = document.createElement("div");
+    container.className = "gallery-item";
+
+    const mainLink = document.createElement("a");
+    mainLink.href = `${folder}${base}.png`;
+    mainLink.className = "glightbox";
+    mainLink.setAttribute("data-gallery", `group-${idx}`);
+
+    const thumb = document.createElement("img");
+    thumb.src = `${folder}${base}.png`;
+    thumb.alt = `이미지 ${idx + 1}`;
+    thumb.loading = "lazy";   // ✅ 지연 로딩
+    thumb.decoding = "async"; // ✅ 비동기 디코딩
+    mainLink.appendChild(thumb);
+
+    container.appendChild(mainLink);
+    gallery.appendChild(container);
+
+    // ✅ 서브 이미지 추가
+    let j = 1;
+    (function addNextImage() {
+      const imgPath = `${folder}${base}-${j}.png`;
+      const testImg = new Image();
+      testImg.onload = () => {
+        const hiddenLink = document.createElement("a");
+        hiddenLink.href = imgPath;
+        hiddenLink.className = "glightbox";
+        hiddenLink.setAttribute("data-gallery", `group-${idx}`);
+        hiddenLink.style.display = "none";
+        container.appendChild(hiddenLink);
+        j++;
+        addNextImage();
+      };
+      testImg.onerror = () => {};
+      testImg.src = imgPath;
+    })();
+  }
+
+  // ✅ 모든 DOM이 붙은 다음에 라이트박스 초기화
+  requestAnimationFrame(() => initLightbox());
+}
+
+// ✅ 페이지네이션 렌더링
+function renderPagination() {
+  const pagination = document.getElementById("pagination");
   pagination.innerHTML = "";
-  for (let i = 1; i <= totalPages; i++) {
+  const pageCount = Math.ceil(existing.length / itemsPerPage);
+
+  for (let i = 1; i <= pageCount; i++) {
     const btn = document.createElement("button");
     btn.textContent = i;
-
-    // ✅ 현재 페이지 표시
-    if (i === currentPage) {
-      btn.classList.add("is-active");
-      btn.setAttribute("aria-current", "page");
-    }
-
+    if (i === currentPage) btn.classList.add("active");
     btn.addEventListener("click", () => {
-  currentPage = i;
-  renderGalleryPage(currentPage);
-  renderPagination();
-  requestAnimationFrame(() => initLightbox()); // ✅ 새 페이지에서도 라이트박스 보장
-});
-
-
+      currentPage = i;
+      renderGalleryPage(currentPage);
+      renderPagination();
+      requestAnimationFrame(() => initLightbox());
+    });
     pagination.appendChild(btn);
   }
 }
 
-      // 시작
-      detectExisting(() => {
-        renderGalleryPage(currentPage);
-        renderPagination();
-        AOS.init({ duration: 800, once: true });
-      });
-    });
-  </script>
+// ✅ 초기 실행
+detectExisting(() => {
+  renderGalleryPage(currentPage);
+  renderPagination();
+});
+</script>
+
 </head>
 
 <body>
