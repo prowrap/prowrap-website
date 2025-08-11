@@ -55,7 +55,24 @@
 
     /* Gallery Grid */
     .gallery-container { display:flex; flex-direction:column; align-items:center; }
-    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem; width:100%; }
+    /* 데스크탑: 6열 */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);  /* ✅ 6열 고정 */
+  gap: 1rem;
+  width: 100%;
+}
+
+/* 태블릿: 4열 (선택) */
+@media (max-width: 1200px) {
+  .gallery { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* 모바일: 2열 (이미 있던 규칙 유지/대체) */
+@media (max-width: 768px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
     .gallery img { width:100%; aspect-ratio:4/3; border-radius:8px; object-fit:cover; background:#f7f7f7; cursor:pointer; transition: transform .3s ease; }
     .gallery img:hover { transform: scale(1.02); }
 
@@ -176,7 +193,8 @@
   const folder = "";          // ✅ 루트면 빈 문자열(공백 X)
   const existing = [];
   let currentPage = 1;
-  const itemsPerPage = (window.innerWidth <= 768) ? 10 : 12;
+ // 모바일(≤768px)은 3행×2열 = 6장, 데스크탑은 3행×6열 = 18장
+const itemsPerPage = (window.innerWidth <= 768) ? 6 : 18;
 
   // GLightbox 핸들러
   let lightbox = null;
