@@ -36,10 +36,36 @@
     font-family: 'Noto Sans KR', sans-serif !important;
   }
     body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
-    header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #ddd; padding: 1rem 2rem; display: flex; justify-content: flex-start; align-items: center; z-index: 1000; flex-wrap: wrap; gap: 2rem; }
-    header h1 { margin: 0; font-size: 0.99rem; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    nav { display: flex; flex-wrap: wrap; margin-left: 0.5rem; }
-    nav a { margin-left: 1rem; text-decoration: none; color: #333; font-weight: 500; white-space: nowrap; }
+    header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; justify-content: flex-start; align-items: center;
+  flex-wrap: wrap; gap: 2rem;
+  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.75);       /* 투명도 75% */
+  backdrop-filter: blur(8px);               /* 배경 흐림 */
+  -webkit-backdrop-filter: blur(8px);       /* iOS 사파리 대응 */
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 0.99rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #111;                               /* 글자 진하게 */
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);/* 은은한 하이라이트 */
+}
+
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #111;                               /* 진한 글자색 */
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 
     .hero { 
       margin-top: 80px; 
