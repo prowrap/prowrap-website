@@ -326,6 +326,43 @@ nav a {
 .gallery-item:hover::after {
   opacity: 1;
 }
+     /* 하단 소셜 링크 */
+.social-links{
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 10px;
+  max-width: 600px;
+  margin-inline: auto;
+}
+.social-links a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  background: #fff;
+  text-decoration: none;
+  color: #222;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.social-links a:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  border-color: #ddd;
+}
+.social-links img{
+  width: 24px; height: 24px; object-fit: contain;
+}
+.social-links span{
+  font-size: 0.95rem; font-weight: 600;
+}
+
+/* 반응형: 모바일에서는 2열 */
+@media (max-width: 600px){
+  .social-links{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
   </style>
 <script>
@@ -450,20 +487,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <div class="hero">
     <img src="logo.png" alt="ProWrap 타이틀 이미지">
-    <div class="hero-widget-icons">
-      <a href="https://www.instagram.com/prowrap_kr/" target="_blank">
-        <img src="instagram.png" alt="인스타그램" />
-      </a>
-      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank">
-        <img src="youtube.png" alt="유튜브 채널" />
-      </a>
-      <a href="http://pf.kakao.com/_xoxilmn" target="_blank">
-        <img src="kakaotalk.png" alt="카카오톡 채널" />
-      </a>
-      <a href="https://m.blog.naver.com/milli1018" target="_blank">
-        <img src="naverblog.png" alt="네이버 블로그" />
-      </a>
-    </div>
   </div>
 
   <section id="gallery-section" class="section">
@@ -516,7 +539,25 @@ document.addEventListener("DOMContentLoaded", function () {
  <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn kakao" target="_blank">
    카카오맵에서 보기
 </a>
-
+<!-- SNS 바로가기 (지도 아래) -->
+<div class="social-links" aria-label="ProWrap 소셜 채널">
+  <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
+    <img src="instagram.png" alt="인스타그램" />
+    <span>Instagram</span>
+  </a>
+  <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank" rel="noopener" aria-label="유튜브">
+    <img src="youtube.png" alt="유튜브" />
+    <span>YouTube</span>
+  </a>
+  <a href="http://pf.kakao.com/_xoxilmn" target="_blank" rel="noopener" aria-label="카카오톡 채널">
+    <img src="kakaotalk.png" alt="카카오톡" />
+    <span>Kakao</span>
+  </a>
+  <a href="https://m.blog.naver.com/milli1018" target="_blank" rel="noopener" aria-label="네이버 블로그">
+    <img src="naverblog.png" alt="네이버 블로그" />
+    <span>Naver Blog</span>
+  </a>
+</div>
 </section>
 
   <footer>
