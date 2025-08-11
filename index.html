@@ -280,6 +280,15 @@ nav a {
   #gallery-section {
     padding-top: 1.25rem;  /* 기본 3rem → 1.25rem */
   }
+ .gallery-item::after {
+  content: attr(data-caption);
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 0.55rem 0.9rem;
+  background: rgba(0,0,0,0.65);   /* 0.4 → 0.65 정도로 진하게 */
+  color: #fff; font-size: 0.95rem; font-weight: 600;
+  opacity: 0; transition: opacity 0.25s ease;
+}
+.gallery-item:hover::after { opacity: 1; }
 }
 </style>
    <style>
@@ -386,7 +395,6 @@ document.addEventListener("DOMContentLoaded", function () {
       mainLink.href = `${folder}/${base}.png`;
       mainLink.className = "glightbox";
       mainLink.setAttribute("data-gallery", groupId);
-      mainLink.setAttribute("data-title", captions[idx] || "");   // ✅ 제목
 
       const thumb = document.createElement("img");
       thumb.src = `${folder}/${base}.png`;
