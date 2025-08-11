@@ -180,7 +180,39 @@
 
       // 존재 이미지 인덱스 수집
       const existing = [];
+  // 사진 번호를 자동으로 탐색(무제한)하는 함수
+  function detectExisting(callback) {
+    let i = 0;
+    let missStreak = 0;
+    const MISS_LIMIT = 200; // 연속으로 200개 못 찾으면 "진짜 끝"으로 판단
 
+    (function probe () {
+      const test = new Image();
+
+      test.onload = () => {
+        // i번 파일이 존재
+        existing.push(i);
+        missStreak = 0;     // 성공했으니 실패 카운터 리셋
+        i++;                // 다음 번호
+        probe();            // 계속 탐색
+      };
+
+      test.onerror = () => {
+        // i번 파일이 없음
+        missStreak++;
+        i++;                // 다음 번호
+        if (missStreak < MISS_LIMIT) {
+          probe();          // 아직 끝 아님 → 계속
+        } else {
+          // 연속 MISS_LIMIT번 실패 → 끝
+          existing.sort((a, b) => b - a); // 큰 번호(최신) 우선
+          callback();
+        }
+      };
+
+      test.src = `${folder}/gallery${i}.png`;  // 예: gallery0.png, gallery1.png ...
+    })();
+  }
       // 썸네일 오버레이(메인)에서 사용할 제목들 — 필요한 만큼만 채워넣기
       const captions = {
         0: "송도 준토스핏 신발장시공_현대SPW48",
