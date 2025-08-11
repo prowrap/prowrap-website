@@ -170,6 +170,18 @@
   </style>
 
   <script>
+    // 최상단(스크립트 내부) 어딘가에 추가
+let lightbox = null;
+function initLightbox() {
+  if (lightbox && typeof lightbox.destroy === 'function') lightbox.destroy();
+  lightbox = GLightbox({
+    selector: ".glightbox",
+    touchNavigation: true,
+    loop: true,
+    zoomable: true,
+    arrows: true
+  });
+}
     document.addEventListener("DOMContentLoaded", function () {
       const gallery = document.getElementById("gallery");
       const pagination = document.getElementById("pagination");
@@ -181,13 +193,24 @@
       // 존재 이미지 인덱스 수집
       const existing = [];
   // 사진 번호를 자동으로 탐색(무제한)하는 함수
-  function detectExisting(callback) {
-    let i = 0;
-    let missStreak = 0;
-    const MISS_LIMIT = 200; // 연속으로 200개 못 찾으면 "진짜 끝"으로 판단
+ // ✅ 이걸로 교체 (중복 선언 제거하고, 이 버전만 유지)
+function detectExisting(callback) {
+  let i = 0;
+  let missStreak = 0;
+  const MISS_LIMIT = 100; // 연속 실패 허용(너무 크면 404 탐색 길어져 느려짐)
 
-    (function probe () {
-      const test = new Image();
+  (function probe () {
+    const test = new Image();
+    test.onload = () => { existing.push(i); missStreak = 0; i++; probe(); };
+    test.onerror = () => {
+      missStreak++; i++;
+      if (missStreak < MISS_LIMIT) probe();
+      else { existing.sort((a,b)=>b-a); callback(); }
+    };
+    // 🔴 절대 슬래시 넣지 말 것: folder가 " "라서 /가 앞에 붙으면 루트 찾음
+    test.src = `${folder}gallery${i}.png`;
+  })();
+}
 
       test.onload = () => {
         // i번 파일이 존재
@@ -257,45 +280,53 @@
 
           // 메인 썸네일 링크 (라이트박스 제목 속성 없음)
           const mainLink = document.createElement("a");
-          mainLink.href = `${folder}/${base}.png`;
+        mainLink.href = `${folder}${base}.png`;
           mainLink.className = "glightbox";
           mainLink.setAttribute("data-gallery", groupId);
 
-          const thumb = document.createElement("img");
-          thumb.src = `${folder}/${base}.png`;
-          thumb.alt = captions[idx] || "대표 이미지";
+        const thumb = document.createElement("img");
+thumb.src = `${folder}${base}.png`;
+thumb.alt = captions[idx] || "대표 이미지";
+thumb.loading  = "lazy";   // ✅ 지연로딩
+thumb.decoding = "async";  // ✅ 비동기 디코딩
 
           mainLink.appendChild(thumb);
           container.appendChild(mainLink);
 
           // 서브 이미지 자동 연결 (제목 속성 넣지 않음)
           let j = 1;
-          function addNextImage() {
-            const imgPath = `${folder}/${base}-${j}.png`;
-            const testImg = new Image();
-            testImg.onload = function () {
-              const hiddenLink = document.createElement("a");
-              hiddenLink.href = imgPath;
-              hiddenLink.className = "glightbox";
-              hiddenLink.setAttribute("data-gallery", groupId);
-              hiddenLink.style.display = "none";
-              container.appendChild(hiddenLink);
-              j++; addNextImage();
-            };
-            testImg.onerror = function () {
-              loadedCount++;
-              if (loadedCount === (end - start)) {
-                GLightbox({
-                  selector: ".glightbox",
-                  touchNavigation: true,
-                  loop: true,
-                  zoomable: true,
-                  arrows: true
-                });
-              }
-            };
-            testImg.src = imgPath;
-          }
+// ✅ addNextImage 에서는 GLightbox 호출/loadedCount 로직 다 삭제
+function addNextImage() {
+  const imgPath = `${folder}${base}-${j}.png`; // 슬래시 제거 주의!
+  const testImg = new Image();
+  testImg.onload = function () {
+    const hiddenLink = document.createElement("a");
+    hiddenLink.href = imgPath;
+    hiddenLink.className = "glightbox";
+    hiddenLink.setAttribute("data-gallery", groupId);
+    hiddenLink.style.display = "none";
+    container.appendChild(hiddenLink);
+    j++; addNextImage();
+  };
+  testImg.onerror = function () {
+    // 끝. 아무 것도 안 함
+  };
+  testImg.src = imgPath;
+}
+
+// ✅ for 루프가 모두 끝난 다음, 한 번만 초기화
+requestAnimationFrame(() => initLightbox());
+          let lightbox = null;
+function initLightbox() {
+  if (lightbox && typeof lightbox.destroy === 'function') lightbox.destroy();
+  lightbox = GLightbox({
+    selector: ".glightbox",
+    touchNavigation: true,
+    loop: true,
+    zoomable: true,
+    arrows: true
+  });
+}
           addNextImage();
 
           gallery.appendChild(container);
@@ -316,10 +347,12 @@
     }
 
     btn.addEventListener("click", () => {
-      currentPage = i;
-      renderGalleryPage(currentPage);
-      renderPagination(); // 다시 그리면서 active 갱신
-    });
+  currentPage = i;
+  renderGalleryPage(currentPage);
+  renderPagination();
+  requestAnimationFrame(() => initLightbox()); // ✅ 새 페이지에서도 라이트박스 보장
+});
+
 
     pagination.appendChild(btn);
   }
