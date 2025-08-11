@@ -1,470 +1,261 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prowrap Interior Film</title>
-<meta property="og:title" content="ProWrap | Real Film Real Finish" />
-<meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
-<meta property="og:image" content="https://prowrap.site/og-image.png" />
-<meta property="og:url" content="https://prowrap.site/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="ProWrap Interior Film" />
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <!-- SEO Meta Tags -->
+
+  <!-- OG / SEO -->
+  <meta property="og:title" content="ProWrap | Real Film Real Finish" />
+  <meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
+  <meta property="og:image" content="https://prowrap.site/og-image.png" />
+  <meta property="og:url" content="https://prowrap.site/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ProWrap Interior Film" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
   <meta name="description" content="ProWrap는 인테리어 필름 전문 브랜드로, 고급스러운 마감과 시공 갤러리를 제공합니다. 실시간 문의 및 위치 정보도 확인하세요.">
   <meta name="keywords" content="ProWrap, 인테리어 필름, 인테리어 시공, 고양시 인테리어, 시공 사례, 필름 마감">
   <meta name="author" content="ProWrap Interior Film">
-  <meta property="og:title" content="ProWrap | Real Film Real Finish" />
-  <meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
-  <meta property="og:image" content="https://yourdomain.com/logo.png" />
-  <meta property="og:url" content="https://yourdomain.com" />
   <meta name="twitter:card" content="summary_large_image" />
- <!-- 이 줄은 <head> 안에 넣어야 해 -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
   <style>
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    font-family: 'Noto Sans KR', sans-serif !important;
-  }
-    body { margin: 0; font-family: 'Pretendard', sans-serif; background: #fff; color: #333; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Noto Sans KR', 'Pretendard', sans-serif; background: #fff; color: #333; }
+
+    /* Header (반투명+블러) */
     header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; justify-content: flex-start; align-items: center;
-  flex-wrap: wrap; gap: 2rem;
-  padding: 1rem 2rem;
-  background: rgba(255,255,255,0.75);       /* 투명도 75% */
-  backdrop-filter: blur(8px);               /* 배경 흐림 */
-  -webkit-backdrop-filter: blur(8px);       /* iOS 사파리 대응 */
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: flex-start; align-items: center;
+      flex-wrap: wrap; gap: 2rem;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    header h1 { margin: 0; font-size: 0.99rem; font-weight: 700; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 1px 0 rgba(255,255,255,.3); }
+    nav a { margin-left: 1rem; text-decoration: none; color: #111; font-weight: 500; white-space: nowrap; }
 
-header h1 {
-  margin: 0;
-  font-size: 0.99rem;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #111;                               /* 글자 진하게 */
-  text-shadow: 0 1px 0 rgba(255,255,255,0.3);/* 은은한 하이라이트 */
-}
+    /* Hero */
+    .hero {
+      margin-top: 80px; width: 100%; height: 500px;
+      background: url('https://images.unsplash.com/photo-1600585152936-1c1d1e6d7158?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
+    }
+    .hero::before { content:""; position:absolute; inset:0; background-color: rgba(255,255,255,0.7); z-index:0; }
+    .hero img { height: 100px; max-width:95%; position:relative; z-index:1; object-fit:contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,.25)); }
 
-nav a {
-  margin-left: 1rem;
-  text-decoration: none;
-  color: #111;                               /* 진한 글자색 */
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-
-    .hero { 
-      margin-top: 80px; 
-      width: 100%;
-      height: 500px; 
-      background: url('https://images.unsplash.com/photo-1600585152936-1c1d1e6d7158?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover; 
-      display: flex; 
-      flex-direction: column;
-      align-items: center; 
-      justify-content: center; 
-      position: relative;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.7);
-      z-index: 0;
-    }
-    .hero img {
-      height: 100px;
-      max-width: 95%;
-      position: relative;
-      z-index: 1;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
-    }
-    .hero-widget-icons {
-      position: relative;
-      margin-top: 1rem;
-      z-index: 2;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .hero-widget-icons img {
-      height: 50px;
-      width: 50px;
-      object-fit: contain;
-    }
+    /* Sections */
     .section { padding: 3rem 1.5rem; max-width: 1100px; margin: auto; }
-    .gallery-container { display: flex; flex-direction: column; align-items: center; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; width: 100%; }
-    .gallery img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      border-radius: 8px;
-      object-fit: contain;
-      background-color: #f7f7f7;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .gallery img:hover {
-      transform: scale(1.02);
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-    .modal-content {
-      margin: 5% auto;
-      display: block;
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-    }
-    .modal-close {
-      position: absolute;
-      top: 30px;
-      right: 50px;
-      color: #fff;
-      font-size: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 2100;
-    }
-    .pagination { margin-top: 2rem; display: flex; gap: 0.5rem; justify-content: center; }
-    .pagination button {
-      padding: 0.5rem 1rem;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .contact-links img {
-      height: 150px;
-      width: 150px;
-      object-fit: contain;
-      image-rendering: auto;
-    }
-    .contact-links a {
-      display: inline-block;
-      margin: 0.5rem 1rem 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #eee;
-      border-radius: 5px;
-      text-decoration: none;
-      color: #333;
-      transition: background 0.3s;
-    }
-    .contact-links a:hover {
-      background-color: #ddd;
-    }
-    iframe {
-      width: 100%;
-      min-height: 400px;
-      height: 50vh;
-      border: none;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-    footer {
-      background-color: #f9f9f9;
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid #ddd;
-      font-size: 0.9rem;
-      color: #666;
-    }
-     .review-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
 
-    .review-card {
-      background: #f7f7f7;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
-    }
+    /* Gallery Grid */
+    .gallery-container { display:flex; flex-direction:column; align-items:center; }
+    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem; width:100%; }
+    .gallery img { width:100%; aspect-ratio:4/3; border-radius:8px; object-fit:cover; background:#f7f7f7; cursor:pointer; transition: transform .3s ease; }
+    .gallery img:hover { transform: scale(1.02); }
 
-    .review-card:hover {
-      transform: translateY(-5px);
-    }
+    /* Modal (legacy) */
+    .modal { display:none; position:fixed; z-index:2000; inset:0; overflow:auto; background:rgba(0,0,0,.8); }
+    .modal-content { margin: 5% auto; display:block; max-width:90%; max-height:80%; border-radius:10px; }
+    .modal-close { position:absolute; top:30px; right:50px; color:#fff; font-size:2rem; font-weight:bold; cursor:pointer; z-index:2100; }
 
-    .review-text {
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
+    /* Reviews */
+    .review-container { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem; margin-top:2rem; }
+    .review-card { background:#f7f7f7; padding:1.5rem; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.05); transition: transform .2s ease; }
+    .review-card:hover { transform: translateY(-5px); }
+    .review-text { font-size:1rem; color:#333; line-height:1.6; margin-bottom:1rem; }
+    .review-author { font-size:.9rem; color:#888; text-align:right; }
 
-    .review-author {
-      font-size: 0.9rem;
-      color: #888;
-      text-align: right;
-    }
+    /* Map buttons */
+    .map-buttons { display:flex; flex-direction:column; gap:.7rem; align-items:center; margin-top:1rem; }
+    .map-btn { padding:.8rem 1.4rem; border-radius:5px; font-weight:600; font-size:1rem; text-decoration:none; width:100%; max-width:300px; text-align:center; box-sizing:border-box; }
+    .map-btn.naver { background:#03c75a; color:#fff; }
+    .map-btn.kakao { background:#FEE500; color:#000; }
+
+    /* Footer */
+    footer { background:#f9f9f9; padding:2rem; text-align:center; border-top:1px solid #ddd; font-size:.9rem; color:#666; }
+
+    /* 모바일 레이아웃 */
     @media (max-width: 768px) {
-      header { flex-direction: column; align-items: flex-start; padding: 1rem; }
-      nav { justify-content: center; width: 100%; margin-top: 0.5rem; margin-left: 0; }
+      header { flex-direction: column; align-items:flex-start; padding:1rem; }
+      nav { justify-content:center; width:100%; margin-top:.5rem; margin-left:0; }
       nav a { margin: 0 1rem; }
       .gallery { grid-template-columns: repeat(2, 1fr); }
-      .hero-widget-icons { flex-direction: row; flex-wrap: wrap; }
     }
-  .map-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  align-items: center;
-  margin-top: 1rem;
-}
 
-.map-btn {
-  padding: 0.8rem 1.4rem;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  width: 100%;               /* 버튼을 컨테이너 너비에 맞춤 */
-  max-width: 300px;          /* 최대 너비 설정 */
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.map-btn.naver {
-  background-color: #03c75a;
-  color: white;
-}
-
-.map-btn.kakao {
-  background-color: #FEE500;
-  color: black;
-}
-  @media (max-width: 768px) {
-  .review-card.mobile-hidden {
-    display: none;
-  }
-} /* ← 이 한 줄 추가하여 @media 닫기 */
-   /* 모바일에서 히어로/갤러리 여백 줄이기 */
-@media (max-width: 600px) {
-  .hero {
-    height: 260px;       /* 500px → 260px로 축소 */
-    margin-top: 64px;    /* 고정 헤더 보정 (필요 시 56~72px 사이로 조절) */
-  }
-  .hero img {
-    height: 72px;        /* 로고도 조금 줄이기 (기존 100px) */
-  }
-  #gallery-section {
-    padding-top: 1.25rem;  /* 기본 3rem → 1.25rem */
-  }
- .gallery-item::after {
-  content: attr(data-caption);
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 0.55rem 0.9rem;
-  background: rgba(0,0,0,0.65);   /* 0.4 → 0.65 정도로 진하게 */
-  color: #fff; font-size: 0.95rem; font-weight: 600;
-  opacity: 0; transition: opacity 0.25s ease;
-}
-.gallery-item:hover::after { opacity: 1; }
-}
-</style>
-   <style>
-/* glightbox 화살표 유지 */
-.gprev, .gnext { display:block !important; opacity:1 !important; visibility:visible !important; pointer-events:auto !important; }
-.gprev svg, .gnext svg { width:40px !important; height:40px !important; }
-.glightbox-clean .gprev, .glightbox-clean .gnext {
-  top:50% !important; transform:translateY(-50%) !important;
-  background: rgba(0,0,0,0.5) !important; border-radius:50% !important;
-}
-
-/* ✅ 모바일 전용: hero 이미지 스케일만 */
-@media (max-width: 768px) {
-  .hero img { transform: scale(0.75); transform-origin: center top; }
-} /* ← 여기서 모바일 블록 닫기 */
-
-/* ===== 전역: 갤러리 오버레이 ===== */
-.gallery-item { position:relative; overflow:hidden; border-radius:8px; }
-.gallery-item img { width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .3s ease; }
-.gallery-item:hover img { transform: scale(1.05); }
-.gallery-item::after{
-  content: attr(data-caption);
-  position:absolute; left:0; right:0; bottom:0;
-  padding:.5rem 1rem; background:rgba(0,0,0,.4);
-  color:#fff; font-size:.9rem; opacity:0; transition:opacity .3s ease;
-}
-.gallery-item:hover::after{ opacity:1; }
-
-/* ===== 전역: 하단 소셜 링크 ===== */
-.social-links{
-  margin-top:1.25rem;
-  display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:10px; max-width:600px; margin-inline:auto;
-}
-.social-links a{
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  padding:10px 12px; border:1px solid #e6e6e6; border-radius:10px;
-  background:#fff; text-decoration:none; color:#222;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-}
-.social-links a:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.06); border-color:#ddd; }
-.social-links img{ width:50px; height:50px; object-fit:contain; }  /* ✅ PC/모바일 동일 크기 */
-.social-links span{ font-size:.95rem; font-weight:600; }
-
-/* 모바일: 2열 */
-@media (max-width: 600px){
-  .social-links{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-}
+    /* 모바일: hero/갤러리 여백 축소 */
+    @media (max-width: 600px) {
+      .hero { height: 260px; margin-top: 64px; }
+      .hero img { height: 72px; }
+      #gallery-section { padding-top: 1.25rem; }
+    }
   </style>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const gallery = document.getElementById("gallery");
-  const pagination = document.getElementById("pagination");
 
-  const folder = " ";
-  const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
-  let currentPage = 1;
+  <style>
+    /* GLightbox arrows */
+    .gprev, .gnext { display:block !important; opacity:1 !important; visibility:visible !important; pointer-events:auto !important; }
+    .gprev svg, .gnext svg { width:40px !important; height:40px !important; }
+    .glightbox-clean .gprev, .glightbox-clean .gnext { top:50% !important; transform:translateY(-50%) !important; background: rgba(0,0,0,.5) !important; border-radius:50% !important; }
 
-  // 존재 이미지 인덱스 수집용
-  const existing = [];
-
-  // ✅ 라이트박스에 표시할 제목 (번호 = galleryX의 X)
-  const captions = {
-    0: "거실 우드 필름 시공",
-    1: "주방 화이트 필름 시공",
-    2: "현관 필름 시공",
-    // ...필요한 만큼 추가
-  };
-
-  function detectExisting(callback) {
-    const MAX_GUESS = 120;
-    let i = 0, missStreak = 0, MISS_LIMIT = 40;
-
-    function probe() {
-      if (i >= MAX_GUESS || missStreak >= MISS_LIMIT) {
-        existing.sort((a, b) => b - a);
-        callback();
-        return;
-      }
-      const test = new Image();
-      test.onload  = () => { existing.push(i); missStreak = 0; i++; probe(); };
-      test.onerror = () => { missStreak++; i++; probe(); };
-      test.src = `${folder}/gallery${i}.png`;
+    /* 모바일 전용: hero scale */
+    @media (max-width: 768px) {
+      .hero img { transform: scale(0.75); transform-origin: center top; }
     }
-    probe();
-  }
 
-  function renderGalleryPage(page) {
-    gallery.innerHTML = "";
-    const start = (page - 1) * itemsPerPage;
-    const end = Math.min(start + itemsPerPage, existing.length);
+    /* ===== 썸네일 오버레이(전역) — 메인 썸네일에서만 제목 표시 ===== */
+    .gallery-item { position:relative; overflow:hidden; border-radius:8px; }
+    .gallery-item img { width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .3s ease; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item::after{
+      content: attr(data-caption);
+      position:absolute; left:0; right:0; bottom:0;
+      padding:.5rem 1rem; background:rgba(0,0,0,.55);
+      color:#fff; font-size:.9rem; opacity:0; transition:opacity .25s ease; font-weight:600;
+    }
+    .gallery-item:hover::after{ opacity:1; }
 
-    let loadedCount = 0;
-    for (let k = start; k < end; k++) {
-      const idx = existing[k];
-      const groupId = `group${idx}`;
-      const base = `gallery${idx}`;
+    /* 하단 소셜 링크 */
+    .social-links{ margin-top:1.25rem; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px; max-width:600px; margin-inline:auto; }
+    .social-links a{ display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 12px; border:1px solid #e6e6e6; border-radius:10px; background:#fff; text-decoration:none; color:#222; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+    .social-links a:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.06); border-color:#ddd; }
+    .social-links img{ width:50px; height:50px; object-fit:contain; }
+    .social-links span{ font-size:.95rem; font-weight:600; }
+    @media (max-width: 600px){ .social-links{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  </style>
 
-      const container = document.createElement("div");
-      container.className = "gallery-item";
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const gallery = document.getElementById("gallery");
+      const pagination = document.getElementById("pagination");
 
-      // 메인 링크
-      const mainLink = document.createElement("a");
-      mainLink.href = `${folder}/${base}.png`;
-      mainLink.className = "glightbox";
-      mainLink.setAttribute("data-gallery", groupId);
+      const folder = " "; // 이미지 폴더 경로
+      const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
+      let currentPage = 1;
 
-      const thumb = document.createElement("img");
-      thumb.src = `${folder}/${base}.png`;
-      thumb.alt = captions[idx] || "대표 이미지";
+      // 존재 이미지 인덱스 수집
+      const existing = [];
 
-      mainLink.appendChild(thumb);
-      container.appendChild(mainLink);
+      // 썸네일 오버레이(메인)에서 사용할 제목들 — 필요한 만큼만 채워넣기
+      const captions = {
+        0: "거실 우드 필름 시공",
+        1: "주방 화이트 필름 시공",
+        2: "현관 필름 시공"
+        // 3: "...", 4: "...", 계속 추가 가능
+      };
 
-      // 서브 이미지 자동 연결 (galleryX-1.png, -2.png …)
-      let j = 1;
-      function addNextImage() {
-        const imgPath = `${folder}/${base}-${j}.png`;
-        const testImg = new Image();
-        testImg.onload = function () {
-          const hiddenLink = document.createElement("a");
-          hiddenLink.href = imgPath;
-          hiddenLink.className = "glightbox";
-          hiddenLink.setAttribute("data-gallery", groupId);
-          hiddenLink.setAttribute("data-title", captions[idx] || ""); // ✅ 제목
-          hiddenLink.style.display = "none";
-          container.appendChild(hiddenLink);
-          j++; addNextImage();
-        };
-        testImg.onerror = function () {
-          loadedCount++;
-          if (loadedCount === (end - start)) {
-            GLightbox({
-              selector: ".glightbox",
-              touchNavigation: true,
-              loop: true,
-              zoomable: true,
-              arrows: true
-            });
+      function detectExisting(callback) {
+        const MAX_GUESS = 120;
+        let i = 0, missStreak = 0, MISS_LIMIT = 40;
+
+        function probe() {
+          if (i >= MAX_GUESS || missStreak >= MISS_LIMIT) {
+            existing.sort((a, b) => b - a);
+            callback();
+            return;
           }
-        };
-        testImg.src = imgPath;
+          const test = new Image();
+          test.onload  = () => { existing.push(i); missStreak = 0; i++; probe(); };
+          test.onerror = () => { missStreak++; i++; probe(); };
+          test.src = `${folder}/gallery${i}.png`;
+        }
+        probe();
       }
-      addNextImage();
 
-      gallery.appendChild(container);
-    }
-  }
+      function renderGalleryPage(page) {
+        gallery.innerHTML = "";
+        const start = (page - 1) * itemsPerPage;
+        const end = Math.min(start + itemsPerPage, existing.length);
 
-  function renderPagination() {
-    const totalPages = Math.ceil(existing.length / itemsPerPage);
-    pagination.innerHTML = "";
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      if (i === currentPage) btn.style.fontWeight = "bold";
-      btn.addEventListener("click", () => { currentPage = i; renderGalleryPage(currentPage); });
-      pagination.appendChild(btn);
-    }
-  }
+        let loadedCount = 0;
+        for (let k = start; k < end; k++) {
+          const idx = existing[k];
+          const groupId = `group${idx}`;
+          const base = `gallery${idx}`;
 
-  // 시작
-  detectExisting(() => {
-    renderGalleryPage(currentPage);
-    renderPagination();
-    AOS.init({ duration: 800, once: true });
-  });
-});
-</script>
+          const container = document.createElement("div");
+          container.className = "gallery-item";
+          container.setAttribute("data-caption", captions[idx] || ""); // ✅ 썸네일 하단 박스에 들어갈 제목
+
+          // 메인 썸네일 링크 (라이트박스 제목 속성 없음)
+          const mainLink = document.createElement("a");
+          mainLink.href = `${folder}/${base}.png`;
+          mainLink.className = "glightbox";
+          mainLink.setAttribute("data-gallery", groupId);
+
+          const thumb = document.createElement("img");
+          thumb.src = `${folder}/${base}.png`;
+          thumb.alt = captions[idx] || "대표 이미지";
+
+          mainLink.appendChild(thumb);
+          container.appendChild(mainLink);
+
+          // 서브 이미지 자동 연결 (제목 속성 넣지 않음)
+          let j = 1;
+          function addNextImage() {
+            const imgPath = `${folder}/${base}-${j}.png`;
+            const testImg = new Image();
+            testImg.onload = function () {
+              const hiddenLink = document.createElement("a");
+              hiddenLink.href = imgPath;
+              hiddenLink.className = "glightbox";
+              hiddenLink.setAttribute("data-gallery", groupId);
+              hiddenLink.style.display = "none";
+              container.appendChild(hiddenLink);
+              j++; addNextImage();
+            };
+            testImg.onerror = function () {
+              loadedCount++;
+              if (loadedCount === (end - start)) {
+                GLightbox({
+                  selector: ".glightbox",
+                  touchNavigation: true,
+                  loop: true,
+                  zoomable: true,
+                  arrows: true
+                });
+              }
+            };
+            testImg.src = imgPath;
+          }
+          addNextImage();
+
+          gallery.appendChild(container);
+        }
+      }
+
+      function renderPagination() {
+        const totalPages = Math.ceil(existing.length / itemsPerPage);
+        pagination.innerHTML = "";
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.textContent = i;
+          if (i === currentPage) btn.style.fontWeight = "bold";
+          btn.addEventListener("click", () => { currentPage = i; renderGalleryPage(currentPage); });
+          pagination.appendChild(btn);
+        }
+      }
+
+      // 시작
+      detectExisting(() => {
+        renderGalleryPage(currentPage);
+        renderPagination();
+        AOS.init({ duration: 800, once: true });
+      });
+    });
+  </script>
 </head>
+
 <body>
   <header>
     <h1>PROWRAP | Real Film Real Finish</h1>
     <nav>
       <a href="#gallery-section">갤러리</a>
-       <a href="#reviews">리뷰</a>
+      <a href="#reviews">리뷰</a>
       <a href="#contact">찾아오시는 길</a>
     </nav>
   </header>
@@ -480,76 +271,53 @@ document.addEventListener("DOMContentLoaded", function () {
       <div id="pagination" class="pagination"></div>
     </div>
   </section>
-  <section id="reviews" class="section">
-  <h2>고객 리뷰</h2>
-  <div class="review-container">
-    <div class="review-card">
-      <p class="review-text">“합리적인 금액에 상담도 친절해서 믿음이 갔습니다.”</p>
-      <p class="review-author">– 김00 고객님(인천)</p>
-    </div>
-    <div class="review-card">
-      <p class="review-text">“늦은 시간에도 빠르게 응대해주셔서 감사했어요. 다음에도 또 연락드릴게요^^.”</p>
-      <p class="review-author">– 이00 고객님(서울)</p>
-    </div>
-    <div class="review-card">
-      <p class="review-text">“꼼꼼하시고 결과가 만족스러워요.추천합니다!”</p>
-      <p class="review-author">– 박00 고객님(서울)</p>
-    </div>
-  <div class="review-card mobile-hidden">
-  <p class="review-text">“디자인 상담부터 시공까지 좋았습니다. 지인들에게도 추천할게요~.”</p>
-  <p class="review-author">– 정00 고객님</p>
-</div>
- <div class="review-card mobile-hidden">
-  <p class="review-text">“시공 퀄리티가 고급스러워요. 집이 훨씬 세련돼 보이네요^^”</p>
-  <p class="review-author">– 최00 고객님(고양)</p>
-</div>
-    <div class="review-card">
-  <p class="review-text">“휴일 늦은 시간에도 시공할 수 있어서 너무 다행이였습니다.”</p>
-  <p class="review-author">– 윤00 고객님(파주)</p>
- </div>
-</section>
 
-</section>
+  <section id="reviews" class="section">
+    <h2>고객 리뷰</h2>
+    <div class="review-container">
+      <div class="review-card"><p class="review-text">“합리적인 금액에 상담도 친절해서 믿음이 갔습니다.”</p><p class="review-author">– 김00 고객님(인천)</p></div>
+      <div class="review-card"><p class="review-text">“늦은 시간에도 빠르게 응대해주셔서 감사했어요. 다음에도 또 연락드릴게요^^.”</p><p class="review-author">– 이00 고객님(서울)</p></div>
+      <div class="review-card"><p class="review-text">“꼼꼼하시고 결과가 만족스러워요.추천합니다!”</p><p class="review-author">– 박00 고객님(서울)</p></div>
+      <div class="review-card mobile-hidden"><p class="review-text">“디자인 상담부터 시공까지 좋았습니다. 지인들에게도 추천할게요~.”</p><p class="review-author">– 정00 고객님</p></div>
+      <div class="review-card mobile-hidden"><p class="review-text">“시공 퀄리티가 고급스러워요. 집이 훨씬 세련돼 보이네요^^”</p><p class="review-author">– 최00 고객님(고양)</p></div>
+      <div class="review-card"><p class="review-text">“휴일 늦은 시간에도 시공할 수 있어서 너무 다행이였습니다.”</p><p class="review-author">– 윤00 고객님(파주)</p></div>
+    </div>
+  </section>
+
   <div id="imageModal" class="modal">
     <span id="modalClose" class="modal-close">&times;</span>
     <img id="modalImg" class="modal-content" alt="확대 이미지" />
   </div>
-<section id="contact" class="section">
-  <h2> </h2>
-  <div class="map-buttons">
-  <a href="https://map.naver.com/p/search/경기도 고양시 덕양구 의장로 146" class="map-btn naver" target="_blank">
-    네이버 지도에서 보기
-  </a>
- <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn kakao" target="_blank">
-   카카오맵에서 보기
-</a>
-   </div>
-<!-- SNS 바로가기 (지도 아래) -->
-<div class="social-links" aria-label="ProWrap 소셜 채널">
-  <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
-    <img src="instagram.png" alt="인스타그램" />
-    <span>Instagram</span>
-  </a>
-  <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank" rel="noopener" aria-label="유튜브">
-    <img src="youtube.png" alt="유튜브" />
-    <span>YouTube</span>
-  </a>
-  <a href="http://pf.kakao.com/_xoxilmn" target="_blank" rel="noopener" aria-label="카카오톡 채널">
-    <img src="kakaotalk.png" alt="카카오톡" />
-    <span>Kakao</span>
-  </a>
-  <a href="https://m.blog.naver.com/milli1018" target="_blank" rel="noopener" aria-label="네이버 블로그">
-    <img src="naverblog.png" alt="네이버 블로그" />
-    <span>Naver Blog</span>
-  </a>
-</div>
-</section>
+
+  <section id="contact" class="section">
+    <h2> </h2>
+    <div class="map-buttons">
+      <a href="https://map.naver.com/p/search/경기도 고양시 덕양구 의장로 146" class="map-btn naver" target="_blank">네이버 지도에서 보기</a>
+      <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn kakao" target="_blank">카카오맵에서 보기</a>
+    </div>
+
+    <!-- SNS 바로가기 (지도 아래) -->
+    <div class="social-links" aria-label="ProWrap 소셜 채널">
+      <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
+        <img src="instagram.png" alt="인스타그램" /><span>Instagram</span>
+      </a>
+      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank" rel="noopener" aria-label="유튜브">
+        <img src="youtube.png" alt="유튜브" /><span>YouTube</span>
+      </a>
+      <a href="http://pf.kakao.com/_xoxilmn" target="_blank" rel="noopener" aria-label="카카오톡 채널">
+        <img src="kakaotalk.png" alt="카카오톡" /><span>Kakao</span>
+      </a>
+      <a href="https://m.blog.naver.com/milli1018" target="_blank" rel="noopener" aria-label="네이버 블로그">
+        <img src="naverblog.png" alt="네이버 블로그" /><span>Naver Blog</span>
+      </a>
+    </div>
+  </section>
 
   <footer>
     <p><strong>회사명:</strong> Prowrap Interior Film<br>
-       <strong>대표자:</strong> 우선찬</br>
-    <strong>연락처:</strong> 010-5074-1018</br>
-    <strong>주소:</strong> 경기도 고양시 덕양구 의장로 146 19층<br>
+    <strong>대표자:</strong> 우선찬<br>
+    <strong>연락처:</strong> 010-5074-1018<br>
+    <strong>주소:</strong> 경기도 고양시 덕양구 의장로 146 19층</p>
     <p>&copy; 2025 ProWrap Interior Film. All rights reserved.</p>
   </footer>
 </body>
