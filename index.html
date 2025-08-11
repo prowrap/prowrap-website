@@ -263,106 +263,55 @@ nav a {
   background-color: #FEE500;
   color: black;
 }
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
   .review-card.mobile-hidden {
     display: none;
-}
-  </style>
-   <style>
-    .gprev, .gnext {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
-    .gprev svg, .gnext svg {
-      width: 40px !important;
-      height: 40px !important;
-    }
-    .glightbox-clean .gprev,
-    .glightbox-clean .gnext {
-      top: 50% !important;
-      transform: translateY(-50%) !important;
-      background: rgba(0,0,0,0.5) !important;
-      border-radius: 50% !important;
-    }
-    @media (max-width: 768px) {
-  .hero img {
-    transform: scale(0.75);
-    transform-origin: center top;
   }
-     .gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
+} /* ← 이 한 줄 추가하여 @media 닫기 */
+</style>
+   <style>
+/* glightbox 화살표 유지 */
+.gprev, .gnext { display:block !important; opacity:1 !important; visibility:visible !important; pointer-events:auto !important; }
+.gprev svg, .gnext svg { width:40px !important; height:40px !important; }
+.glightbox-clean .gprev, .glightbox-clean .gnext {
+  top:50% !important; transform:translateY(-50%) !important;
+  background: rgba(0,0,0,0.5) !important; border-radius:50% !important;
 }
 
-.gallery-item img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
+/* ✅ 모바일 전용: hero 이미지 스케일만 */
+@media (max-width: 768px) {
+  .hero img { transform: scale(0.75); transform-origin: center top; }
+} /* ← 여기서 모바일 블록 닫기 */
 
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
-
-/* 설명 오버레이 */
-.gallery-item::after {
+/* ===== 전역: 갤러리 오버레이 ===== */
+.gallery-item { position:relative; overflow:hidden; border-radius:8px; }
+.gallery-item img { width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .3s ease; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item::after{
   content: attr(data-caption);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.5rem 1rem;
-  background: rgba(0,0,0,0.4);
-  color: #fff;
-  font-size: 0.9rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  position:absolute; left:0; right:0; bottom:0;
+  padding:.5rem 1rem; background:rgba(0,0,0,.4);
+  color:#fff; font-size:.9rem; opacity:0; transition:opacity .3s ease;
 }
+.gallery-item:hover::after{ opacity:1; }
 
-.gallery-item:hover::after {
-  opacity: 1;
-}
-     /* 하단 소셜 링크 */
+/* ===== 전역: 하단 소셜 링크 ===== */
 .social-links{
-  margin-top: 1.25rem;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0,1fr));
-  gap: 10px;
-  max-width: 600px;
-  margin-inline: auto;
+  margin-top:1.25rem;
+  display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:10px; max-width:600px; margin-inline:auto;
 }
 .social-links a{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  background: #fff;
-  text-decoration: none;
-  color: #222;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 12px; border:1px solid #e6e6e6; border-radius:10px;
+  background:#fff; text-decoration:none; color:#222;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
-.social-links a:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.06);
-  border-color: #ddd;
-}
-.social-links img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-.social-links span{
-  font-size: 0.95rem; font-weight: 600;
-}
+.social-links a:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.06); border-color:#ddd; }
+.social-links img{ width:50px; height:50px; object-fit:contain; }  /* ✅ PC/모바일 동일 크기 */
+.social-links span{ font-size:.95rem; font-weight:600; }
 
-/* 반응형: 모바일에서는 2열 */
+/* 모바일: 2열 */
 @media (max-width: 600px){
   .social-links{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
@@ -541,6 +490,7 @@ document.addEventListener("DOMContentLoaded", function () {
  <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn kakao" target="_blank">
    카카오맵에서 보기
 </a>
+   </div>
 <!-- SNS 바로가기 (지도 아래) -->
 <div class="social-links" aria-label="ProWrap 소셜 채널">
   <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
