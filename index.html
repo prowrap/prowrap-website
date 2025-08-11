@@ -334,25 +334,33 @@ document.addEventListener("DOMContentLoaded", function () {
   const gallery = document.getElementById("gallery");
   const pagination = document.getElementById("pagination");
 
-  const folder = " ";                      // ← 실제 폴더
+  const folder = " ";
   const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
   let currentPage = 1;
 
-  // ✅ 번호가 비어 있어도 동작: 존재하는 인덱스만 수집
+  // 존재 이미지 인덱스 수집용
   const existing = [];
- const captions = {
+
+  // ✅ 라이트박스에 표시할 제목 (번호 = galleryX의 X)
+  const captions = {
+    0: "거실 우드 필름 시공",
+    1: "주방 화이트 필름 시공",
+    2: "현관 필름 시공",
+    // ...필요한 만큼 추가
+  };
+
   function detectExisting(callback) {
-    const MAX_GUESS = 120;      // 최대 120번(0~119)까지 가볍게 스캔
-    let i = 0, missStreak = 0, MISS_LIMIT = 40; // 연속 실패 40번이면 종료(상황에 맞게 조절)
+    const MAX_GUESS = 120;
+    let i = 0, missStreak = 0, MISS_LIMIT = 40;
 
     function probe() {
       if (i >= MAX_GUESS || missStreak >= MISS_LIMIT) {
-        existing.sort((a, b) => b - a);        // 큰 번호가 최신 → 내림차순 정렬
+        existing.sort((a, b) => b - a);
         callback();
         return;
       }
       const test = new Image();
-      test.onload = () => { existing.push(i); missStreak = 0; i++; probe(); };
+      test.onload  = () => { existing.push(i); missStreak = 0; i++; probe(); };
       test.onerror = () => { missStreak++; i++; probe(); };
       test.src = `${folder}/gallery${i}.png`;
     }
@@ -366,21 +374,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let loadedCount = 0;
     for (let k = start; k < end; k++) {
-      const idx = existing[k];                 // 존재하는 인덱스만 사용
+      const idx = existing[k];
       const groupId = `group${idx}`;
       const base = `gallery${idx}`;
 
       const container = document.createElement("div");
       container.className = "gallery-item";
 
+      // 메인 링크
       const mainLink = document.createElement("a");
       mainLink.href = `${folder}/${base}.png`;
       mainLink.className = "glightbox";
       mainLink.setAttribute("data-gallery", groupId);
+      mainLink.setAttribute("data-title", captions[idx] || "");   // ✅ 제목
 
       const thumb = document.createElement("img");
       thumb.src = `${folder}/${base}.png`;
-      thumb.alt = "대표 이미지";
+      thumb.alt = captions[idx] || "대표 이미지";
 
       mainLink.appendChild(thumb);
       container.appendChild(mainLink);
@@ -395,6 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
           hiddenLink.href = imgPath;
           hiddenLink.className = "glightbox";
           hiddenLink.setAttribute("data-gallery", groupId);
+          hiddenLink.setAttribute("data-title", captions[idx] || ""); // ✅ 제목
           hiddenLink.style.display = "none";
           container.appendChild(hiddenLink);
           j++; addNextImage();
