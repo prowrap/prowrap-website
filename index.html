@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let totalItems = 0;
   const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
   let currentPage = 1;
-  const folder = "."; // ← 이미지가 HTML과 같은 폴더면 그대로 두고, 아니라면 경로 수정
+  const folder = "images"; // ← 이미지가 HTML과 같은 폴더면 그대로 두고, 아니라면 경로 수정
 
   function detectTotalItems(callback) {
     let index = 0;
