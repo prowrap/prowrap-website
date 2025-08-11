@@ -211,63 +211,88 @@
     2: "컷테니스 홍대점 라켓테이블_현대S178",
     3: "경기광주 샷시프레임_현대S260",
   };
+11111
+function renderGalleryPage(page) {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
 
-  function renderGalleryPage(page) {
-    const gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
+  const start = (page - 1) * itemsPerPage;
+  const end   = Math.min(start + itemsPerPage, existing.length);
 
-    const start = (page - 1) * itemsPerPage;
-    const end   = Math.min(start + itemsPerPage, existing.length);
+  // ✅ 모든 아이템의 서브이미지 탐색이 끝났는지 추적
+  let waitingGroups = 0;
+  let initScheduled = false;
 
-    for (let k = start; k < end; k++) {
-      const idx  = existing[k];
-      const base = `gallery${idx}`;
-      const groupId = `group-${idx}`;
-
-      const container = document.createElement("div");
-      container.className = "gallery-item";
-      container.setAttribute("data-caption", captions[idx] || "");
-
-      // 메인 썸네일
-      const mainLink = document.createElement("a");
-      mainLink.href = `${folder}${base}.png`;
-      mainLink.className = "glightbox";
-      mainLink.setAttribute("data-gallery", groupId);
-
-      const thumb = document.createElement("img");
-      thumb.src = `${folder}${base}.png`;
-      thumb.alt = captions[idx] || "대표 이미지";
-      thumb.loading  = "lazy";
-      thumb.decoding = "async";
-
-      mainLink.appendChild(thumb);
-      container.appendChild(mainLink);
-
-      // 서브 이미지 자동 연결
-      let j = 1;
-      (function addNext() {
-        const imgPath = `${folder}${base}-${j}.png`;
-        const probe = new Image();
-        probe.onload = () => {
-          const a = document.createElement("a");
-          a.href = imgPath;
-          a.className = "glightbox";
-          a.setAttribute("data-gallery", groupId);
-          a.style.display = "none";
-          container.appendChild(a);
-          j++; addNext();
-        };
-        probe.onerror = () => {};
-        probe.src = imgPath;
-      })();
-
-      gallery.appendChild(container);
+  // 마지막 그룹까지 끝나면 딱 한 번만 라이트박스 초기화
+  function maybeInitLightbox() {
+    if (!initScheduled && waitingGroups === 0) {
+      initScheduled = true;
+      // DOM 확실히 붙은 다음 초기화
+      requestAnimationFrame(() => initLightbox());
     }
-
-    // ✅ DOM 붙인 뒤 한 번만 라이트박스 초기화
-    requestAnimationFrame(() => initLightbox());
   }
 
+  for (let k = start; k < end; k++) {
+    const idx  = existing[k];
+    const base = `gallery${idx}`;
+    const groupId = `group-${idx}`;
+
+    const container = document.createElement("div");
+    container.className = "gallery-item";
+    // 썸네일 하단 제목이 필요하면 data-caption 채우기
+    // container.setAttribute("data-caption", captions[idx] || "");
+
+    // 메인 썸네일
+    const mainLink = document.createElement("a");
+    mainLink.href = `${folder}${base}.png`;
+    mainLink.className = "glightbox";
+    mainLink.setAttribute("data-gallery", groupId);
+
+    const thumb = document.createElement("img");
+    thumb.src = `${folder}${base}.png`;
+    thumb.alt = captions[idx] || "대표 이미지";
+    thumb.loading  = "lazy";
+    thumb.decoding = "async";
+
+    mainLink.appendChild(thumb);
+    container.appendChild(mainLink);
+    gallery.appendChild(container);
+
+    // ✅ 이 아이템의 서브 이미지 탐색 시작 → 대기중 +1
+    waitingGroups++;
+
+    // 서브 이미지 자동 연결
+    let j = 1;
+    (function addNext() {
+      const imgPath = `${folder}${base}-${j}.png`;
+      const probe = new Image();
+
+      probe.onload = () => {
+        const a = document.createElement("a");
+        a.href = imgPath;
+        a.className = "glightbox";
+        a.setAttribute("data-gallery", groupId);
+        a.style.display = "none";
+        container.appendChild(a);
+        j++;
+        addNext(); // 다음 서브 이미지 계속 탐색
+      };
+
+      probe.onerror = () => {
+        // ✅ 이 그룹의 서브 탐색 끝 → 대기중 -1
+        waitingGroups--;
+        maybeInitLightbox();
+      };
+
+      probe.src = imgPath;
+    })();
+  }
+
+  // ✅ 혹시 서브가 전혀 없는 페이지(모든 이미지가 단일컷)일 수도 → waiting이 0이면 바로 초기화
+  if (waitingGroups === 0) {
+    requestAnimationFrame(() => initLightbox());
+  }
+}
   function renderPagination() {
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
