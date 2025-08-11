@@ -263,32 +263,42 @@ function renderGalleryPage(page) {
 
     // ✅ 이 아이템의 서브 이미지 탐색 시작 → 대기중 +1
     waitingGroups++;
+ // 서브 이미지 자동 연결 (빈 번호 건너뛰기)
+let j = 1;
+let missGap = 0;
+const GAP_LIMIT = 10; // 연속 10개 없으면 그만
 
-    // 서브 이미지 자동 연결
-    let j = 1;
-    (function addNext() {
-      const imgPath = `${folder}${base}-${j}.png`;
-      const probe = new Image();
+(function scanSubs() {
+  const imgPath = `${folder}${base}-${j}.png`;
+  const probe = new Image();
 
-      probe.onload = () => {
-        const a = document.createElement("a");
-        a.href = imgPath;
-        a.className = "glightbox";
-        a.setAttribute("data-gallery", groupId);
-        a.style.display = "none";
-        container.appendChild(a);
-        j++;
-        addNext(); // 다음 서브 이미지 계속 탐색
-      };
+  probe.onload = () => {
+    // 찾았으면 링크 추가하고 다음 번호
+    missGap = 0;
+    const a = document.createElement("a");
+    a.href = imgPath;
+    a.className = "glightbox";
+    a.setAttribute("data-gallery", groupId);
+    a.style.display = "none";
+    container.appendChild(a);
+    j++;
+    scanSubs();
+  };
 
-      probe.onerror = () => {
-        // ✅ 이 그룹의 서브 탐색 끝 → 대기중 -1
-        waitingGroups--;
-        maybeInitLightbox();
-      };
+  probe.onerror = () => {
+    // 없으면 건너뛰되, 연속 GAP_LIMIT번 못 찾으면 종료
+    missGap++;
+    if (missGap < GAP_LIMIT) {
+      j++;             // 다음 번호 계속 탐색
+      scanSubs();
+    } else {
+      waitingGroups--;
+      maybeInitLightbox();
+    }
+  };
 
-      probe.src = imgPath;
-    })();
+  probe.src = imgPath;
+})();
   }
 
   // ✅ 혹시 서브가 전혀 없는 페이지(모든 이미지가 단일컷)일 수도 → waiting이 0이면 바로 초기화
