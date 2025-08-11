@@ -271,39 +271,41 @@
 document.addEventListener("DOMContentLoaded", function () {
   const gallery = document.getElementById("gallery");
   const pagination = document.getElementById("pagination");
-  let totalItems = 0;
+
+  const folder = "images";                      // ← 실제 폴더
   const itemsPerPage = window.innerWidth <= 768 ? 10 : 12;
   let currentPage = 1;
-  const folder = "images"; // ← 이미지가 HTML과 같은 폴더면 그대로 두고, 아니라면 경로 수정
 
-  function detectTotalItems(callback) {
-    let index = 0;
-    function checkNext() {
-      const imgPath = `${folder}/gallery${index}.png`;
-      const testImg = new Image();
-      testImg.onload = function () {
-        index++;
-        checkNext();
-      };
-      testImg.onerror = function () {
-        totalItems = index;
+  // ✅ 번호가 비어 있어도 동작: 존재하는 인덱스만 수집
+  const existing = [];
+  function detectExisting(callback) {
+    const MAX_GUESS = 120;      // 최대 120번(0~119)까지 가볍게 스캔
+    let i = 0, missStreak = 0, MISS_LIMIT = 40; // 연속 실패 40번이면 종료(상황에 맞게 조절)
+
+    function probe() {
+      if (i >= MAX_GUESS || missStreak >= MISS_LIMIT) {
+        existing.sort((a, b) => b - a);        // 큰 번호가 최신 → 내림차순 정렬
         callback();
-      };
-      testImg.src = imgPath;
+        return;
+      }
+      const test = new Image();
+      test.onload = () => { existing.push(i); missStreak = 0; i++; probe(); };
+      test.onerror = () => { missStreak++; i++; probe(); };
+      test.src = `${folder}/gallery${i}.png`;
     }
-    checkNext();
+    probe();
   }
 
   function renderGalleryPage(page) {
     gallery.innerHTML = "";
     const start = (page - 1) * itemsPerPage;
-    const end = Math.min(start + itemsPerPage, totalItems);
-    let loadedCount = 0;
+    const end = Math.min(start + itemsPerPage, existing.length);
 
-    for (let i = start; i < end; i++) {
-      const reversedIndex = totalItems - 1 - i;
-      const groupId = `group${reversedIndex}`;
-      const base = `gallery${reversedIndex}`;
+    let loadedCount = 0;
+    for (let k = start; k < end; k++) {
+      const idx = existing[k];                 // 존재하는 인덱스만 사용
+      const groupId = `group${idx}`;
+      const base = `gallery${idx}`;
 
       const container = document.createElement("div");
       container.className = "gallery-item";
@@ -320,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
       mainLink.appendChild(thumb);
       container.appendChild(mainLink);
 
+      // 서브 이미지 자동 연결 (galleryX-1.png, -2.png …)
       let j = 1;
       function addNextImage() {
         const imgPath = `${folder}/${base}-${j}.png`;
@@ -329,17 +332,15 @@ document.addEventListener("DOMContentLoaded", function () {
           hiddenLink.href = imgPath;
           hiddenLink.className = "glightbox";
           hiddenLink.setAttribute("data-gallery", groupId);
-          hiddenLink.style.display = 'none';
+          hiddenLink.style.display = "none";
           container.appendChild(hiddenLink);
-
-          j++;
-          addNextImage();
+          j++; addNextImage();
         };
         testImg.onerror = function () {
           loadedCount++;
           if (loadedCount === (end - start)) {
             GLightbox({
-              selector: '.glightbox',
+              selector: ".glightbox",
               touchNavigation: true,
               loop: true,
               zoomable: true,
@@ -356,21 +357,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderPagination() {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const totalPages = Math.ceil(existing.length / itemsPerPage);
     pagination.innerHTML = "";
     for (let i = 1; i <= totalPages; i++) {
       const btn = document.createElement("button");
       btn.textContent = i;
-      if (i === currentPage) btn.style.fontWeight = 'bold';
-      btn.addEventListener("click", () => {
-        currentPage = i;
-        renderGalleryPage(currentPage);
-      });
+      if (i === currentPage) btn.style.fontWeight = "bold";
+      btn.addEventListener("click", () => { currentPage = i; renderGalleryPage(currentPage); });
       pagination.appendChild(btn);
     }
   }
 
-  detectTotalItems(() => {
+  // 시작
+  detectExisting(() => {
     renderGalleryPage(currentPage);
     renderPagination();
     AOS.init({ duration: 800, once: true });
