@@ -42,9 +42,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      padding: 1rem 2rem;
+      gap: 1.5rem;
+      padding: 0.9rem 2rem;
       background: rgba(255,255,255,0.9);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
@@ -52,25 +51,40 @@
     }
     header h1 {
       margin: 0;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color:#111;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-    .header-logo {
-      height: 40px;
-      width: auto;
-      display: block;
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
     nav a {
-      margin-left: 1rem;
       text-decoration: none;
-      color: #444;
+      color: #555;
       font-weight: 500;
       white-space: nowrap;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
     nav a:hover { color:#000; }
 
+    /* 견적신청 헤더 버튼 */
+    .nav-estimate {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid #111;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
     /* Hero */
     .hero {
-      margin-top: 80px;
+      margin-top: 72px;
       width: 100%;
       min-height: 460px;
       background: url('https://images.unsplash.com/photo-1600585152936-1c1d1e6d7158?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
@@ -83,7 +97,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background-color: rgba(255,255,255,0.78);
+      background-color: rgba(255,255,255,0.8);
       z-index:0;
     }
     .hero-inner {
@@ -93,12 +107,21 @@
       padding: 1.5rem;
       text-align: left;
     }
+
+    /* 로고 이미지 비율 정리 */
+    .hero-logo {
+      display: block;
+      max-width: 180px;   /* 가로 기준 */
+      height: auto;       /* 세로 자동 비율 */
+      margin-bottom: 0.75rem;
+    }
+
     .hero-tagline {
-      letter-spacing: 0.15em;
-      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
       text-transform: uppercase;
       color: #777;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.4rem;
     }
     .hero-title {
       font-size: 1.9rem;
@@ -116,7 +139,7 @@
     .hero-bullets {
       list-style: none;
       padding: 0;
-      margin: 0 0 1.2rem;
+      margin: 0 0 1.1rem;
       font-size: 0.9rem;
       color: #444;
     }
@@ -133,7 +156,7 @@
       color: #ff7a1a;
     }
 
-    /* 버튼 공통 (플랫 스타일) */
+    /* 버튼 공통 */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -187,6 +210,56 @@
       font-size: 1.35rem;
       margin: 0 0 1rem;
       color: #111;
+    }
+
+    /* 서비스 섹션 */
+    .section-center {
+      text-align: center;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* 서비스 카드 – 플랫 */
+    .service-card {
+      background:#fff;
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem 1.2rem;
+      border: 1px solid #eee;
+    }
+    .service-card h3 {
+      font-size: 0.96rem;
+      margin: 0 0 0.45rem;
+      color: #222;
+      white-space: nowrap;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* 견적 신청 섹션 */
+    .section-estimate .estimate-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.4rem;
+      font-size: 0.92rem;
+      color: #555;
+    }
+    .section-estimate .estimate-list li {
+      margin-bottom: 0.3rem;
+    }
+    .estimate-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
     }
 
     /* Gallery Grid */
@@ -286,25 +359,6 @@
       color:#777;
     }
 
-    /* 서비스 카드 – 플랫 */
-    .service-card {
-      background:#fff;
-      border-radius: 8px;
-      padding: 1.1rem 1.2rem 1.2rem;
-      border: 1px solid #eee;
-    }
-    .service-card h3 {
-      font-size: 0.96rem;
-      margin: 0 0 0.45rem;
-      color: #222;
-      white-space: nowrap;
-    }
-    .service-card p {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      color: #555;
-    }
-
     /* Gallery pagination – 심플 */
     .pagination {
       display:flex;
@@ -347,6 +401,12 @@
     }
 
     /* 모바일 레이아웃 */
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -354,20 +414,20 @@
         padding:0.8rem 1rem;
       }
       nav {
-        justify-content:center;
         width:100%;
-        margin-top:.4rem;
+        justify-content:flex-start;
+        gap: 0.7rem;
+        margin-top:.35rem;
       }
-      nav a { margin: 0 0.8rem; }
 
       .hero {
         min-height: auto;
-        padding: 3.0rem 1.25rem 2.3rem;
+        padding: 2.7rem 1.25rem 2.3rem;
       }
       .hero-inner { padding: 0; max-width: 100%; }
       .hero-title { font-size: 1.6rem; }
       .hero-subtitle { font-size: 0.9rem; }
-
+      .hero-logo { max-width: 150px; }
       .hero-cta { flex-direction: column; }
       .btn { width: 100%; }
 
@@ -376,9 +436,16 @@
         gap: 0.6rem;
       }
       .gallery-item::after { opacity: 1; }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 520px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
       #gallery-section { padding-top: 1.1rem; }
     }
   </style>
@@ -683,20 +750,21 @@
 
 <body>
   <header>
-    <h1>
-      <img src="logo.png" alt="PROWRAP INTERIOR FILM" class="header-logo">
-    </h1>
+    <h1>PROWRAP | Real Film Real Finish</h1>
     <nav>
+      <a href="#services">서비스</a>
       <a href="#gallery-section">갤러리</a>
-      <a href="#reviews">리뷰</a>
-      <a href="#quote">견적신청</a>
-      <a href="#contact">찾아오시는 길</a>
+      <a href="#reviews">후기</a>
+      <a href="#contact">오시는 길</a>
+      <a href="#estimate" class="nav-estimate">견적 신청</a>
     </nav>
   </header>
 
   <!-- HERO -->
   <div class="hero">
     <div class="hero-inner">
+      <img src="logo.png" alt="ProWrap 타이틀 이미지" class="hero-logo">
+
       <p class="hero-tagline">PROWRAP INTERIOR FILM</p>
 
       <h2 class="hero-title">
@@ -704,22 +772,21 @@
       </h2>
 
       <p class="hero-subtitle">
-        주거, 상가, 사무실 공간을 인테리어필름으로 리폼하는 전문 업체입니다.
-        주방 상판부터 방문·샷시까지 기존 마감재 철거 없이 깔끔하게 정리해 드립니다.
+        주거, 상가, 사무실 공간을 인테리어필름으로 리폼합니다.<br>
+        기존 마감재 철거 없이 필요한 부분만 깔끔하게 정리해 드립니다.
       </p>
 
       <ul class="hero-bullets">
         <li>현대 · 영림 정품 인테리어필름 사용</li>
-        <li>사진 상담 후 1시간 이내 예상 견적 안내</li>
-        <li>시공 후 12개월 A/S 제공</li>
+        <li>사진 상담 후 예상 견적·일정 안내</li>
       </ul>
 
       <div class="hero-cta">
-        <a href="tel:01050741018" class="btn btn-primary">
-          전화로 바로 상담하기
+        <a href="http://pf.kakao.com/_xoxilmn" class="btn btn-primary" target="_blank" rel="noopener">
+          💬 카카오톡으로 사진 보내고 견적받기
         </a>
-        <a href="http://pf.kakao.com/_xoxilmn" class="btn btn-outline" target="_blank" rel="noopener">
-          카카오톡으로 사진 견적 보내기
+        <a href="tel:01050741018" class="btn btn-outline">
+          📞 전화로 바로 상담하기
         </a>
       </div>
 
@@ -730,65 +797,57 @@
   </div>
 
   <!-- 서비스 소개 섹션 -->
-  <section id="services" class="section">
-    <h2 style="text-align:center; margin-bottom:0.9rem;">어떤 작업을 하는 업체인가요?</h2>
-    <p style="font-size:0.93rem; line-height:1.8; color:#555; max-width:780px; margin:0 auto 2rem; text-align:center;">
-      ProWrap 인테리어필름은 주거 및 상업공간을 중심으로 작업합니다.
+  <section id="services" class="section section-center">
+    <h2>어떤 작업을 하는 업체인가요?</h2>
+    <p style="font-size:0.93rem; line-height:1.8; color:#555; max-width:780px; margin:0 auto 2rem;">
+      ProWrap 인테리어필름은 주거 및 상업공간을 중심으로 작업합니다.<br>
       도어, 싱크대, 주방 상판, 샷시, 가구 등 자주 손이 가는 부분을 필름 시공으로 깔끔하게 리폼해 드립니다.
     </p>
 
-    <div style="
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    ">
+    <div class="services-grid">
       <article class="service-card">
         <h3>주거공간 리폼</h3>
-        <p>주방 상판, 싱크대, 붙박이장, 방문/문틀 등 집 안 곳곳을 인테리어필름으로 새것처럼 리폼합니다.</p>
+        <p>주방 상판, 싱크대, 붙박이장, 방문 등을 필름으로 새것처럼 정리합니다.</p>
       </article>
 
       <article class="service-card">
         <h3>상가 · 카페 · 사무실</h3>
-        <p>브랜드 이미지에 맞는 컬러와 질감을 추천해 드리고, 영업 일정에 맞춰 야간/휴일 시공도 가능합니다.</p>
+        <p>브랜드 이미지에 맞는 컬러를 제안하고, 야간·휴일 시공도 가능합니다.</p>
       </article>
 
       <article class="service-card">
         <h3>하자 보수 · 부분 보강</h3>
-        <p>찍힘, 긁힘, 변색 등 손상된 부분만 부분 시공도 가능하며, 기존 필름이 들뜨거나 벗겨진 부분도 정리합니다.</p>
+        <p>찍힘·긁힘·변색 등 손상된 구간만 부분 보수 시공이 가능합니다.</p>
       </article>
 
       <article class="service-card">
         <h3>맞춤 상담 · 견적</h3>
-        <p>현장 방문 또는 사진 상담을 통해 필요한 부분만 합리적인 비용으로 시공할 수 있도록 솔직하게 안내합니다.</p>
+        <p>사진 또는 현장 방문 후 필요한 부분만 솔직하게 견적을 안내합니다.</p>
       </article>
     </div>
   </section>
 
-  <!-- ✅ 견적 신청 섹션 -->
-  <section id="quote" class="section">
-    <h2>견적 신청</h2>
-    <p style="font-size:0.93rem; line-height:1.8; color:#555; max-width:780px; margin:0 auto 1.5rem;">
-      시공이 필요한 공간 사진과 간단한 설명을 보내주시면,
-      확인 후 예상 견적과 일정 가능 여부를 안내드립니다.
+  <!-- 견적 신청 섹션 -->
+  <section id="estimate" class="section section-estimate section-center">
+    <h2>견적 신청 방법</h2>
+    <p style="font-size:0.93rem; line-height:1.8; color:#555; max-width:780px; margin:0 auto 1.4rem;">
+      카카오톡 또는 문자로 아래 정보를 보내주시면,<br>
+      확인 후 예상 견적과 가능 일정을 안내드립니다.
     </p>
 
-    <div style="
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.8rem;
-      justify-content:center;
-    ">
-      <a href="http://pf.kakao.com/_xoxilmn"
-         target="_blank" rel="noopener"
-         class="btn btn-primary">
-        카카오톡으로 사진 보내기
-      </a>
+    <ul class="estimate-list">
+      <li>① 시공 주소 (동·단지명까지)</li>
+      <li>② 시공을 원하시는 공간 (예: 주방 상판, 싱크대, 방문 3짝 등)</li>
+      <li>③ 현재 상태가 보이는 사진 2~5장</li>
+      <li>④ 희망 일정(평일/주말, 오전/오후)</li>
+    </ul>
 
-      <a href="tel:01050741018"
-         class="btn btn-outline">
-        전화로 상담 요청하기
+    <div class="estimate-cta">
+      <a href="http://pf.kakao.com/_xoxilmn" class="btn btn-primary" target="_blank" rel="noopener">
+        💬 카카오톡으로 견적 신청하기
+      </a>
+      <a href="tel:01050741018" class="btn btn-outline">
+        📞 전화로 바로 문의하기
       </a>
     </div>
   </section>
@@ -806,14 +865,14 @@
   <section id="reviews" class="section">
     <h2>시공 후기</h2>
     <p style="font-size:0.93rem; color:#555; max-width:800px; margin:0 auto 1.6rem;">
-      네이버 예약, 카카오톡 채널, 인스타그램 등을 통해 자주 들었던 후기들을 정리한 예시입니다.
+      네이버 예약, 카카오톡 채널, 인스타그램 등을 통해 자주 들었던 후기들을 정리한 예시입니다.<br>
       실제 후기는 네이버 플레이스에서 확인하실 수 있습니다.
     </p>
 
     <div class="review-container">
       <article class="review-card">
         <p class="review-text">
-          처음 인테리어필름 시공이라 걱정이 많았는데, 전화로 자재랑 색상 설명을 차분하게 해주셔서
+          처음 인테리어필름 시공이라 걱정이 많았는데, 자재랑 색상 설명을 차분하게 해주셔서
           결정하는 데 도움이 됐습니다. 작업 끝나고 주변 정리까지 해주셔서 편했어요.
         </p>
         <p class="review-author">– 일산 메이포레 거주 고객</p>
@@ -844,7 +903,7 @@
     </div>
   </section>
 
-  <!-- 모달 (예비용) -->
+  <!-- 모달 (GLightbox 사용 시 예비용) -->
   <div id="imageModal" class="modal">
     <span id="modalClose" class="modal-close">&times;</span>
     <img id="modalImg" class="modal-content" alt="확대 이미지" />
