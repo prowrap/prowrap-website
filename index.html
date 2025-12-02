@@ -18,7 +18,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-  <meta name="description" content="ProWrap는 인테리어 필름 전문 브랜드로, 고급스러운 마감과 시공 갤러리를 제공합니다. 실시간 문의 및 위치 정보도 확인하세요.">
+  <meta name="description" content="ProWrap은 인테리어 필름 전문 브랜드로, 고급스러운 마감과 시공 갤러리를 제공합니다. 실시간 문의 및 위치 정보도 확인하세요.">
   <meta name="keywords" content="ProWrap, 인테리어 필름, 인테리어 시공, 고양시 인테리어, 시공 사례, 필름 마감">
   <meta name="author" content="ProWrap Interior Film">
   <meta name="twitter:card" content="summary_large_image" />
@@ -90,7 +90,7 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 820px;   /* 텍스트 폭 줄여서 더 정리된 느낌 */
+      max-width: 820px;
       padding: 1.5rem;
       text-align: left;
     }
@@ -301,16 +301,38 @@
       border: 1px solid #eee;
     }
     .service-card h3 {
-  font-size: 0.96rem;      /* 살짝 줄여서 한 줄에 들어가게 */
-  margin: 0 0 0.45rem;
-  color: #222;
-  white-space: nowrap;     /* 👉 줄바꿈 안 함 */
-}
-
+      font-size: 0.96rem;
+      margin: 0 0 0.45rem;
+      color: #222;
+      white-space: nowrap;
+    }
     .service-card p {
       font-size: 0.88rem;
       line-height: 1.7;
       color: #555;
+    }
+
+    /* 서비스 카드 그리드 */
+    .services-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* 태블릿: 2칸 */
+    @media (max-width: 1024px){
+      .services-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* 모바일: 1칸 */
+    @media (max-width: 600px){
+      .services-grid{
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Gallery pagination – 심플 */
@@ -737,7 +759,6 @@
   </div>
 
   <!-- 서비스 소개 섹션 -->
-   <!-- 서비스 소개 섹션 -->
   <section id="services" class="section">
     <h2 style="text-align:center; margin-bottom:0.9rem;">어떤 작업을 하는 업체인가요?</h2>
     <p style="font-size:0.93rem; line-height:1.8; color:#555; max-width:780px; margin:0 auto 2rem; text-align:center;">
@@ -745,13 +766,7 @@
       도어, 싱크대, 주방 상판, 샷시, 가구 등 자주 손이 가는 부분을 필름 시공으로 깔끔하게 리폼해 드립니다.
     </p>
 
-    <div style="
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    ">
+    <div class="services-grid">
       <article class="service-card">
         <h3>주거공간 리폼</h3>
         <p>주방 상판, 싱크대, 붙박이장, 방문/문틀 등 집 안 곳곳을 인테리어필름으로 새것처럼 리폼합니다.</p>
