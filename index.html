@@ -116,12 +116,34 @@
       margin-bottom: 0.75rem;
     }
 
-    .hero-tagline {
-      letter-spacing: 0.18em;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      color: #777;
-      margin-bottom: 0.4rem;
+.hero-tagline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #f7f7f7;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: #444;
+  font-weight: 600;
+  margin-bottom: 0.9rem; /* 아래 제목과 간격 조금 더 */
+}
+
+/* 오른쪽 초록 동그라미 포인트 */
+.hero-tagline::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  margin-left: 0.5rem;
+  background: #00c98d;
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 3px rgba(0,201,141,0.3);
+}
+
     }
     .hero-title {
       font-size: 1.9rem;
