@@ -91,7 +91,7 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 720px;
+      max-width: 960px;   /* hero와 섹션 폭 통일 */
       padding: 1.5rem;
       text-align: left;
     }
@@ -113,7 +113,7 @@
     }
 
     .hero-title {
-      font-size: 2.1rem;
+      font-size: 2rem;  /* 살짝 줄여서 안정감 */
       line-height: 1.35;
       margin: 0 0 0.8rem;
       color: #111;
@@ -203,8 +203,8 @@
 
     /* Sections 공통 */
     .section {
-      padding: 3rem 1.5rem;
-      max-width: 1100px;
+      padding: 2.5rem 1.5rem 3rem;  /* 위 여백 살짝 줄임 */
+      max-width: 960px;             /* hero와 동일 폭 */
       margin: 0 auto;
     }
 
@@ -507,7 +507,7 @@
 
     // 화면 크기에 따라 페이지당 아이템 수 결정
     function getItemsPerPage() {
-      if (window.innerWidth <= 768) {        // 모바일: 2열 × 6행
+      if (window.innerWidth <= 768) {        // 모바일
         return 12;
       } else if (window.innerWidth <= 1200) { // 태블릿
         return 18;
@@ -573,7 +573,7 @@
       })();
     }
 
-    // 썸네일 오버레이 제목(필요한 것만 채워도 됨)
+    // 썸네일 오버레이 제목
     const captions = {
       0: "송도 GYM 신발장시공_현대SPW48",
       1: "인천 대회의장_예림HF2205",
@@ -813,37 +813,44 @@
     <h2>시공 후기</h2>
     <p style="font-size:0.95rem; color:#555; max-width:800px; margin:0 auto 1.8rem;">
       네이버 예약, 카카오톡 채널, 인스타그램 등을 통해 남겨주신 실제 시공 후기들입니다.
-      더 많은 후기는 네이버 플레이스에서 확인하실 수 있습니다.
+      아래 후기는 자주 들었던 이야기들을 정리한 예시입니다.
     </p>
 
     <div class="review-container">
       <article class="review-card">
         <p class="review-text">
-          주방 상판이랑 싱크대만 바꿨는데 집 분위기가 완전 달라졌어요. 상담도 솔직하게 해주시고,
-          마감도 정말 깔끔해서 만족합니다.
+          처음 인테리어필름 시공이라 걱정이 많았는데, 전화로 자재랑 색상 설명을 차분하게 해주셔서
+          결정하는 데 도움이 됐습니다. 작업 끝나고 주변 정리까지 해주셔서 편했어요.
         </p>
-        <p class="review-author">– 일산 메이포레 59㎡ 고객님</p>
+        <p class="review-author">– 운정 롯데캐슬 거주 고객</p>
       </article>
 
       <article class="review-card">
         <p class="review-text">
-          영업장 쉬는 날에 맞춰 야간 시공해주셔서 일정 맞추기가 정말 편했습니다.
-          필름 질감이 고급스럽고, 손님들 반응도 좋아요.
+          매장 문짝이랑 카운터만 부분 시공했는데 티 안 나게 잘 맞춰주셨습니다.
+          일정이 자주 바뀌었는데도 시간 맞춰주셔서 감사했습니다.
         </p>
-        <p class="review-author">– 파주 카페 운영자님</p>
+        <p class="review-author">– 파주 카페 운영 고객</p>
       </article>
 
       <article class="review-card">
         <p class="review-text">
-          기존에 붙어 있던 필름이 들떠서 보기 싫었는데, 정리부터 마감까지 꼼꼼하게 봐주셔서
-          하자 없이 사용 중입니다. A/S 안내도 명확했어요.
+          기존 필름이 들떠서 보기가 싫었는데, 어디까지 살리고 어디를 새로 해야 하는지
+          솔직하게 설명해주셔서 불필요한 비용이 안 들어갔습니다. 시공 후 한 달 정도 지났는데 아직까지 문제 없습니다.
         </p>
-        <p class="review-author">– 덕양구 오피스텔 거주자님</p>
+        <p class="review-author">– 덕양구 오피스텔 거주 고객</p>
       </article>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <a href="https://map.naver.com/p/search/경기도 고양시 덕양구 의장로 146" target="_blank" rel="noopener"
+         style="display:inline-block; padding:0.65rem 1.2rem; border-radius:999px; border:1px solid #03c75a; color:#03c75a; text-decoration:none; font-size:0.9rem; font-weight:600;">
+        🔍 네이버 플레이스에서 실제 후기 보기
+      </a>
     </div>
   </section>
 
-  <!-- (예전 모달 – 현재는 GLightbox 사용, 필요시 제거 가능) -->
+  <!-- 모달 (현재는 GLightbox 사용, 필요시 제거 가능) -->
   <div id="imageModal" class="modal">
     <span id="modalClose" class="modal-close">&times;</span>
     <img id="modalImg" class="modal-content" alt="확대 이미지" />
