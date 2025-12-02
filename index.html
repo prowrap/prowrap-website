@@ -327,36 +327,154 @@
       text-align:right;
     }
 
-    /* Map buttons */
+    /* === contact 영역 새 디자인 === */
+
+    .contact-section {
+      padding-top: 2.5rem;
+      padding-bottom: 3rem;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .contact-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .contact-head {
+      padding-bottom: 1.3rem;
+      border-bottom: 1px solid #f1f1f1;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-name {
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-address {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 0.8rem;
+    }
+
+    /* map buttons – 1번 이미지 느낌 */
     .map-buttons {
       display:flex;
-      flex-direction:column;
-      gap:.7rem;
-      align-items:center;
-      margin-top:1rem;
+      flex-wrap:wrap;
+      gap:0.5rem;
     }
     .map-btn {
-      padding:.8rem 1.4rem;
-      border-radius:5px;
-      font-weight:600;
-      font-size:0.96rem;
+      padding:0.55rem 1.4rem;
+      border-radius:4px;
+      border:1px solid #ddd;
+      font-weight:500;
+      font-size:0.9rem;
       text-decoration:none;
-      width:100%;
-      max-width:320px;
+      color:#333;
+      background:#f9f9f9;
+      min-width:110px;
       text-align:center;
-      box-sizing:border-box;
     }
-    .map-btn.naver { background:#03c75a; color:#fff; }
-    .map-btn.kakao { background:#FEE500; color:#000; }
+    .map-btn:hover{
+      background:#f0f0f0;
+      border-color:#ccc;
+    }
 
-    /* Footer */
-    footer {
+    .contact-row {
+      display:flex;
+      padding:0.9rem 0;
+      border-top:1px solid #f5f5f5;
+      font-size:0.9rem;
+      align-items:flex-start;
+      gap:1.5rem;
+    }
+
+    .contact-label {
+      width:90px;
+      min-width:90px;
+      color:#444;
+      font-weight:600;
+    }
+
+    .contact-body {
+      flex:1;
+      color:#555;
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.9rem 1.7rem;
+    }
+
+    .contact-badge {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.25rem 0.6rem;
+      border-radius:999px;
+      border:1px solid #e1e1e1;
+      font-size:0.78rem;
+      color:#555;
       background:#fafafa;
-      padding:2rem;
-      text-align:center;
-      border-top:1px solid #e5e5e5;
+    }
+
+    .contact-tel {
+      text-decoration:none;
+      color:#333;
+      font-weight:600;
+    }
+    .contact-tel:hover { text-decoration:underline; }
+
+    .biz-info span {
+      margin-right:1.6rem;
+    }
+    .biz-info strong {
+      font-weight:600;
+      color:#333;
+      margin-right:0.2rem;
+    }
+
+    .contact-icons span {
+      display:flex;
+      align-items:center;
+      gap:0.25rem;
+    }
+
+    /* 소셜 링크 */
+    .social-links{
+      margin-top:1.5rem;
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:10px;
+      max-width:600px;
+      margin-inline:auto;
+    }
+    .social-links a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:8px 10px;
+      border:1px solid #e6e6e6;
+      border-radius:8px;
+      background:#fff;
+      text-decoration:none;
+      color:#222;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .social-links a:hover{
+      background:#f7f7f7;
+      border-color:#ddd;
+    }
+    .social-links img{
+      width:40px;
+      height:40px;
+      object-fit:contain;
+    }
+    .social-links span{
       font-size:.9rem;
-      color:#777;
+      font-weight:600;
     }
 
     /* Gallery pagination – 심플 */
@@ -400,6 +518,24 @@
       outline-offset: 2px;
     }
 
+    /* Footer – 검정 바 스타일 */
+    footer {
+      background:#111;
+      padding:1.6rem 1.5rem;
+      text-align:center;
+      font-size:.82rem;
+      color:#bbb;
+      margin-top:0;
+    }
+    footer p {
+      margin:0.1rem 0;
+      line-height:1.6;
+    }
+    footer strong {
+      font-weight:600;
+      color:#f5f5f5;
+    }
+
     /* 모바일 레이아웃 */
     @media (max-width: 900px) {
       .services-grid {
@@ -439,6 +575,20 @@
 
       .services-grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-row {
+        flex-direction:column;
+        gap:0.3rem;
+      }
+      .contact-label {
+        width:auto;
+      }
+    }
+
+    @media (max-width: 600px){
+      .social-links{
+        grid-template-columns: repeat(2, minmax(0,1fr));
       }
     }
 
@@ -497,47 +647,6 @@
       font-weight:500;
     }
     .gallery-item:hover::after{ opacity:1; }
-
-    /* 소셜 링크 */
-    .social-links{
-      margin-top:1.25rem;
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:10px;
-      max-width:600px;
-      margin-inline:auto;
-    }
-    .social-links a{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:8px 10px;
-      border:1px solid #e6e6e6;
-      border-radius:8px;
-      background:#fff;
-      text-decoration:none;
-      color:#222;
-      transition: background .15s ease, border-color .15s ease;
-    }
-    .social-links a:hover{
-      background:#f7f7f7;
-      border-color:#ddd;
-    }
-    .social-links img{
-      width:40px;
-      height:40px;
-      object-fit:contain;
-    }
-    .social-links span{
-      font-size:.9rem;
-      font-weight:600;
-    }
-    @media (max-width: 600px){
-      .social-links{
-        grid-template-columns: repeat(2, minmax(0,1fr));
-      }
-    }
   </style>
 
   <script>
@@ -910,36 +1019,70 @@
   </div>
 
   <!-- 연락 / 지도 / SNS -->
-  <section id="contact" class="section">
-    <h2>찾아오시는 길</h2>
-    <div class="map-buttons">
-      <a href="https://map.naver.com/p/search/경기도 고양시 덕양구 의장로 146" class="map-btn naver" target="_blank" rel="noopener">네이버 지도에서 보기</a>
-      <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn kakao" target="_blank" rel="noopener">카카오맵에서 보기</a>
-    </div>
+  <section id="contact" class="section contact-section">
+    <div class="contact-wrap">
+      <div class="contact-head">
+        <div class="contact-name">Prowrap Interior Film</div>
+        <div class="contact-address">경기도 고양시 덕양구 의장로 146 19층</div>
+        <div class="map-buttons">
+          <a href="https://map.naver.com/p/search/경기도 고양시 덕양구 의장로 146" class="map-btn" target="_blank" rel="noopener">길찾기</a>
+          <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn" target="_blank" rel="noopener">지도에서 보기</a>
+        </div>
+      </div>
 
-    <div class="social-links" aria-label="ProWrap 소셜 채널">
-      <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
-        <img src="instagram.png" alt="인스타그램" /><span>Instagram</span>
-      </a>
-      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank" rel="noopener" aria-label="유튜브">
-        <img src="youtube.png" alt="유튜브" /><span>YouTube</span>
-      </a>
-      <a href="http://pf.kakao.com/_xoxilmn" target="_blank" rel="noopener" aria-label="카카오톡 채널">
-        <img src="kakaotalk.png" alt="카카오톡" /><span>Kakao</span>
-      </a>
-      <a href="https://m.blog.naver.com/milli1018" target="_blank" rel="noopener" aria-label="네이버 블로그">
-        <img src="naverblog.png" alt="네이버 블로그" /><span>Naver Blog</span>
-      </a>
+      <div class="contact-row">
+        <div class="contact-label">오시는 길</div>
+        <div class="contact-body">
+          <span class="contact-badge">주차</span>
+          <span>주차 및 자세한 위치 안내는 상담 시 안내드립니다.</span>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-label">전화번호</div>
+        <div class="contact-body">
+          <a href="tel:01050741018" class="contact-tel">010-5074-1018</a>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-label">이용 안내</div>
+        <div class="contact-body contact-icons">
+          <span>🕒 24시간 상담 가능 (사전 예약)</span>
+          <span>💬 카카오톡 / 문자 견적 가능</span>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-label">사업자 정보</div>
+        <div class="contact-body biz-info">
+          <span><strong>상호명</strong>Prowrap Interior Film</span>
+          <span><strong>대표자</strong>우선찬</span>
+          <span><strong>연락처</strong>010-5074-1018</span>
+        </div>
+      </div>
+
+      <div class="social-links" aria-label="ProWrap 소셜 채널">
+        <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
+          <img src="instagram.png" alt="인스타그램" /><span>Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank" rel="noopener" aria-label="유튜브">
+          <img src="youtube.png" alt="유튜브" /><span>YouTube</span>
+        </a>
+        <a href="http://pf.kakao.com/_xoxilmn" target="_blank" rel="noopener" aria-label="카카오톡 채널">
+          <img src="kakaotalk.png" alt="카카오톡" /><span>Kakao</span>
+        </a>
+        <a href="https://m.blog.naver.com/milli1018" target="_blank" rel="noopener" aria-label="네이버 블로그">
+          <img src="naverblog.png" alt="네이버 블로그" /><span>Naver Blog</span>
+        </a>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>
-      <strong>회사명:</strong> Prowrap Interior Film<br>
-      <strong>대표자:</strong> 우선찬<br>
-      <strong>연락처:</strong> 010-5074-1018<br>
-      <strong>주소:</strong> 경기도 고양시 덕양구 의장로 146 19층
-    </p>
+    <p><strong>회사명</strong> Prowrap Interior Film</p>
+    <p><strong>대표자</strong> 우선찬 &nbsp; | &nbsp; <strong>연락처</strong> 010-5074-1018</p>
+    <p><strong>주소</strong> 경기도 고양시 덕양구 의장로 146 19층</p>
     <p>&copy; 2025 ProWrap Interior Film. All rights reserved.</p>
   </footer>
 </body>
