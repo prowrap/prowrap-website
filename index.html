@@ -565,48 +565,93 @@
       }
     }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items:flex-start;
-        padding:0.8rem 1rem;
-      }
-      nav {
-        width:100%;
-        justify-content:flex-start;
-        gap: 0.7rem;
-        margin-top:.35rem;
-      }
+   @media (max-width: 768px) {
+  /* 헤더는 기존과 동일 */
+  header {
+    flex-direction: column;
+    align-items:flex-start;
+    padding:0.8rem 1rem;
+  }
+  nav {
+    width:100%;
+    justify-content:flex-start;
+    gap: 0.7rem;
+    margin-top:.35rem;
+  }
 
-      .hero {
-        min-height: auto;
-        padding: 2.7rem 1.25rem 2.3rem;
-      }
-      .hero-inner { padding: 0; max-width: 100%; }
-      .hero-title { font-size: 1.6rem; }
-      .hero-subtitle { font-size: 0.9rem; }
-      .hero-logo { max-width: 150px; }
-      .hero-cta { flex-direction: column; }
-      .btn { width: 100%; }
+  /* ===== 모바일 HERO 정리 ===== */
+  .hero {
+    min-height: auto;
+    padding: 2.2rem 1.2rem 2.1rem;
+  }
+  .hero-inner {
+    padding: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;          /* 가운데 정렬 */
+  }
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.6rem;
-      }
-      .gallery-item::after { opacity: 1; }
+  .hero-tagline {
+    justify-content: center;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.9rem;
+    margin-bottom: 0.8rem;
+  }
 
-      .services-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+  .hero-title {
+    font-size: 1.4rem;           /* 제목 살짝 줄이기 */
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+  }
 
-      .contact-row {
-        flex-direction:column;
-        gap:0.3rem;
-      }
-      .contact-label {
-        width:auto;
-      }
-    }
+  .hero-subtitle {
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 0.95rem;
+  }
+  /* 줄바꿈(<br>)은 모바일에선 없애서 덜 난잡하게 */
+  .hero-subtitle br {
+    display: none;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.1rem;
+  }
+
+  .hero-contact-small {
+    font-size: 0.78rem;
+    color: #999;
+    margin-top: 0.3rem;
+  }
+
+  /* ===== 이하 기존 코드 유지 ===== */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  .gallery-item::after { opacity: 1; }
+
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-row {
+    flex-direction:column;
+    gap:0.3rem;
+  }
+  .contact-label {
+    width:auto;
+  }
+}
+
 
     @media (max-width: 600px){
       .social-links{
