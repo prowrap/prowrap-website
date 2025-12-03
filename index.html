@@ -1061,131 +1061,128 @@
   </style>
 
   <style>
-    /* GLightbox arrows */
-    .gprev, .gnext {
-      display:block !important;
-      opacity:1 !important;
-      visibility:visible !important;
-      pointer-events:auto !important;
-    }
-    .gprev svg, .gnext svg {
-      width:40px !important;
-      height:40px !important;
-    }
-    .glightbox-clean .gprev, .glightbox-clean .gnext {
-      top:50% !important;
-      transform:translateY(-50%) !important;
-      background: rgba(0,0,0,.5) !important;
-      border-radius:50% !important;
-    }
+/* GLightbox arrows */
+.gprev, .gnext {
+  display:block !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+}
+.gprev svg, .gnext svg {
+  width:40px !important;
+  height:40px !important;
+}
+.glightbox-clean .gprev, .glightbox-clean .gnext {
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  background: rgba(0,0,0,.5) !important;
+  border-radius:50% !important;
+}
 
-    /* 썸네일 오버레이 + 슬라이드용 flex 설정 */
-    .gallery-item {
-      position:relative;
-      overflow:hidden;
-      border-radius:10px;
-      flex:0 0 32%;
-      scroll-snap-align:start;
-    }
-    .gallery-item img {
-      width:100%;
-      aspect-ratio:4/3;
-      object-fit:cover;
-      background:#f7f7f7;
-      cursor:pointer;
-      transition:opacity .2s ease, transform .15s ease;
-    }
-    .gallery-item:hover img {
-      opacity:0.96;
-      transform: scale(1.01);
-    }
-    .gallery-item::after{
-      content: attr(data-caption);
-      position:absolute;
-      left:0; right:0; bottom:0;
-      padding:.45rem 0.7rem;
-      background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
-      color:#fff;
-      font-size:.78rem;
-      opacity:0;
-      transition:opacity .2s ease;
-      font-weight:500;
-    }
-    .gallery-item:hover::after{ opacity:1; }
+/* 썸네일 오버레이 + 슬라이드용 flex 설정 */
+.gallery-item {
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+  flex:0 0 32%;
+  scroll-snap-align:start;
+}
+.gallery-item img {
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  background:#f7f7f7;
+  cursor:pointer;
+  transition:opacity .2s ease, transform .15s ease;
+}
+.gallery-item:hover img {
+  opacity:0.96;
+  transform: scale(1.01);
+}
+.gallery-item::after{
+  content: attr(data-caption);
+  position:absolute;
+  left:0; right:0; bottom:0;
+  padding:.45rem 0.7rem;
+  background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+  color:#fff;
+  font-size:.78rem;
+  opacity:0;
+  transition:opacity .2s ease;
+  font-weight:500;
+}
+.gallery-item:hover::after{ opacity:1; }
 
-    /* 버튼 호버 강화 */
-    .btn-primary:hover {
-      background-color: #e86c14;
-      border-color: #e86c14;
-      transform: translateY(-2px);
-      box-shadow: 0px 6px 20px rgba(255, 122, 26, 0.25);
-    }
+/* 버튼 호버 강화 */
+.btn-primary:hover {
+  background-color: #e86c14;
+  border-color: #e86c14;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 20px rgba(255, 122, 26, 0.25);
+}
 
-    .btn-outline:hover {
-      border-color: #111;
-      color: #111;
-      transform: translateY(-2px);
-      box-shadow: 0px 6px 20px rgba(0,0,0,0.07);
-    }
+.btn-outline:hover {
+  border-color: #111;
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.07);
+}
 
-    /* ===== GLightbox 캡션을 이미지에 완전 오버레이로 표시 ===== */
+/* ===== GLightbox 캡션을 이미지에 완전 오버레이로 표시 ===== */
 
-    /* 캡션 wrapper 여백/배경 제거 */
-    .gslide-desc,
-    .gdesc-inner,
-    .gdesc {
-      background: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      height: auto !important;
-      border-radius: 0 !important;
-    }
+/* 캡션 wrapper 여백/배경 제거 (박스는 숨기지 말기) */
+.gslide-desc,
+.gdesc-inner {
+  background: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  border-radius: 0 !important;
+}
 
-    /* 이미지 영역을 캡션 기준으로 position 기준점으로 사용 */
-    .gslide-media {
-      position: relative !important;
-    }
+/* 이미지 영역을 캡션 기준으로 position 기준점으로 사용 */
+.gslide-media {
+  position: relative !important;
+}
 
-    /* 캡션 바 스타일 – 이미지 하단에 밀착 (title만 사용) */
-    .gslide-title {
-      position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      width: 100% !important;
-      text-align: center !important;
-      font-size: 0.85rem !important;
-      font-weight: 500 !important;
-      color: #ffffff !important;
-      padding: 10px 14px !important;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.70),
-        rgba(0,0,0,0.15)
-      ) !important;
-      margin: 0 !important;
-      border-radius: 0 0 12px 12px !important;
-      box-sizing: border-box !important;
-    }
+/* 캡션 바 스타일 – 이미지 하단에 밀착 (title만 사용) */
+.gslide-title {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  text-align: center !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  padding: 10px 14px !important;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.70),
+    rgba(0,0,0,0.15)
+  ) !important;
+  margin: 0 !important;
+  border-radius: 0 0 12px 12px !important;
+  box-sizing: border-box !important;
+}
 
-    /* description은 완전히 숨김 (auto 등) */
-    .gslide-description {
-      display: none !important;
-    }
+/* description은 완전히 숨김 (auto 등) */
+.gslide-description {
+  display: none !important;
+}
 
-    /* 이미지 모서리와 자연스럽게 연결 */
-    .gslide-image img {
-      border-radius: 12px !important;
-    }
+/* 이미지 모서리와 자연스럽게 연결 */
+.gslide-image img {
+  border-radius: 12px !important;
+}
 
-    /* GLightbox 숨겨진 중복 캡션/placeholder 제거 */
-    .gslide-desc .gslide-subtitle,
-    .glightbox-clean .gdesc p,
-    .gslide-description + .gslide-desc,
-    .gdesc,
-    .gslide-desc .gdesc-text {
-      display: none !important;
-    }
+/* 불필요한 서브텍스트만 숨김 (박스는 숨기지 말기) */
+.gslide-desc .gslide-subtitle,
+.glightbox-clean .gdesc p,
+.gslide-desc .gdesc-text {
+  display: none !important;
+}
   </style>
 
   <script>
