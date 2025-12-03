@@ -1146,8 +1146,7 @@
       position: relative !important;
     }
 
-    /* 캡션 바 스타일 – 이미지 하단에 밀착 */
-    .gslide-description,
+    /* 캡션 바 스타일 – 이미지 하단에 밀착 (title만 사용) */
     .gslide-title {
       position: absolute !important;
       left: 0 !important;
@@ -1169,19 +1168,24 @@
       box-sizing: border-box !important;
     }
 
+    /* description은 완전히 숨김 (auto 등) */
+    .gslide-description {
+      display: none !important;
+    }
+
     /* 이미지 모서리와 자연스럽게 연결 */
     .gslide-image img {
       border-radius: 12px !important;
     }
+
     /* GLightbox 숨겨진 중복 캡션/placeholder 제거 */
-.gslide-desc .gslide-subtitle,
-.glightbox-clean .gdesc p,
-.gslide-description + .gslide-desc,
-.gdesc,
-.gslide-desc .gdesc-text {
-  display: none !important;
-}
-    
+    .gslide-desc .gslide-subtitle,
+    .glightbox-clean .gdesc p,
+    .gslide-description + .gslide-desc,
+    .gdesc,
+    .gslide-desc .gdesc-text {
+      display: none !important;
+    }
   </style>
 
   <script>
@@ -1196,8 +1200,8 @@
         touchNavigation: true,
         loop: true,
         zoomable: true,
-        arrows: true,
-        description: "auto"
+        arrows: true
+        // description: "auto"  // ← 제거
       });
     }
 
