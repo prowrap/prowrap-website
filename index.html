@@ -1128,24 +1128,18 @@
   box-shadow: 0px 6px 20px rgba(0,0,0,0.07);
 }
 
-/* ===== GLightbox 캡션을 이미지에 완전 오버레이로 표시 ===== */
+/* GLightbox 캡션: 제목은 보이고 description만 숨기기 */
 
-/* 캡션 wrapper 여백/배경 제거 (박스는 숨기지 말기) */
+/* 캡션 박스는 그대로 두고 스타일만 손보기 */
 .gslide-desc,
 .gdesc-inner {
   background: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  height: auto !important;
   border-radius: 0 !important;
 }
 
-/* 이미지 영역을 캡션 기준으로 position 기준점으로 사용 */
-.gslide-media {
-  position: relative !important;
-}
-
-/* 캡션 바 스타일 – 이미지 하단에 밀착 (title만 사용) */
+/* 제목을 이미지 하단에 오버레이 */
 .gslide-title {
   position: absolute !important;
   left: 0 !important;
@@ -1163,26 +1157,14 @@
     rgba(0,0,0,0.15)
   ) !important;
   margin: 0 !important;
-  border-radius: 0 0 12px 12px !important;
   box-sizing: border-box !important;
 }
 
-/* description은 완전히 숨김 (auto 등) */
+/* description(설명) 부분만 숨김 – auto 같은 텍스트 표시 차단 */
 .gslide-description {
   display: none !important;
 }
 
-/* 이미지 모서리와 자연스럽게 연결 */
-.gslide-image img {
-  border-radius: 12px !important;
-}
-
-/* 불필요한 서브텍스트만 숨김 (박스는 숨기지 말기) */
-.gslide-desc .gslide-subtitle,
-.glightbox-clean .gdesc p,
-.gslide-desc .gdesc-text {
-  display: none !important;
-}
   </style>
 
   <script>
