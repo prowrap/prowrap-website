@@ -405,20 +405,21 @@
       color:#ffffff;
       font-weight:600;
     }
-
     .feature-image-card {
-      position:relative;
-      border-radius:24px;
-      border:1px solid #222;
-      overflow:hidden;
-      background:#0b0b0b;
-      min-height:260px;
-      box-shadow:0 22px 40px rgba(0,0,0,0.6);
-      display:flex;
-      align-items:flex-end;
-      padding:1.1rem 1.35rem;
-      background-size:cover;
-      background-position:center;
+  position:relative;
+  border-radius:24px;
+  border:1px solid #222;
+  overflow:hidden;
+  background:#0b0b0b;
+  /* min-height:260px;  ← 이 줄은 지워줘 */
+  box-shadow:0 22px 40px rgba(0,0,0,0.6);
+  display:flex;
+  align-items:flex-end;
+  padding:1.1rem 1.35rem;
+  background-size:cover;
+  background-position:center;
+  /* 비율 고정 (가로:세로 = 4:3) */
+  aspect-ratio: 4 / 3;
     }
     .feature-image-card::before {
       content:"";
@@ -442,10 +443,14 @@
       font-size:0.72rem;
     }
 
-    /* AI 이미지 파일 경로 – 나중에 파일만 교체하면 됨 */
-    .feature-img-1 { background-image:url('ai-service-1.png'); }
-    .feature-img-2 { background-image:url('ai-service-2.png'); }
-    .feature-img-3 { background-image:url('ai-service-3.png'); }
+   .feature-img-1 { background-image:url('ai-service-1.png'); }
+
+.feature-img-2 {
+  background-image:url('ai-service-2.png');  /* 여기에 네 그레이 스톤 주방 이미지 경로 */
+  background-position: center bottom;        /* 하단 쪽을 더 보여주기 */
+}
+
+.feature-img-3 { background-image:url('ai-service-3.png'); }
 
     /* 진행 과정 섹션 */
     .section-grey {
