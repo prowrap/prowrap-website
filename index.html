@@ -1141,13 +1141,20 @@ const spaceByIndex = {
   27: ["space-furniture"],
   29: ["space-furniture"],
   30: ["space-furniture"],
+  33: ["space-furniture"],      // 가구
+  37: ["space-furniture"],      // 가구
+  38: ["space-furniture"],      // 가구
+  40: ["space-furniture"],      // 가구
+  41: ["space-furniture"],      // 가구
 
   // 사무공간
   1: ["space-work"],
+  36: ["space-work"],           // 사무공간
 
   // 샷시 · 창호
   3: ["space-window"],
   14: ["space-window"],
+  32: ["space-window"],         // 샷시
 
   // 주방
   4: ["space-kitchen"],
@@ -1160,23 +1167,16 @@ const spaceByIndex = {
   19: ["space-door", "space-entrance"], // 현관 겸용
   23: ["space-door"],
   25: ["space-door"],
-
-  // 주거공간
-  31: ["space-home"],
-
-  // ===== 신규 추가 (32 ~ 42) =====
-
-  32: ["space-window"],         // 샷시
-  33: ["space-furniture"],      // 가구
   34: ["space-door"],           // 문
   35: ["space-door"],           // 문
-  36: ["space-work"],           // 사무공간
-  37: ["space-furniture"],      // 가구
-  38: ["space-furniture"],      // 가구
   39: ["space-entrance"],       // 현관
-  40: ["space-furniture"],      // 가구
-  41: ["space-furniture"],      // 가구
+
+  // 주거공간
+  8: ["space-home"],
+  31: ["space-home"],
   42: ["space-home"]            // 주거공간
+
+
 };
     function renderGallerySlider() {
       const track = document.getElementById("gallery");
