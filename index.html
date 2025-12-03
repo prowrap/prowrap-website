@@ -1009,13 +1009,17 @@ container.setAttribute("data-aos-delay", "80");
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      detectExisting(() => {
-        renderGalleryPage(currentPage);
-        renderPagination();
-        AOS.init({ duration: 800, once: true });
-      });
+   document.addEventListener("DOMContentLoaded", () => {
+  detectExisting(() => {
+    renderGalleryPage(currentPage);
+    renderPagination();
+    AOS.init({
+      duration: 800,   // 애니메이션 속도
+      once: false,     // ❗ 스크롤할 때마다 다시 실행
+      mirror: true     // 위로 스크롤할 때도 자연스럽게 반응
     });
+  });
+});
   </script>
 </head>
 
