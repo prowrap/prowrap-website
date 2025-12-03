@@ -1137,6 +1137,31 @@
       border-radius: 0 0 10px 10px;
       text-align: center;
     }
+    /* ---- GLightbox Caption 스타일 개선 ---- */
+.gslide-description,
+.gslide-title {
+  display: block !important;
+  text-align: center !important;
+  width: 100%;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  color: #ffffff !important;
+  padding: 12px 10px !important;
+  background: rgba(0,0,0,0.55);
+  margin-top: -6px; /* 이미지와 자연스럽게 연결 */
+  border-radius: 0 0 10px 10px;
+}
+
+/* 여백 없이 이미지+캡션을 하나처럼 */
+.gslide-image img {
+  border-radius: 10px 10px 0 0 !important;
+}
+
+/* 전체 wrapper alignment */
+.gslide-inner-content {
+  margin-bottom: 0 !important;
+}
+
   </style>
 
   <script>
