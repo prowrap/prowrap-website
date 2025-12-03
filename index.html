@@ -116,35 +116,34 @@
       margin-bottom: 0.75rem;
     }
 
-.hero-tagline {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.3rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.06);
-  background: #f7f7f7;
-  letter-spacing: 0.18em;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  color: #444;
-  font-weight: 600;
-  margin-bottom: 0.9rem; /* 아래 제목과 간격 조금 더 */
-}
-
-/* 오른쪽 초록 동그라미 포인트 */
-.hero-tagline::after {
-  content: "";
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  margin-left: 0.5rem;
-  background: #00c98d;
-  box-shadow:
-    0 0 0 2px #ffffff,
-    0 0 0 3px rgba(0,201,141,0.3);
-}
-
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: #f7f7f7;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: #444;
+      font-weight: 600;
+      margin-bottom: 0.9rem; /* 아래 제목과 간격 조금 더 */
     }
+
+    /* 오른쪽 초록 동그라미 포인트 */
+    .hero-tagline::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      margin-left: 0.5rem;
+      background: #00c98d;
+      box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 0 3px rgba(0,201,141,0.3);
+    }
+
     .hero-title {
       font-size: 1.9rem;
       line-height: 1.35;
@@ -261,6 +260,40 @@
       white-space: nowrap;
     }
     .service-card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* 진행 과정 섹션 */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .process-step {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 1.4rem 1.3rem 1.5rem;
+      border: 1px solid #eee;
+      text-align: left;
+    }
+    .process-number {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.4rem;
+    }
+    .process-step h3 {
+      font-size: 0.98rem;
+      margin: 0 0 0.5rem;
+      color: #222;
+    }
+    .process-step p {
       font-size: 0.88rem;
       line-height: 1.7;
       color: #555;
@@ -563,95 +596,97 @@
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-   @media (max-width: 768px) {
-  /* 헤더는 기존과 동일 */
-  header {
-    flex-direction: column;
-    align-items:flex-start;
-    padding:0.8rem 1rem;
-  }
-  nav {
-    width:100%;
-    justify-content:flex-start;
-    gap: 0.7rem;
-    margin-top:.35rem;
-  }
+    @media (max-width: 768px) {
+      /* 헤더는 기존과 동일 */
+      header {
+        flex-direction: column;
+        align-items:flex-start;
+        padding:0.8rem 1rem;
+      }
+      nav {
+        width:100%;
+        justify-content:flex-start;
+        gap: 0.7rem;
+        margin-top:.35rem;
+      }
 
-  /* ===== 모바일 HERO 정리 ===== */
-  .hero {
-    min-height: auto;
-    padding: 2.2rem 1.2rem 2.1rem;
-  }
-  .hero-inner {
-    padding: 0;
-    max-width: 480px;
-    margin: 0 auto;
-    text-align: center;          /* 가운데 정렬 */
-  }
+      /* ===== 모바일 HERO 정리 ===== */
+      .hero {
+        min-height: auto;
+        padding: 2.2rem 1.2rem 2.1rem;
+      }
+      .hero-inner {
+        padding: 0;
+        max-width: 480px;
+        margin: 0 auto;
+        text-align: center;          /* 가운데 정렬 */
+      }
 
-  .hero-tagline {
-    justify-content: center;
-    font-size: 0.7rem;
-    padding: 0.25rem 0.9rem;
-    margin-bottom: 0.8rem;
-  }
+      .hero-tagline {
+        justify-content: center;
+        font-size: 0.7rem;
+        padding: 0.25rem 0.9rem;
+        margin-bottom: 0.8rem;
+      }
 
-  .hero-title {
-    font-size: 1.4rem;           /* 제목 살짝 줄이기 */
-    line-height: 1.4;
-    margin-bottom: 0.6rem;
-  }
+      .hero-title {
+        font-size: 1.4rem;           /* 제목 살짝 줄이기 */
+        line-height: 1.4;
+        margin-bottom: 0.6rem;
+      }
 
-  .hero-subtitle {
-    font-size: 0.86rem;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 0.95rem;
-  }
-  /* 줄바꿈(<br>)은 모바일에선 없애서 덜 난잡하게 */
-  .hero-subtitle br {
-    display: none;
-  }
+      .hero-subtitle {
+        font-size: 0.86rem;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 0.95rem;
+      }
+      /* 줄바꿈(<br>)은 모바일에선 없애서 덜 난잡하게 */
+      .hero-subtitle br {
+        display: none;
+      }
 
-  .hero-cta {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+      .hero-cta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
 
-  .btn {
-    width: 100%;
-    font-size: 0.9rem;
-    padding: 0.7rem 1.1rem;
-  }
+      .btn {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.7rem 1.1rem;
+      }
 
-  .hero-contact-small {
-    font-size: 0.78rem;
-    color: #999;
-    margin-top: 0.3rem;
-  }
+      .hero-contact-small {
+        font-size: 0.78rem;
+        color: #999;
+        margin-top: 0.3rem;
+      }
 
-  /* ===== 이하 기존 코드 유지 ===== */
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-  .gallery-item::after { opacity: 1; }
+      /* ===== 이하 기존 코드 유지 ===== */
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+      }
+      .gallery-item::after { opacity: 1; }
 
-  .services-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
 
-  .contact-row {
-    flex-direction:column;
-    gap:0.3rem;
-  }
-  .contact-label {
-    width:auto;
-  }
-}
-
+      .contact-row {
+        flex-direction:column;
+        gap:0.3rem;
+      }
+      .contact-label {
+        width:auto;
+      }
+    }
 
     @media (max-width: 600px){
       .social-links{
@@ -929,6 +964,7 @@
     <h1>PROWRAP | 필름 한 장으로 바뀌는 공간의 무드</h1>
     <nav>
       <a href="#services">서비스</a>
+      <a href="#process">진행 과정</a>
       <a href="#gallery-section">갤러리</a>
       <a href="#reviews">후기</a>
       <a href="#contact">오시는 길</a>
@@ -937,38 +973,37 @@
   </header>
 
   <!-- HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <p class="hero-tagline">PROWRAP INTERIOR FILM</p>
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="hero-tagline">PROWRAP INTERIOR FILM</p>
 
-    <h2 class="hero-title">
-     공간을 바꾸다.Stay Modern. Stay Simple.
-    </h2>
+      <h2 class="hero-title">
+        공간을 바꾸다. Stay Modern. Stay Simple.
+      </h2>
 
-    <p class="hero-subtitle">
-      주거 · 상가 · 사무실을 인테리어필름으로 깔끔하게 리폼해 드립니다.<br>
-      현대·영림·LX·예림·한솔·삼성 등 정품 필름만 사용하며, 사진만 보내주시면 예상 견적과 일정을 안내해 드립니다.
-    </p>
+      <p class="hero-subtitle">
+        주거 · 상가 · 사무실을 인테리어필름으로 깔끔하게 리폼해 드립니다.<br>
+        현대·영림·LX·예림·한솔·삼성 등 정품 필름만 사용하며, 사진만 보내주시면 예상 견적과 일정을 안내해 드립니다.
+      </p>
 
-    <div class="hero-cta">
-      <a href="http://pf.kakao.com/_xoxilmn" class="btn btn-primary" target="_blank" rel="noopener">
-        💬 카카오톡으로 사진 보내고 견적받기
-      </a>
-      <a href="tel:01050741018" class="btn btn-outline">
-        📞 전화로 바로 상담하기
-      </a>
+      <div class="hero-cta">
+        <a href="http://pf.kakao.com/_xoxilmn" class="btn btn-primary" target="_blank" rel="noopener">
+          💬 카카오톡으로 사진 보내고 견적받기
+        </a>
+        <a href="tel:01050741018" class="btn btn-outline">
+          📞 전화로 바로 상담하기
+        </a>
+      </div>
+
+      <p class="hero-contact-small">
+        상담 가능 지역 : 고양 · 파주 · 인천 · 서울 전지역 (그 외 지역 협의)
+      </p>
     </div>
-
-    <p class="hero-contact-small">
-      상담 가능 지역 : 고양 · 파주 · 인천 · 서울 전지역 (그 외 지역 협의)
-    </p>
   </div>
-</div>
 
-
-  <!-- 서비스 소개 섹션 -->
+  <!-- 서비스 / 강점 섹션 -->
   <section id="services" class="section section-center">
-    <h2>어떤 작업을 하는 업체인가요?</h2>
+    <h2>왜 PROWRAP 인테리어필름인가요?</h2>
     <p style="font-size:0.93rem; line-height:1.8; color:#555; max-width:780px; margin:0 auto 2rem;">
       PROWRAP 인테리어필름은 주거 및 상업공간을 중심으로 작업합니다.<br>
       도어, 싱크대, 주방 상판, 샷시, 가구 등 자주 손이 가는 부분을 필름 시공으로 깔끔하게 리폼해 드립니다.
@@ -976,23 +1011,51 @@
 
     <div class="services-grid">
       <article class="service-card">
-        <h3>주거공간 리폼</h3>
-        <p>주방 상판, 싱크대, 붙박이장, 방문 등을 필름으로 새것처럼 정리합니다.</p>
+        <h3>정품 필름만 사용</h3>
+        <p>현대, 영림, LX, 예림, 한솔, 삼성 등 정품 인테리어필름만 사용하여 시공 품질을 유지합니다.</p>
       </article>
 
       <article class="service-card">
-        <h3>상가 · 카페 · 사무실</h3>
-        <p>브랜드 이미지에 맞는 컬러를 제안하고, 야간·휴일 시공도 가능합니다.</p>
+        <h3>철거 없는 리폼</h3>
+        <p>문짝, 싱크대, 주방 상판, 샷시, 가구를 철거 없이 필름으로 정리해 공사 기간과 소음을 줄입니다.</p>
       </article>
 
       <article class="service-card">
-        <h3>하자 보수 · 부분 보강</h3>
-        <p>찍힘·긁힘·변색 등 손상된 구간만 부분 보수 시공이 가능합니다.</p>
+        <h3>현장 맞춤 컬러 제안</h3>
+        <p>조명·바닥·벽 마감재를 함께 고려해 공간에 어울리는 필름 컬러와 재질을 제안드립니다.</p>
       </article>
 
       <article class="service-card">
-        <h3>맞춤 상담 · 견적</h3>
-        <p>사진 또는 현장 방문 후 필요한 부분만 솔직하게 견적을 안내합니다.</p>
+        <h3>시공 후 A/S 케어</h3>
+        <p>시공 후 들뜸, 이음새, 마감 문제 등에 대해 일정 기간 책임 A/S를 제공하고 있습니다.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 시공 진행 과정 섹션 -->
+  <section id="process" class="section section-center">
+    <h2>시공 진행 과정</h2>
+    <p style="font-size:0.93rem; line-height:1.8; color:#555; max-width:780px; margin:0 auto 1.8rem;">
+      복잡한 절차 없이, 사진 한 장으로부터 시공까지 간단하게 진행됩니다.
+    </p>
+
+    <div class="process-grid">
+      <article class="process-step">
+        <div class="process-number">01</div>
+        <h3>사진 전송 & 상담</h3>
+        <p>시공을 원하시는 공간의 사진과 주소, 희망 일정을 카카오톡으로 보내주세요.</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-number">02</div>
+        <h3>필름 · 견적 안내</h3>
+        <p>공간에 어울리는 필름을 함께 고르고, 예상 견적과 작업 소요 시간, 가능한 일정을 안내드립니다.</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-number">03</div>
+        <h3>방문 시공 & 마감 체크</h3>
+        <p>예약된 날짜에 방문하여 시공을 진행하고, 마감 상태와 사용감까지 함께 체크해 드립니다.</p>
       </article>
     </div>
   </section>
