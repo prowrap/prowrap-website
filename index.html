@@ -26,10 +26,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    <style>
   /* === 플로팅 카카오/전화 버튼 === */
-  .floating-contact-wrap {
-    position: fixed;
+  .floating-contact {
+    position: fixed;        /* 화면 고정 */
     right: 18px;
     bottom: 18px;
     z-index: 1200;
@@ -38,7 +37,7 @@
     gap: 10px;
   }
 
-  .floating-contact-btn {
+  .floating-btn {
     width: 54px;
     height: 54px;
     border-radius: 50%;
@@ -48,17 +47,56 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
   }
 
-  .floating-contact-btn:hover {
+  .floating-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 26px rgba(0,0,0,0.18);
     border-color: rgba(0,0,0,0.18);
   }
+
+  .floating-btn img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+
+  /* 카카오 버튼 (노란 배경) */
+  .kakao-btn {
+    background-color: #FEE500;
+  }
+
+  /* 아이폰 전화 버튼 (초록색) */
+  .call-btn {
+    background-color: #34C759;
+  }
+
+  /* 모바일에서 살짝 축소 */
+  @media (max-width: 600px) {
+    .floating-btn {
+      width: 50px;
+      height: 50px;
+    }
+    .floating-contact {
+      right: 14px;
+      bottom: 14px;
+    }
+  }
+
+  :root {
+      --pw-bg: #ffffff;
+      --pw-text: #222222;
+      --pw-soft-text: #777777;
+      --pw-border: #e5e5e5;
+      --pw-accent: #111111;      /* 메인 포인트 (딥블랙) */
+      --pw-accent-soft: #ff7a1a; /* 버튼 포인트 */
+      --pw-pill: #f7f7f7;
+      --pw-section-bg: #fafafa;
+    }
+    /* 여기 아래로는 원래 있던 CSS 그대로 유지! */
 
   /* 모바일에서 너무 크지 않게 살짝 축소 */
   @media (max-width: 600px) {
@@ -1691,23 +1729,23 @@ if (spaceClass) {
     <p><strong>주소</strong> 경기도 고양시 덕양구 의장로 146 1903호</p>
     <p>&copy; 2025 PROWRAP Interior Film. All rights reserved.</p>
   </footer>
-    <!-- 플로팅 카카오톡 / 전화 버튼 -->
-  <div class="floating-contact-wrap" aria-label="빠른 상담 버튼">
-    <!-- 카카오톡 상담 -->
-    <a href="http://pf.kakao.com/_xoxilmn"
-       class="floating-contact-btn"
-       target="_blank"
-       rel="noopener"
-       aria-label="카카오톡으로 견적 상담하기">
-      🟡
-    </a>
+<!-- 플로팅 카카오톡 / 전화 버튼 -->
+<div class="floating-contact">
+  <!-- 카카오톡 버튼 -->
+  <a href="https://pf.kakao.com/https://pf.kakao.com/_xoxilmn"
+     class="floating-btn kakao-btn" 
+     target="_blank" 
+     aria-label="카카오톡 상담">
+    <img src="images/kakao-icon.png" alt="카카오톡 아이콘">
+  </a>
 
-    <!-- 전화 상담 -->
-    <a href="tel:01050741018"
-       class="floating-contact-btn"
-       aria-label="전화로 상담하기">
-      📞
-    </a>
-  </div>
+  <!-- 전화 버튼 -->
+  <a href="tel:01050741018" 
+     class="floating-btn call-btn" 
+     aria-label="전화 상담">
+    <img src="images/iphone-call-icon.png" alt="전화 아이콘">
+  </a>
+</div>
+
 </body>
 </html>
