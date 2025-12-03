@@ -4,6 +4,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
+  <!-- ✅ AOS CSS / JS 다시 추가 -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prowrap Interior Film</title>
@@ -289,7 +293,7 @@
     flex-wrap:wrap;
     gap:0.6rem 1.2rem;
     font-size:0.82rem;
-    color:#777;
+    color:0#777;
     margin-bottom: 1.1rem;
   }
   .hero-meta-row span {
@@ -1176,7 +1180,6 @@
         loop: true,
         zoomable: true,
         arrows: true
-        // description: "auto"  // ← 제거
       });
     }
 
@@ -1254,7 +1257,7 @@
 function formatCaption(text) {
   if (!text) return "";
 
-  // 브랜드 변환 규칙 (요청 반영 버전)
+  // 브랜드 변환 규칙
   const brandMap = {
     "현대": "현대Bodaq",
     "LX": "LX하우시스",
@@ -1468,16 +1471,21 @@ function formatCaption(text) {
       });
     }
 
+    /* ✅ DOMContentLoaded: AOS.init을 안전하게 호출 */
     document.addEventListener("DOMContentLoaded", () => {
       detectExisting(() => {
         renderGallerySlider();
         setupGallerySliderControls();
-        AOS.init({
-          duration: 800,
-          once: false,
-          mirror: true
-        });
+
+        if (window.AOS && typeof AOS.init === "function") {
+          AOS.init({
+            duration: 800,
+            once: false,
+            mirror: true
+          });
+        }
       });
+
       setupGalleryFilter();
     });
   </script>
