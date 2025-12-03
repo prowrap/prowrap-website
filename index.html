@@ -1250,15 +1250,28 @@
       42: "현대_SPW26"
     };
 
-    // 캡션 텍스트 포맷 (언더바/콤마 정리)
-    function formatCaption(text) {
-      if (!text) return "";
-      return text
-        .replace(/_/g, " ")
-        .replace(/,\s*/g, " · ")
-        .replace(/\s*·\s*$/, "") // 끝에 남은 점 제거
-        .trim();
-    }
+function formatCaption(text) {
+  if (!text) return "";
+
+  // 브랜드 변환 규칙 (요청 반영 버전)
+  const brandMap = {
+    "현대": "현대Bodaq",
+    "LX": "LX하우시스",
+    "영림": "Younglim",
+    "예림": "Yelim",
+    "한솔": "한솔홈데코",
+    "삼성": "삼성"
+  };
+
+  return text
+    .replace(/_/g, " ")  // _ → 공백
+    .replace(/(^|\s)(현대|LX|영림|예림|한솔|삼성)(?=\s)/g, (match, space, brand) => {
+      return space + (brandMap[brand] || brand);
+    })
+    .replace(/,\s*/g, " · ") // , → ·
+    .replace(/\s*·\s*$/, "") // 마지막 구분점 제거
+    .trim();
+}
 
     // PROWRAP ⁃ 선찬 최종 시공 분류 매핑 v3
     const spaceByIndex = {
