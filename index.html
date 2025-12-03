@@ -1118,18 +1118,41 @@
     };
 
     /* 인덱스별 공간 분류 (필요하면 선찬이가 자유롭게 수정 가능) */
-    const spaceByIndex = {
-      0: "space-furniture",   // 신발장
-      1: "space-office"
-      2: "space-counter",    // 라켓 테이블 (카운터/상판)
-      3: "space-window",     // 샷시 프레임
-      5: "space-furniture",  // 제작 침대
-      16: "space-door",      // 문짝/E/V
-      23: "space-door",      // 웨인스코팅 문짝
-      26: "space-kitchen",   // 싱크대 상하부장
-      29: "space-counter"    // 인포메이션 데스크
-      // 나머지 인덱스들은 필요에 따라 추가 가능
-    };
+   // 선찬이가 분류한 번호 기준 공간 매핑
+// 하나의 번호가 여러 카테고리에 들어갈 수 있어서 배열로 관리
+const spaceByIndex = {
+  // 가구
+  0: ["space-furniture"],
+  2: ["space-furniture"],
+  5: ["space-furniture"],
+  6: ["space-furniture"],
+  7: ["space-furniture"],
+  27: ["space-furniture"],
+  29: ["space-furniture"],
+  30: ["space-furniture"],
+
+  // 사무공간
+  1: ["space-work"],
+
+  // 샷시 · 창호
+  3: ["space-window"],
+  14: ["space-window"],
+
+  // 주방
+  4: ["space-kitchen"],
+  26: ["space-kitchen"],
+
+  // 방문 · 문 (16, 19는 현관 사진도 같이 있어서 현관 태그도 함께 부여)
+  15: ["space-door"],
+  16: ["space-door", "space-entrance"],
+  17: ["space-door"],
+  19: ["space-door", "space-entrance"],
+  23: ["space-door"],
+  25: ["space-door"],
+
+  // 주거공간
+  31: ["space-home"]
+};
 
     function renderGallerySlider() {
       const track = document.getElementById("gallery");
@@ -1157,9 +1180,13 @@
 
         /* 공간별 필터용 클래스 부여 */
         const spaceClass = spaceByIndex[idx];
-        if (spaceClass) {
-          container.classList.add(spaceClass);
-        }
+if (spaceClass) {
+  if (Array.isArray(spaceClass)) {
+    spaceClass.forEach(cls => container.classList.add(cls));
+  } else {
+    container.classList.add(spaceClass);
+  }
+}
 
         const mainLink = document.createElement("a");
         mainLink.href = `${folder}${base}.png`;
@@ -1460,16 +1487,17 @@
     </p>
 
     <!-- 공간별 필터 버튼 -->
-    <div class="gallery-filter">
-      <button class="filter-btn active" data-filter="*">전체</button>
-      <button class="filter-btn" data-filter=".space-office">사무실</button>
-      <button class="filter-btn" data-filter=".space-kitchen">주방</button>
-      <button class="filter-btn" data-filter=".space-door">방문 · 문</button>
-      <button class="filter-btn" data-filter=".space-window">샷시 · 창호</button>
-      <button class="filter-btn" data-filter=".space-counter">상판 · 카운터</button>
-      <button class="filter-btn" data-filter=".space-furniture">가구</button>
-      <button class="filter-btn" data-filter=".space-entrance">현관</button>
-    </div>
+   <div class="gallery-filter">
+  <button class="filter-btn active" data-filter="*">전체</button>
+  <button class="filter-btn" data-filter=".space-home">주거 공간</button>
+  <button class="filter-btn" data-filter=".space-work">사무 공간</button>
+  <button class="filter-btn" data-filter=".space-kitchen">주방</button>
+  <button class="filter-btn" data-filter=".space-door">방문 · 문</button>
+  <button class="filter-btn" data-filter=".space-window">샷시 · 창호</button>
+  <button class="filter-btn" data-filter=".space-furniture">가구</button>
+  <button class="filter-btn" data-filter=".space-entrance">현관</button>
+</div>
+
 
     <div class="gallery-container">
       <button type="button" class="gallery-arrow gallery-arrow-prev" id="galleryPrev">‹</button>
