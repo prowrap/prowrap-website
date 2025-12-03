@@ -255,45 +255,6 @@
       color: #888;
     }
 
-    /* Hero 아래 핵심 포인트 스트립 */
-    .feature-strip {
-      background:#111;
-      color:#f5f5f5;
-      padding: 1.1rem 1.5rem;
-    }
-    .feature-strip-inner {
-      max-width:1040px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap:1rem;
-      font-size:0.84rem;
-    }
-    .feature-item {
-      display:flex;
-      flex-direction:column;
-      gap:0.15rem;
-    }
-    .feature-item strong {
-      font-size:0.86rem;
-      font-weight:600;
-      color:#ffffff;
-    }
-    .feature-item span {
-      color:#b5b5b5;
-      line-height:1.6;
-    }
-
-    /* 섹션 작은 라벨 */
-    .section-kicker {
-      display:block;
-      font-size:0.78rem;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      color:#999;
-      margin-bottom:0.3rem;
-    }
-
     /* Sections 공통 */
     .section {
       padding: 3.2rem 1.8rem 3.4rem;
@@ -318,7 +279,16 @@
       text-align: center;
     }
 
-    /* 서비스 섹션 */
+    .section-kicker {
+      font-size:0.78rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:#888;
+      display:inline-block;
+      margin-bottom:0.4rem;
+    }
+
+    /* === (기존) 라이트 서비스 섹션 스타일은 남겨두지만 사용 안 해도 됨 === */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0,1fr));
@@ -326,7 +296,6 @@
       max-width: 1040px;
       margin: 0 auto;
     }
-
     .service-card {
       background:#ffffff;
       border-radius: 14px;
@@ -351,6 +320,126 @@
       border-color: rgba(0,0,0,0.08);
       box-shadow: 0 10px 26px rgba(0,0,0,0.05);
       transform: translateY(-2px);
+    }
+
+    /* === 디자인어스 느낌의 다크 서비스 섹션 === */
+    .section-dark {
+      background:#050505;
+      color:#f5f5f5;
+      padding:4rem 1.8rem 4.4rem;
+    }
+    .section-dark .section-inner {
+      max-width:1040px;
+      margin:0 auto;
+    }
+
+    .metrics-head {
+      text-align:center;
+      margin-bottom:2.4rem;
+    }
+    .metrics-kicker {
+      font-size:0.78rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:#888;
+      margin-bottom:0.6rem;
+    }
+    .metrics-head h2 {
+      font-size:1.7rem;
+      margin:0 0 0.6rem;
+      letter-spacing:-0.03em;
+      color:#f5f5f5;
+    }
+    .metrics-head p {
+      margin:0;
+      font-size:0.9rem;
+      color:#b8b8b8;
+    }
+
+    .metrics-grid {
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:1.2rem;
+      margin-bottom:3.2rem;
+    }
+    .metric-card {
+      background:#111111;
+      border-radius:18px;
+      padding:1.4rem 1.4rem 1.6rem;
+      border:1px solid #222222;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .metric-label {
+      font-size:0.82rem;
+      color:#aaaaaa;
+      margin-bottom:0.55rem;
+    }
+    .metric-number {
+      font-size:1.6rem;
+      font-weight:700;
+      letter-spacing:-0.04em;
+    }
+    .metric-caption {
+      margin-top:0.5rem;
+      font-size:0.78rem;
+      color:#888888;
+    }
+
+    .service-layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(0,1.25fr);
+      gap:2.6rem;
+      align-items:flex-start;
+    }
+    .service-layout-main h3 {
+      font-size:1.5rem;
+      margin:0 0 0.7rem;
+      letter-spacing:-0.03em;
+      color:#ffffff;
+    }
+    .service-layout-main p {
+      font-size:0.9rem;
+      color:#c2c2c2;
+      line-height:1.9;
+    }
+
+    .service-layout-grid {
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:1.2rem;
+    }
+    .service-mini {
+      background:#101010;
+      border-radius:16px;
+      padding:1.1rem 1.1rem 1.3rem;
+      border:1px solid #222222;
+    }
+    .service-mini-kicker {
+      font-size:0.75rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#888;
+      margin-bottom:0.4rem;
+    }
+    .service-mini h4 {
+      font-size:0.95rem;
+      margin:0 0 0.4rem;
+      color:#f5f5f5;
+    }
+    .service-mini p {
+      font-size:0.82rem;
+      color:#c0c0c0;
+      line-height:1.8;
+    }
+    .service-mini-circle {
+      border-radius:999px;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
     }
 
     /* 진행 과정 섹션 */
@@ -419,20 +508,6 @@
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 0.8rem;
       width: 100%;
-    }
-
-    /* 갤러리 섹션 배경 + 카드 */
-    .section-gallery {
-      background: #f5f5f5;
-    }
-    .gallery-shell {
-      background:#ffffff;
-      border-radius:18px;
-      border:1px solid var(--pw-border);
-      padding:1.6rem 1.4rem 2rem;
-    }
-    .gallery-shell h2 {
-      margin-top:0;
     }
 
     /* Modal (legacy) */
@@ -702,6 +777,12 @@
       .process-grid {
         grid-template-columns: 1fr;
       }
+      .metrics-grid {
+        grid-template-columns:repeat(3, minmax(0,1fr));
+      }
+      .service-layout {
+        grid-template-columns:1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -775,6 +856,10 @@
         padding: 2.4rem 1.3rem 2.7rem;
       }
 
+      .section-dark {
+        padding:3.2rem 1.3rem 3.6rem;
+      }
+
       .gallery {
         grid-template-columns: repeat(2, minmax(0,1fr));
         gap: 0.6rem;
@@ -784,12 +869,20 @@
         grid-template-columns: 1fr 1fr;
       }
 
+      .service-layout-grid {
+        grid-template-columns:1fr;
+      }
+
       .contact-row {
         flex-direction:column;
         gap:0.3rem;
       }
       .contact-label {
         width:auto;
+      }
+
+      .metrics-grid {
+        grid-template-columns:1fr;
       }
     }
 
@@ -858,7 +951,7 @@
     }
     .gallery-item:hover::after{ opacity:1; }
 
-    /* 버튼 호버 애니메이션 보강 */
+    /* 버튼 호버 강화 */
     .btn-primary:hover {
       background-color: #e86c14;
       border-color: #e86c14;
@@ -1082,8 +1175,8 @@
         renderPagination();
         AOS.init({
           duration: 800,
-          once: false,   // 스크롤마다 다시 실행
-          mirror: true   // 위로 올릴 때도 애니메이션
+          once: false,   // 스크롤할 때마다 실행
+          mirror: true   // 위로 올릴 때도 실행
         });
       });
     });
@@ -1138,64 +1231,110 @@
     </div>
   </div>
 
-  <!-- 핵심 포인트 요약 스트립 -->
-  <section class="feature-strip">
-    <div class="feature-strip-inner" data-aos="fade-up" data-aos-delay="80">
-      <div class="feature-item">
-        <strong>Real Film, Real Finish</strong>
-        <span>현대·영림·LX 등 정품 인테리어필름만 사용해 마감 퀄리티를 지킵니다.</span>
+  <!-- 서비스 / 통계 섹션 (디자인어스 느낌) -->
+  <section id="services" class="section-dark">
+    <div class="section-inner">
+
+      <!-- 위쪽 숫자 카드 -->
+      <div class="metrics-head" data-aos="fade-up">
+        <p class="metrics-kicker">About Prowrap</p>
+        <h2>상담은 편하게, 마감은 더 디테일하게.</h2>
+        <p>
+          PROWRAP은 인테리어필름만 전문으로 작업하는 팀입니다.<br>
+          자재 선택부터 시공 후 마감 체크까지 한 번에 맡기실 수 있습니다.
+        </p>
       </div>
-      <div class="feature-item">
-        <strong>철거 없는 리폼</strong>
-        <span>문짝, 싱크대, 주방 상판을 뜯지 않고 시공해 생활 불편을 최소화합니다.</span>
+
+      <div class="metrics-grid">
+        <article class="metric-card" data-aos="fade-up" data-aos-delay="0">
+          <div>
+            <div class="metric-label">누적 시공 수</div>
+            <div class="metric-number">1,200+</div>
+          </div>
+          <div class="metric-caption">
+            주거, 상가, 오피스 등 다양한 공간에서 쌓은 시공 데이터를 바탕으로 상담해 드립니다.
+          </div>
+        </article>
+
+        <article class="metric-card" data-aos="fade-up" data-aos-delay="120">
+          <div>
+            <div class="metric-label">누적 상담 건수</div>
+            <div class="metric-number">3,500+</div>
+          </div>
+          <div class="metric-caption">
+            카카오톡·전화 상담 기준, 사진만으로도 대략적인 견적과 공사 가능 여부를 안내드립니다.
+          </div>
+        </article>
+
+        <article class="metric-card" data-aos="fade-up" data-aos-delay="240">
+          <div>
+            <div class="metric-label">재의뢰 · 소개 비율</div>
+            <div class="metric-number">70%+</div>
+          </div>
+          <div class="metric-caption">
+            입주민 소개, 지인 추천 등으로 이어지는 의뢰가 많아 시공 퀄리티에 대한 신뢰를 보여줍니다.
+          </div>
+        </article>
       </div>
-      <div class="feature-item">
-        <strong>공간과 예산에 맞는 제안</strong>
-        <span>사진 상담으로 불필요한 공사 없이 꼭 필요한 부분만 솔직하게 안내합니다.</span>
+
+      <!-- 아래 메인 서비스 설명 + 카드 4개 -->
+      <div class="service-layout" data-aos="fade-up" data-aos-delay="320">
+        <!-- 왼쪽 설명 -->
+        <div class="service-layout-main">
+          <span class="section-kicker">Main Service</span>
+          <h3>가격 정찰제 필름 시공,<br>필요한 부분만 선택 시공 가능</h3>
+          <p>
+            시공 항목별 단가표를 기준으로 견적을 안내드리기 때문에<br>
+            “대충 얼마”가 아닌, 어떤 부분에 비용이 들어가는지 한눈에 이해하실 수 있습니다.<br>
+            전체 리폼은 물론, 방문·주방 상판·싱크대·샷시 등 필요한 부분만 선택 시공도 가능합니다.
+          </p>
+        </div>
+
+        <!-- 오른쪽 카드 -->
+        <div class="service-layout-grid">
+          <article class="service-mini">
+            <div class="service-mini-kicker">Material</div>
+            <h4>정품 인테리어필름 100%</h4>
+            <p>
+              현대, 영림, LX, 예림, 한솔, 삼성 등 검증된 정품 필름만 사용해
+              색감과 내구성을 오래 유지할 수 있도록 시공합니다.
+            </p>
+          </article>
+
+          <article class="service-mini">
+            <div class="service-mini-kicker">Site Work</div>
+            <h4>철거 없이, 먼지 최소화</h4>
+            <p>
+              기존 문짝·싱크대·가구를 그대로 살리고 필름으로 마감해
+              공사 기간과 소음, 먼지를 최소화합니다.
+            </p>
+          </article>
+
+          <article class="service-mini">
+            <div class="service-mini-kicker">Design</div>
+            <h4>공간에 맞는 컬러 제안</h4>
+            <p>
+              바닥, 벽, 천장, 조명 톤을 함께 고려해
+              과하지 않으면서도 분위기가 살아나는 컬러를 제안드립니다.
+            </p>
+          </article>
+
+          <article class="service-mini service-mini-circle">
+            <div class="service-mini-kicker">After Service</div>
+            <h4>시공 후 A/S 케어</h4>
+            <p>
+              시공 후 들뜸·이음새·마감 문제 등 일정 기간 책임 A/S를 제공해
+              사용하시면서 마음 편하게 확인하실 수 있습니다.
+            </p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 서비스 / 강점 섹션 -->
-  <section id="services" class="section section-center" data-aos="fade-up">
-    <h2>
-      <span class="section-kicker">Service</span>
-      왜 PROWRAP 인테리어필름인가요?
-    </h2>
-    <p class="section-lead">
-      PROWRAP 인테리어필름은 주거 및 상업공간을 중심으로 작업합니다.<br>
-      도어, 싱크대, 주방 상판, 샷시, 가구 등 자주 손이 가는 부분을 필름 시공으로 깔끔하게 리폼해 드립니다.
-    </p>
-
-    <div class="services-grid">
-      <article class="service-card" data-aos="fade-up" data-aos-delay="0">
-        <h3>정품 필름만 사용</h3>
-        <p>현대, 영림, LX, 예림, 한솔, 삼성 등 정품 인테리어필름만 사용하여 시공 품질을 유지합니다.</p>
-      </article>
-
-      <article class="service-card" data-aos="fade-up" data-aos-delay="100">
-        <h3>철거 없는 리폼</h3>
-        <p>문짝, 싱크대, 주방 상판, 샷시, 가구를 철거 없이 필름으로 정리해 공사 기간과 소음을 줄입니다.</p>
-      </article>
-
-      <article class="service-card" data-aos="fade-up" data-aos-delay="200">
-        <h3>현장 맞춤 컬러 제안</h3>
-        <p>조명·바닥·벽 마감재를 함께 고려해 공간에 어울리는 필름 컬러와 재질을 제안드립니다.</p>
-      </article>
-
-      <article class="service-card" data-aos="fade-up" data-aos-delay="300">
-        <h3>시공 후 A/S 케어</h3>
-        <p>시공 후 들뜸, 이음새, 마감 문제 등에 대해 일정 기간 책임 A/S를 제공하고 있습니다.</p>
-      </article>
     </div>
   </section>
 
   <!-- 시공 진행 과정 섹션 -->
   <section id="process" class="section section-center section-grey" data-aos="fade-up">
-    <h2>
-      <span class="section-kicker">Process</span>
-      시공 진행 과정
-    </h2>
+    <h2>시공 진행 과정</h2>
     <p class="section-lead">
       복잡한 절차 없이, 사진 한 장으로부터 시공까지 간단하게 진행됩니다.
     </p>
@@ -1223,10 +1362,7 @@
 
   <!-- 견적 신청 섹션 -->
   <section id="estimate" class="section section-estimate section-center">
-    <h2>
-      <span class="section-kicker">Estimate</span>
-      견적 신청 방법
-    </h2>
+    <h2>견적 신청 방법</h2>
     <p class="section-lead">
       카카오톡 또는 문자로 아래 정보를 보내주시면,<br>
       확인 후 예상 견적과 가능 일정을 안내드립니다.
@@ -1250,28 +1386,20 @@
   </section>
 
   <!-- 갤러리 섹션 -->
-  <section id="gallery-section" class="section section-gallery">
-    <div class="gallery-shell" data-aos="fade-up">
-      <h2>
-        <span class="section-kicker">Gallery</span>
-        시공 갤러리
-      </h2>
-      <p class="section-lead" style="text-align:left;">
-        실제 시공 현장을 촬영한 사진들입니다. 클릭하시면 큰 화면으로 확인하실 수 있습니다.
-      </p>
-      <div class="gallery-container">
-        <div id="gallery" class="gallery"></div>
-        <div id="pagination" class="pagination"></div>
-      </div>
+  <section id="gallery-section" class="section">
+    <h2>시공 갤러리</h2>
+    <p class="section-lead" style="text-align:left;">
+      실제 시공 현장을 촬영한 사진들입니다. 클릭하시면 큰 화면으로 확인하실 수 있습니다.
+    </p>
+    <div class="gallery-container">
+      <div id="gallery" class="gallery"></div>
+      <div id="pagination" class="pagination"></div>
     </div>
   </section>
 
   <!-- 리뷰 섹션 -->
   <section id="reviews" class="section">
-    <h2>
-      <span class="section-kicker">Review</span>
-      시공 후기
-    </h2>
+    <h2>시공 후기</h2>
     <p class="section-lead">
       네이버 예약, 카카오톡 채널, 인스타그램 등을 통해 자주 들었던 후기들을 정리한 예시입니다.<br>
       실제 후기는 네이버 플레이스에서 확인하실 수 있습니다.
