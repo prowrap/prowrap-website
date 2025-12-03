@@ -26,6 +26,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    <style>
+  /* === 플로팅 카카오/전화 버튼 === */
+  .floating-contact-wrap {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .floating-contact-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+  }
+
+  .floating-contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+    border-color: rgba(0,0,0,0.18);
+  }
+
+  /* 모바일에서 너무 크지 않게 살짝 축소 */
+  @media (max-width: 600px) {
+    .floating-contact-btn {
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+    }
+    .floating-contact-wrap {
+      right: 14px;
+      bottom: 14px;
+    }
+  }
     :root {
       --pw-bg: #ffffff;
       --pw-text: #222222;
@@ -1645,5 +1691,23 @@ if (spaceClass) {
     <p><strong>주소</strong> 경기도 고양시 덕양구 의장로 146 1903호</p>
     <p>&copy; 2025 PROWRAP Interior Film. All rights reserved.</p>
   </footer>
+    <!-- 플로팅 카카오톡 / 전화 버튼 -->
+  <div class="floating-contact-wrap" aria-label="빠른 상담 버튼">
+    <!-- 카카오톡 상담 -->
+    <a href="http://pf.kakao.com/_xoxilmn"
+       class="floating-contact-btn"
+       target="_blank"
+       rel="noopener"
+       aria-label="카카오톡으로 견적 상담하기">
+      🟡
+    </a>
+
+    <!-- 전화 상담 -->
+    <a href="tel:01050741018"
+       class="floating-contact-btn"
+       aria-label="전화로 상담하기">
+      📞
+    </a>
+  </div>
 </body>
 </html>
