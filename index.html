@@ -288,7 +288,7 @@
       margin-bottom:0.4rem;
     }
 
-    /* === (기존) 라이트 서비스 섹션 스타일은 남겨두지만 사용 안 해도 됨 === */
+    /* === (기존) 라이트 서비스 섹션 스타일 === */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0,1fr));
@@ -358,7 +358,7 @@
       line-height:1.9;
     }
 
-    /* 새로 추가 – 디자인어스 스타일 Feature Rows */
+    /* Feature Rows */
     .feature-rows {
       display:flex;
       flex-direction:column;
@@ -405,21 +405,20 @@
       color:#ffffff;
       font-weight:600;
     }
+
     .feature-image-card {
-  position:relative;
-  border-radius:24px;
-  border:1px solid #222;
-  overflow:hidden;
-  background:#0b0b0b;
-  /* min-height:260px;  ← 이 줄은 지워줘 */
-  box-shadow:0 22px 40px rgba(0,0,0,0.6);
-  display:flex;
-  align-items:flex-end;
-  padding:1.1rem 1.35rem;
-  background-size:cover;
-  background-position:center;
-  /* 비율 고정 (가로:세로 = 4:3) */
-  aspect-ratio: 4 / 3;
+      position:relative;
+      border-radius:24px;
+      border:1px solid #222;
+      overflow:hidden;
+      background:#0b0b0b;
+      box-shadow:0 22px 40px rgba(0,0,0,0.6);
+      display:flex;
+      align-items:flex-end;
+      padding:1.1rem 1.35rem;
+      background-size:cover;
+      background-position:center;
+      aspect-ratio: 4 / 3;
     }
     .feature-image-card::before {
       content:"";
@@ -443,14 +442,12 @@
       font-size:0.72rem;
     }
 
-   .feature-img-1 { background-image:url('ai-service-1.png'); }
-
-.feature-img-2 {
-  background-image:url('ai-service-2.png');  /* 여기에 네 그레이 스톤 주방 이미지 경로 */
-  background-position: center bottom;        /* 하단 쪽을 더 보여주기 */
-}
-
-.feature-img-3 { background-image:url('ai-service-3.png'); }
+    .feature-img-1 { background-image:url('ai-service-1.png'); }
+    .feature-img-2 {
+      background-image:url('ai-service-2.png'); /* 그레이스톤 주방 이미지 */
+      background-position:center bottom;
+    }
+    .feature-img-3 { background-image:url('ai-service-3.png'); }
 
     /* 진행 과정 섹션 */
     .section-grey {
@@ -507,17 +504,26 @@
       justify-content: center;
     }
 
-    /* Gallery Grid */
+    /* Gallery Slider */
     .gallery-container {
+      position:relative;
       display:flex;
-      flex-direction:column;
       align-items:center;
     }
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 0.8rem;
-      width: 100%;
+      display:flex;
+      gap:0.8rem;
+      width:100%;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      padding-bottom:0.4rem;
+    }
+    .gallery::-webkit-scrollbar{
+      height:6px;
+    }
+    .gallery::-webkit-scrollbar-thumb{
+      background:#ddd;
+      border-radius:999px;
     }
 
     /* Modal (legacy) */
@@ -723,7 +729,7 @@
       font-weight:600;
     }
 
-    /* Gallery pagination – 심플 */
+    /* Gallery pagination – (현재 사용 X, CSS만 남김) */
     .pagination {
       display:flex;
       gap: 6px;
@@ -761,6 +767,28 @@
       border-color: #111;
     }
 
+    /* Slider arrows */
+    .gallery-arrow {
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      border:1px solid rgba(0,0,0,0.08);
+      background:#fff;
+      box-shadow:0 4px 12px rgba(0,0,0,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      font-size:18px;
+      color:#444;
+      z-index:5;
+    }
+    .gallery-arrow-prev { left:-16px; }
+    .gallery-arrow-next { right:-16px; }
+
     /* Footer – 검정 바 스타일 */
     footer {
       background:#111;
@@ -790,6 +818,11 @@
       .feature-row {
         grid-template-columns:1fr;
       }
+      .gallery-item {
+        flex:0 0 48%;
+      }
+      .gallery-arrow-prev { left:4px; }
+      .gallery-arrow-next { right:4px; }
     }
 
     @media (max-width: 768px) {
@@ -867,11 +900,6 @@
         padding:3.2rem 1.3rem 3.6rem;
       }
 
-      .gallery {
-        grid-template-columns: repeat(2, minmax(0,1fr));
-        gap: 0.6rem;
-      }
-
       .services-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -889,6 +917,11 @@
       .social-links{
         grid-template-columns: repeat(2, minmax(0,1fr));
       }
+      .gallery-arrow {
+        width:28px;
+        height:28px;
+        font-size:16px;
+      }
     }
 
     @media (max-width: 520px) {
@@ -896,6 +929,9 @@
         grid-template-columns: 1fr;
       }
       #gallery-section { padding-top: 1.2rem; }
+      .gallery-item {
+        flex:0 0 80%;
+      }
     }
   </style>
 
@@ -918,11 +954,13 @@
       border-radius:50% !important;
     }
 
-    /* 썸네일 오버레이 */
+    /* 썸네일 오버레이 + 슬라이드용 flex 설정 */
     .gallery-item {
       position:relative;
       overflow:hidden;
       border-radius:10px;
+      flex:0 0 32%;
+      scroll-snap-align:start;
     }
     .gallery-item img {
       width:100%;
@@ -969,30 +1007,8 @@
   <script>
     const folder = "";
     const existing = [];
-    let currentPage = 1;
-
-    function getItemsPerPage() {
-      if (window.innerWidth <= 768) return 12;
-      return 18;
-    }
-    let itemsPerPage = getItemsPerPage();
-
-    let _resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(_resizeTimer);
-      _resizeTimer = setTimeout(() => {
-        const next = getItemsPerPage();
-        if (next !== itemsPerPage) {
-          itemsPerPage = next;
-          currentPage = 1;
-          renderGalleryPage(currentPage);
-          renderPagination();
-          requestAnimationFrame(() => initLightbox());
-        }
-      }, 150);
-    });
-
     let lightbox = null;
+
     function initLightbox() {
       if (lightbox && typeof lightbox.destroy === 'function') lightbox.destroy();
       lightbox = GLightbox({
@@ -1064,12 +1080,9 @@
       31: "의정부 알판필름시공_영림PX449(발렌블랑)"
     };
 
-    function renderGalleryPage(page) {
-      const gallery = document.getElementById("gallery");
-      gallery.innerHTML = "";
-
-      const start = (page - 1) * itemsPerPage;
-      const end   = Math.min(start + itemsPerPage, existing.length);
+    function renderGallerySlider() {
+      const track = document.getElementById("gallery");
+      track.innerHTML = "";
 
       let waitingGroups = 0;
       let initScheduled = false;
@@ -1081,16 +1094,13 @@
         }
       }
 
-      for (let k = start; k < end; k++) {
-        const idx  = existing[k];
+      for (const idx of existing) {
         const base = `gallery${idx}`;
         const groupId = `group-${idx}`;
 
         const container = document.createElement("div");
         container.className = "gallery-item";
         container.setAttribute("data-caption", captions[idx] || "");
-
-        // 스크롤 애니메이션
         container.setAttribute("data-aos", "zoom-in");
         container.setAttribute("data-aos-delay", "80");
 
@@ -1107,8 +1117,9 @@
 
         mainLink.appendChild(thumb);
         container.appendChild(mainLink);
-        gallery.appendChild(container);
+        track.appendChild(container);
 
+        // 추가 이미지 슬라이드 묶기 (gallery0-1.png, gallery0-2.png ...)
         waitingGroups++;
         let j = 1;
         let missGap = 0;
@@ -1150,32 +1161,29 @@
       }
     }
 
-    function renderPagination() {
-      const pagination = document.getElementById("pagination");
-      pagination.innerHTML = "";
-      const totalPages = Math.ceil(existing.length / itemsPerPage);
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        if (i === currentPage) btn.classList.add("is-active");
-        btn.addEventListener("click", () => {
-          currentPage = i;
-          renderGalleryPage(currentPage);
-          renderPagination();
-          requestAnimationFrame(() => initLightbox());
-        });
-        pagination.appendChild(btn);
+    function setupGallerySliderControls() {
+      const track = document.getElementById("gallery");
+      const prev = document.getElementById("galleryPrev");
+      const next = document.getElementById("galleryNext");
+      if (!track || !prev || !next) return;
+
+      function scrollByPage(direction) {
+        const amount = track.clientWidth * 0.8; // 화면 80%씩 이동
+        track.scrollBy({ left: direction * amount, behavior: "smooth" });
       }
+
+      prev.addEventListener("click", () => scrollByPage(-1));
+      next.addEventListener("click", () => scrollByPage(1));
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       detectExisting(() => {
-        renderGalleryPage(currentPage);
-        renderPagination();
+        renderGallerySlider();
+        setupGallerySliderControls();
         AOS.init({
           duration: 800,
-          once: false,   // 스크롤할 때마다 실행
-          mirror: true   // 위로 올릴 때도 실행
+          once: false,
+          mirror: true
         });
       });
     });
@@ -1220,7 +1228,7 @@
     </div>
   </div>
 
-  <!-- 서비스 / 스토리 섹션 (디자인어스 느낌) -->
+  <!-- 서비스 / 스토리 섹션 -->
   <section id="services" class="section-dark">
     <div class="section-inner">
 
@@ -1364,8 +1372,9 @@
       실제 시공 현장을 촬영한 사진들입니다. 클릭하시면 큰 화면으로 확인하실 수 있습니다.
     </p>
     <div class="gallery-container">
+      <button type="button" class="gallery-arrow gallery-arrow-prev" id="galleryPrev">‹</button>
       <div id="gallery" class="gallery"></div>
-      <div id="pagination" class="pagination"></div>
+      <button type="button" class="gallery-arrow gallery-arrow-next" id="galleryNext">›</button>
     </div>
   </section>
 
