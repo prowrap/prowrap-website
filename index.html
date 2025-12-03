@@ -9,7 +9,7 @@
   <title>Prowrap Interior Film</title>
 
   <!-- OG / SEO -->
-  <meta property="og:title" content="PROWRAP | Real Film Real Finish·필름 한 장으로 바뀌는 공간의 무드 " />
+  <meta property="og:title" content="PROWRAP | Design Better, Live Better" />
   <meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
   <meta property="og:image" content="https://prowrap.site/og-image.png" />
   <meta property="og:url" content="https://prowrap.site/" />
@@ -177,14 +177,17 @@
       font-weight: 800;
       letter-spacing: -0.05em;
     }
-    .hero-title span {
-      display:block;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color:#666;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-top:0.4rem;
+
+    /* ✅ 새 서브 문구 스타일 */
+    .hero-title .sub {
+      display: block;
+      margin-top: 6px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #666;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      text-transform: none;
     }
 
     .hero-subtitle {
@@ -689,6 +692,10 @@
         margin-bottom: 0.5rem;
       }
 
+      .hero-title .sub {
+        font-size: 0.9rem;
+      }
+
       .hero-subtitle {
         font-size: 0.86rem;
         line-height: 1.7;
@@ -804,20 +811,21 @@
       font-weight:500;
     }
     .gallery-item:hover::after{ opacity:1; }
-     /* 여기 아래부터 너가 추가할 버튼 애니메이션 css 넣으면 됨 */
-  .btn-primary:hover {
-    background-color: #e86c14;
-    border-color: #e86c14;
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 20px rgba(255, 122, 26, 0.25);
-  }
 
-  .btn-outline:hover {
-    border-color: #111;
-    color: #111;
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 20px rgba(0,0,0,0.07);
-  }
+    /* 버튼 호버 강화 */
+    .btn-primary:hover {
+      background-color: #e86c14;
+      border-color: #e86c14;
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 20px rgba(255, 122, 26, 0.25);
+    }
+
+    .btn-outline:hover {
+      border-color: #111;
+      color: #111;
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.07);
+    }
   </style>
 
   <script>
@@ -940,14 +948,11 @@
         const base = `gallery${idx}`;
         const groupId = `group-${idx}`;
 
-const container = document.createElement("div");
-container.className = "gallery-item";
-container.setAttribute("data-caption", captions[idx] || "");
-
-// ★ 스크롤 애니메이션 추가
-container.setAttribute("data-aos", "zoom-in");
-container.setAttribute("data-aos-delay", "80");
-
+        const container = document.createElement("div");
+        container.className = "gallery-item";
+        container.setAttribute("data-caption", captions[idx] || "");
+        container.setAttribute("data-aos", "zoom-in");
+        container.setAttribute("data-aos-delay", "80");
 
         const mainLink = document.createElement("a");
         mainLink.href = `${folder}${base}.png`;
@@ -1023,17 +1028,17 @@ container.setAttribute("data-aos-delay", "80");
       }
     }
 
-   document.addEventListener("DOMContentLoaded", () => {
-  detectExisting(() => {
-    renderGalleryPage(currentPage);
-    renderPagination();
-    AOS.init({
-      duration: 800,   // 애니메이션 속도
-      once: false,     // ❗ 스크롤할 때마다 다시 실행
-      mirror: true     // 위로 스크롤할 때도 자연스럽게 반응
+    document.addEventListener("DOMContentLoaded", () => {
+      detectExisting(() => {
+        renderGalleryPage(currentPage);
+        renderPagination();
+        AOS.init({
+          duration: 800,
+          once: false,
+          mirror: true
+        });
+      });
     });
-  });
-});
   </script>
 </head>
 
@@ -1052,12 +1057,12 @@ container.setAttribute("data-aos-delay", "80");
 
   <!-- HERO -->
   <div class="hero">
-   <div class="hero-inner" data-aos="fade-up">
+    <div class="hero-inner" data-aos="fade-up">
       <p class="hero-tagline">PROWRAP INTERIOR FILM</p>
 
       <h2 class="hero-title">
-        공간을 바꾸다. Stay Modern. Stay Simple.
-        <span>INTERIOR FILM STUDIO</span>
+        Design Better, Live Better.
+        <span class="sub">공간은 바뀌고, 삶은 더 나아집니다.</span>
       </h2>
 
       <p class="hero-subtitle">
@@ -1094,25 +1099,25 @@ container.setAttribute("data-aos-delay", "80");
     </p>
 
     <div class="services-grid">
-<article class="service-card" data-aos="fade-up" data-aos-delay="0">
-  <h3>정품 필름만 사용</h3>
-  <p>현대, 영림, LX, 예림, 한솔, 삼성 등 정품 인테리어필름만 사용하여 시공 품질을 유지합니다.</p>
-</article>
+      <article class="service-card" data-aos="fade-up" data-aos-delay="0">
+        <h3>정품 필름만 사용</h3>
+        <p>현대, 영림, LX, 예림, 한솔, 삼성 등 정품 인테리어필름만 사용하여 시공 품질을 유지합니다.</p>
+      </article>
 
-<article class="service-card" data-aos="fade-up" data-aos-delay="100">
-  <h3>철거 없는 리폼</h3>
-  <p>문짝, 싱크대, 주방 상판, 샷시, 가구를 철거 없이 필름으로 정리해 공사 기간과 소음을 줄입니다.</p>
-</article>
+      <article class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <h3>철거 없는 리폼</h3>
+        <p>문짝, 싱크대, 주방 상판, 샷시, 가구를 철거 없이 필름으로 정리해 공사 기간과 소음을 줄입니다.</p>
+      </article>
 
-<article class="service-card" data-aos="fade-up" data-aos-delay="200">
-  <h3>현장 맞춤 컬러 제안</h3>
-  <p>조명·바닥·벽 마감재를 함께 고려해 공간에 어울리는 필름 컬러와 재질을 제안드립니다.</p>
-</article>
+      <article class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <h3>현장 맞춤 컬러 제안</h3>
+        <p>조명·바닥·벽 마감재를 함께 고려해 공간에 어울리는 필름 컬러와 재질을 제안드립니다.</p>
+      </article>
 
-<article class="service-card" data-aos="fade-up" data-aos-delay="300">
-  <h3>시공 후 A/S 케어</h3>
-  <p>시공 후 들뜸, 이음새, 마감 문제 등에 대해 일정 기간 책임 A/S를 제공하고 있습니다.</p>
-</article>
+      <article class="service-card" data-aos="fade-up" data-aos-delay="300">
+        <h3>시공 후 A/S 케어</h3>
+        <p>시공 후 들뜸, 이음새, 마감 문제 등에 대해 일정 기간 책임 A/S를 제공하고 있습니다.</p>
+      </article>
     </div>
   </section>
 
@@ -1124,19 +1129,19 @@ container.setAttribute("data-aos-delay", "80");
     </p>
 
     <div class="process-grid">
-     <article class="process-step" data-aos="fade-up" data-aos-delay="0">
+      <article class="process-step" data-aos="fade-up" data-aos-delay="0">
         <div class="process-number">01</div>
         <h3>사진 전송 & 상담</h3>
         <p>시공을 원하시는 공간의 사진과 주소, 희망 일정을 카카오톡으로 보내주세요.</p>
       </article>
 
-     <article class="process-step" data-aos="fade-up" data-aos-delay="120">
+      <article class="process-step" data-aos="fade-up" data-aos-delay="120">
         <div class="process-number">02</div>
         <h3>필름 · 견적 안내</h3>
         <p>공간에 어울리는 필름을 함께 고르고, 예상 견적과 작업 소요 시간, 가능한 일정을 안내드립니다.</p>
       </article>
 
-     <article class="process-step" data-aos="fade-up" data-aos-delay="240">
+      <article class="process-step" data-aos="fade-up" data-aos-delay="240">
         <div class="process-number">03</div>
         <h3>방문 시공 & 마감 체크</h3>
         <p>예약된 날짜에 방문하여 시공을 진행하고, 마감 상태와 사용감까지 함께 체크해 드립니다.</p>
@@ -1190,7 +1195,7 @@ container.setAttribute("data-aos-delay", "80");
     </p>
 
     <div class="review-container">
-     <article class="review-card" data-aos="fade-up" data-aos-delay="0">
+      <article class="review-card" data-aos="fade-up" data-aos-delay="0">
         <p class="review-text">
           처음 인테리어필름 시공이라 걱정이 많았는데, 자재랑 색상 설명을 차분하게 해주셔서
           결정하는 데 도움이 됐습니다. 작업 끝나고 주변 정리까지 해주셔서 편했어요.
@@ -1198,7 +1203,7 @@ container.setAttribute("data-aos-delay", "80");
         <p class="review-author">– 파주 롯데캐슬 거주 고객</p>
       </article>
 
-     <article class="review-card" data-aos="fade-up" data-aos-delay="120">
+      <article class="review-card" data-aos="fade-up" data-aos-delay="120">
         <p class="review-text">
           매장 문짝이랑 카운터만 부분 시공했는데 티 안 나게 잘 맞춰주셨습니다.
           일정이 자주 바뀌었는데도 시간 맞춰주셔서 감사했습니다.
@@ -1206,7 +1211,7 @@ container.setAttribute("data-aos-delay", "80");
         <p class="review-author">– 인천 카페 운영 고객</p>
       </article>
 
-     <article class="review-card" data-aos="fade-up" data-aos-delay="240">
+      <article class="review-card" data-aos="fade-up" data-aos-delay="240">
         <p class="review-text">
           기존 필름이 들떠서 보기가 싫었는데, 어디까지 살리고 어디를 새로 해야 하는지
           솔직하게 설명해주셔서 불필요한 비용이 안 들어갔습니다. 시공 후 한 달 정도 지났는데 아직까지 문제 없습니다.
@@ -1229,66 +1234,66 @@ container.setAttribute("data-aos-delay", "80");
     <img id="modalImg" class="modal-content" alt="확대 이미지" />
   </div>
 
-<!-- 연락 / 지도 / SNS -->
-<section id="contact" class="section contact-section">
-  <div class="contact-wrap" data-aos="fade-up">
-    <div class="contact-head">
-      <div class="contact-name">PROWRAP Interior Film</div>
-      <div class="contact-address">경기도 고양시 덕양구 의장로 146 1903호</div>
-      <div class="map-buttons">
-        <a href="https://map.naver.com/p/search/경기도 고양시 덕양구 의장로 146" class="map-btn" target="_blank" rel="noopener">길찾기</a>
-        <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn" target="_blank" rel="noopener">지도에서 보기</a>
+  <!-- 연락 / 지도 / SNS -->
+  <section id="contact" class="section contact-section">
+    <div class="contact-wrap" data-aos="fade-up">
+      <div class="contact-head">
+        <div class="contact-name">PROWRAP Interior Film</div>
+        <div class="contact-address">경기도 고양시 덕양구 의장로 146 1903호</div>
+        <div class="map-buttons">
+          <a href="https://map.naver.com/p/search/경기도 고양시 덕양구 의장로 146" class="map-btn" target="_blank" rel="noopener">길찾기</a>
+          <a href="https://kko.kakao.com/f0nvh2Zrsg" class="map-btn" target="_blank" rel="noopener">지도에서 보기</a>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-label">오시는 길</div>
+        <div class="contact-body">
+          <span class="contact-badge">주차</span>
+          <span>주차 및 자세한 위치 안내는 상담 시 안내드립니다.</span>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-label">전화번호</div>
+        <div class="contact-body">
+          <a href="tel:01050741018" class="contact-tel">010-5074-1018</a>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-label">이용 안내</div>
+        <div class="contact-body contact-icons">
+          <span>🕒 24시간 상담 가능 (사전 예약)</span>
+          <span>💬 카카오톡 / 문자 견적 가능</span>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-label">사업자 정보</div>
+        <div class="contact-body biz-info">
+          <span><strong>상호명</strong>PROWRAP Interior </span>
+          <span><strong>대표자</strong>우선찬</span>
+          <span><strong>연락처</strong>010-5074-1018</span>
+        </div>
+      </div>
+
+      <div class="social-links" aria-label="ProWrap 소셜 채널">
+        <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
+          <img src="instagram.png" alt="인스타그램" /><span>Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank" rel="noopener" aria-label="유튜브">
+          <img src="youtube.png" alt="유튜브" /><span>YouTube</span>
+        </a>
+        <a href="http://pf.kakao.com/_xoxilmn" target="_blank" rel="noopener" aria-label="카카오톡 채널">
+          <img src="kakaotalk.png" alt="카카오톡" /><span>Kakao</span>
+        </a>
+        <a href="https://m.blog.naver.com/milli1018" target="_blank" rel="noopener" aria-label="네이버 블로그">
+          <img src="naverblog.png" alt="네이버 블로그" /><span>Naver Blog</span>
+        </a>
       </div>
     </div>
-
-    <div class="contact-row">
-      <div class="contact-label">오시는 길</div>
-      <div class="contact-body">
-        <span class="contact-badge">주차</span>
-        <span>주차 및 자세한 위치 안내는 상담 시 안내드립니다.</span>
-      </div>
-    </div>
-
-    <div class="contact-row">
-      <div class="contact-label">전화번호</div>
-      <div class="contact-body">
-        <a href="tel:01050741018" class="contact-tel">010-5074-1018</a>
-      </div>
-    </div>
-
-    <div class="contact-row">
-      <div class="contact-label">이용 안내</div>
-      <div class="contact-body contact-icons">
-        <span>🕒 24시간 상담 가능 (사전 예약)</span>
-        <span>💬 카카오톡 / 문자 견적 가능</span>
-      </div>
-    </div>
-
-    <div class="contact-row">
-      <div class="contact-label">사업자 정보</div>
-      <div class="contact-body biz-info">
-        <span><strong>상호명</strong>PROWRAP Interior </span>
-        <span><strong>대표자</strong>우선찬</span>
-        <span><strong>연락처</strong>010-5074-1018</span>
-      </div>
-    </div>
-
-    <div class="social-links" aria-label="ProWrap 소셜 채널">
-      <a href="https://www.instagram.com/prowrap_kr/" target="_blank" rel="noopener" aria-label="인스타그램">
-        <img src="instagram.png" alt="인스타그램" /><span>Instagram</span>
-      </a>
-      <a href="https://www.youtube.com/@PROWRAP_KR" target="_blank" rel="noopener" aria-label="유튜브">
-        <img src="youtube.png" alt="유튜브" /><span>YouTube</span>
-      </a>
-      <a href="http://pf.kakao.com/_xoxilmn" target="_blank" rel="noopener" aria-label="카카오톡 채널">
-        <img src="kakaotalk.png" alt="카카오톡" /><span>Kakao</span>
-      </a>
-      <a href="https://m.blog.naver.com/milli1018" target="_blank" rel="noopener" aria-label="네이버 블로그">
-        <img src="naverblog.png" alt="네이버 블로그" /><span>Naver Blog</span>
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
   <footer>
     <p><strong>회사명</strong> Prowrap Interior Film</p>
