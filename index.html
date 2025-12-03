@@ -526,6 +526,35 @@
       border-radius:999px;
     }
 
+    /* === 갤러리 상단 공간별 필터 버튼 === */
+    .gallery-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 14px 0;
+    }
+    .filter-btn {
+      padding: 6px 13px;
+      font-size: 0.82rem;
+      border-radius: 999px;
+      border: 1px solid #dddddd;
+      background-color: #f7f7f7;
+      color: #555555;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease,
+        border-color 0.18s ease, transform 0.1s ease;
+      white-space: nowrap;
+    }
+    .filter-btn:hover {
+      transform: translateY(-1px);
+      border-color: #ccc;
+    }
+    .filter-btn.active {
+      background-color: #111111;
+      border-color: #111111;
+      color: #ffffff;
+    }
+
     /* Modal (legacy) */
     .modal {
       display:none;
@@ -929,8 +958,16 @@
         grid-template-columns: 1fr;
       }
       #gallery-section { padding-top: 1.2rem; }
+      /* 모바일에서 갤러리 이미지를 더 크게 */
       .gallery-item {
-        flex:0 0 80%;
+        flex:0 0 95%;
+      }
+      .gallery-filter {
+        gap: 6px;
+      }
+      .filter-btn {
+        font-size: 0.78rem;
+        padding: 5px 10px;
       }
     }
   </style>
@@ -1080,6 +1117,19 @@
       31: "의정부 알판필름시공_영림PX449(발렌블랑)"
     };
 
+    /* 인덱스별 공간 분류 (필요하면 선찬이가 자유롭게 수정 가능) */
+    const spaceByIndex = {
+      0: "space-entrance",   // 신발장
+      2: "space-counter",    // 라켓 테이블 (카운터/상판)
+      3: "space-window",     // 샷시 프레임
+      5: "space-furniture",  // 제작 침대
+      16: "space-door",      // 문짝/E/V
+      23: "space-door",      // 웨인스코팅 문짝
+      26: "space-kitchen",   // 싱크대 상하부장
+      29: "space-counter"    // 인포메이션 데스크
+      // 나머지 인덱스들은 필요에 따라 추가 가능
+    };
+
     function renderGallerySlider() {
       const track = document.getElementById("gallery");
       track.innerHTML = "";
@@ -1103,6 +1153,12 @@
         container.setAttribute("data-caption", captions[idx] || "");
         container.setAttribute("data-aos", "zoom-in");
         container.setAttribute("data-aos-delay", "80");
+
+        /* 공간별 필터용 클래스 부여 */
+        const spaceClass = spaceByIndex[idx];
+        if (spaceClass) {
+          container.classList.add(spaceClass);
+        }
 
         const mainLink = document.createElement("a");
         mainLink.href = `${folder}${base}.png`;
@@ -1176,6 +1232,35 @@
       next.addEventListener("click", () => scrollByPage(1));
     }
 
+    /* 공간별 필터 버튼 동작 */
+    function setupGalleryFilter() {
+      const filterButtons = document.querySelectorAll(".filter-btn");
+
+      if (!filterButtons.length) return;
+
+      const applyFilter = (filterValue) => {
+        const items = document.querySelectorAll(".gallery-item");
+        items.forEach((item) => {
+          if (filterValue === "*" || item.classList.contains(filterValue.replace(".", ""))) {
+            item.style.display = "";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      };
+
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filterValue = btn.getAttribute("data-filter");
+
+          filterButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          applyFilter(filterValue);
+        });
+      });
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       detectExisting(() => {
         renderGallerySlider();
@@ -1186,6 +1271,7 @@
           mirror: true
         });
       });
+      setupGalleryFilter();
     });
   </script>
 </head>
@@ -1371,6 +1457,18 @@
     <p class="section-lead" style="text-align:left;">
       실제 시공 현장을 촬영한 사진들입니다. 클릭하시면 큰 화면으로 확인하실 수 있습니다.
     </p>
+
+    <!-- 공간별 필터 버튼 -->
+    <div class="gallery-filter">
+      <button class="filter-btn active" data-filter="*">전체</button>
+      <button class="filter-btn" data-filter=".space-kitchen">주방</button>
+      <button class="filter-btn" data-filter=".space-door">방문 · 문</button>
+      <button class="filter-btn" data-filter=".space-window">샷시 · 창호</button>
+      <button class="filter-btn" data-filter=".space-counter">상판 · 카운터</button>
+      <button class="filter-btn" data-filter=".space-furniture">가구</button>
+      <button class="filter-btn" data-filter=".space-entrance">현관</button>
+    </div>
+
     <div class="gallery-container">
       <button type="button" class="gallery-arrow gallery-arrow-prev" id="galleryPrev">‹</button>
       <div id="gallery" class="gallery"></div>
