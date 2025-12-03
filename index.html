@@ -1248,7 +1248,7 @@
       36: "현대_PM015",
       37: "현대_SMT02",
       38: "영림_PS052,PS120",
-      39: "LX_ML71,PME05,,현대_VM009",
+      39: "LX_ML71,PME05,현대_VM009",
       40: "현대_S213",
       41: "영림_PS145,LX_ES171",
       42: "현대_SPW26"
@@ -1257,7 +1257,6 @@
 function formatCaption(text) {
   if (!text) return "";
 
-  // 브랜드 변환 규칙
   const brandMap = {
     "현대": "현대Bodaq",
     "LX": "LX하우시스",
@@ -1267,14 +1266,24 @@ function formatCaption(text) {
     "삼성": "삼성"
   };
 
-  return text
-    .replace(/_/g, " ")  // _ → 공백
-    .replace(/(^|\s)(현대|LX|영림|예림|한솔|삼성)(?=\s)/g, (match, space, brand) => {
-      return space + (brandMap[brand] || brand);
-    })
-    .replace(/,\s*/g, " · ") // , → ·
-    .replace(/\s*·\s*$/, "") // 마지막 구분점 제거
+  // 1) 언더바 → 공백
+  let result = text.replace(/_/g, " ");
+
+  // 2) 문장 맨 앞 / 공백 / 콤마 / · 뒤에 오는 브랜드 변환
+  result = result.replace(
+    /(^|[\s,·])(현대|LX|영림|예림|한솔|삼성)(?=\s)/g,
+    (match, sep, brand) => {
+      return sep + (brandMap[brand] || brand);
+    }
+  );
+
+  // 3) 콤마 → 가운데점으로 변환
+  result = result
+    .replace(/,\s*/g, " · ")
+    .replace(/\s*·\s*$/, "") // 마지막 · 제거
     .trim();
+
+  return result;
 }
 
     // PROWRAP ⁃ 선찬 최종 시공 분류 매핑 v3
