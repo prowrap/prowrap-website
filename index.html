@@ -1119,7 +1119,8 @@
 
     /* 인덱스별 공간 분류 (필요하면 선찬이가 자유롭게 수정 가능) */
     const spaceByIndex = {
-      0: "space-entrance",   // 신발장
+      0: "space-furniture",   // 신발장
+      1: "space-office"
       2: "space-counter",    // 라켓 테이블 (카운터/상판)
       3: "space-window",     // 샷시 프레임
       5: "space-furniture",  // 제작 침대
@@ -1461,6 +1462,7 @@
     <!-- 공간별 필터 버튼 -->
     <div class="gallery-filter">
       <button class="filter-btn active" data-filter="*">전체</button>
+      <button class="filter-btn" data-filter=".space-office">사무실</button>
       <button class="filter-btn" data-filter=".space-kitchen">주방</button>
       <button class="filter-btn" data-filter=".space-door">방문 · 문</button>
       <button class="filter-btn" data-filter=".space-window">샷시 · 창호</button>
