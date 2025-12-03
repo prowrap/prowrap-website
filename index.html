@@ -9,7 +9,7 @@
   <title>Prowrap Interior Film</title>
 
   <!-- OG / SEO -->
-  <meta property="og:title" content="PROWRAP | Design Better, Live Better" />
+  <meta property="og:title" content="PROWRAP | Real Film Real Finish·필름 한 장으로 바뀌는 공간의 무드 " />
   <meta property="og:description" content="고급스러운 인테리어 필름 시공과 시공 갤러리 제공. 지금 확인해보세요!" />
   <meta property="og:image" content="https://prowrap.site/og-image.png" />
   <meta property="og:url" content="https://prowrap.site/" />
@@ -177,17 +177,14 @@
       font-weight: 800;
       letter-spacing: -0.05em;
     }
-
-    /* ✅ 새 서브 문구 스타일 */
-    .hero-title .sub {
-      display: block;
-      margin-top: 6px;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: #666;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      text-transform: none;
+    .hero-title span {
+      display:block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color:#666;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-top:0.4rem;
     }
 
     .hero-subtitle {
@@ -256,6 +253,45 @@
     .hero-contact-small {
       font-size: 0.8rem;
       color: #888;
+    }
+
+    /* Hero 아래 핵심 포인트 스트립 */
+    .feature-strip {
+      background:#111;
+      color:#f5f5f5;
+      padding: 1.1rem 1.5rem;
+    }
+    .feature-strip-inner {
+      max-width:1040px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap:1rem;
+      font-size:0.84rem;
+    }
+    .feature-item {
+      display:flex;
+      flex-direction:column;
+      gap:0.15rem;
+    }
+    .feature-item strong {
+      font-size:0.86rem;
+      font-weight:600;
+      color:#ffffff;
+    }
+    .feature-item span {
+      color:#b5b5b5;
+      line-height:1.6;
+    }
+
+    /* 섹션 작은 라벨 */
+    .section-kicker {
+      display:block;
+      font-size:0.78rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#999;
+      margin-bottom:0.3rem;
     }
 
     /* Sections 공통 */
@@ -383,6 +419,20 @@
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 0.8rem;
       width: 100%;
+    }
+
+    /* 갤러리 섹션 배경 + 카드 */
+    .section-gallery {
+      background: #f5f5f5;
+    }
+    .gallery-shell {
+      background:#ffffff;
+      border-radius:18px;
+      border:1px solid var(--pw-border);
+      padding:1.6rem 1.4rem 2rem;
+    }
+    .gallery-shell h2 {
+      margin-top:0;
     }
 
     /* Modal (legacy) */
@@ -692,10 +742,6 @@
         margin-bottom: 0.5rem;
       }
 
-      .hero-title .sub {
-        font-size: 0.9rem;
-      }
-
       .hero-subtitle {
         font-size: 0.86rem;
         line-height: 1.7;
@@ -812,7 +858,7 @@
     }
     .gallery-item:hover::after{ opacity:1; }
 
-    /* 버튼 호버 강화 */
+    /* 버튼 호버 애니메이션 보강 */
     .btn-primary:hover {
       background-color: #e86c14;
       border-color: #e86c14;
@@ -951,6 +997,8 @@
         const container = document.createElement("div");
         container.className = "gallery-item";
         container.setAttribute("data-caption", captions[idx] || "");
+
+        // 스크롤 애니메이션
         container.setAttribute("data-aos", "zoom-in");
         container.setAttribute("data-aos-delay", "80");
 
@@ -1034,8 +1082,8 @@
         renderPagination();
         AOS.init({
           duration: 800,
-          once: false,
-          mirror: true
+          once: false,   // 스크롤마다 다시 실행
+          mirror: true   // 위로 올릴 때도 애니메이션
         });
       });
     });
@@ -1090,9 +1138,30 @@
     </div>
   </div>
 
+  <!-- 핵심 포인트 요약 스트립 -->
+  <section class="feature-strip">
+    <div class="feature-strip-inner" data-aos="fade-up" data-aos-delay="80">
+      <div class="feature-item">
+        <strong>Real Film, Real Finish</strong>
+        <span>현대·영림·LX 등 정품 인테리어필름만 사용해 마감 퀄리티를 지킵니다.</span>
+      </div>
+      <div class="feature-item">
+        <strong>철거 없는 리폼</strong>
+        <span>문짝, 싱크대, 주방 상판을 뜯지 않고 시공해 생활 불편을 최소화합니다.</span>
+      </div>
+      <div class="feature-item">
+        <strong>공간과 예산에 맞는 제안</strong>
+        <span>사진 상담으로 불필요한 공사 없이 꼭 필요한 부분만 솔직하게 안내합니다.</span>
+      </div>
+    </div>
+  </section>
+
   <!-- 서비스 / 강점 섹션 -->
   <section id="services" class="section section-center" data-aos="fade-up">
-    <h2>왜 PROWRAP 인테리어필름인가요?</h2>
+    <h2>
+      <span class="section-kicker">Service</span>
+      왜 PROWRAP 인테리어필름인가요?
+    </h2>
     <p class="section-lead">
       PROWRAP 인테리어필름은 주거 및 상업공간을 중심으로 작업합니다.<br>
       도어, 싱크대, 주방 상판, 샷시, 가구 등 자주 손이 가는 부분을 필름 시공으로 깔끔하게 리폼해 드립니다.
@@ -1123,7 +1192,10 @@
 
   <!-- 시공 진행 과정 섹션 -->
   <section id="process" class="section section-center section-grey" data-aos="fade-up">
-    <h2>시공 진행 과정</h2>
+    <h2>
+      <span class="section-kicker">Process</span>
+      시공 진행 과정
+    </h2>
     <p class="section-lead">
       복잡한 절차 없이, 사진 한 장으로부터 시공까지 간단하게 진행됩니다.
     </p>
@@ -1151,7 +1223,10 @@
 
   <!-- 견적 신청 섹션 -->
   <section id="estimate" class="section section-estimate section-center">
-    <h2>견적 신청 방법</h2>
+    <h2>
+      <span class="section-kicker">Estimate</span>
+      견적 신청 방법
+    </h2>
     <p class="section-lead">
       카카오톡 또는 문자로 아래 정보를 보내주시면,<br>
       확인 후 예상 견적과 가능 일정을 안내드립니다.
@@ -1175,20 +1250,28 @@
   </section>
 
   <!-- 갤러리 섹션 -->
-  <section id="gallery-section" class="section">
-    <h2>시공 갤러리</h2>
-    <p class="section-lead" style="text-align:left;">
-      실제 시공 현장을 촬영한 사진들입니다. 클릭하시면 큰 화면으로 확인하실 수 있습니다.
-    </p>
-    <div class="gallery-container">
-      <div id="gallery" class="gallery"></div>
-      <div id="pagination" class="pagination"></div>
+  <section id="gallery-section" class="section section-gallery">
+    <div class="gallery-shell" data-aos="fade-up">
+      <h2>
+        <span class="section-kicker">Gallery</span>
+        시공 갤러리
+      </h2>
+      <p class="section-lead" style="text-align:left;">
+        실제 시공 현장을 촬영한 사진들입니다. 클릭하시면 큰 화면으로 확인하실 수 있습니다.
+      </p>
+      <div class="gallery-container">
+        <div id="gallery" class="gallery"></div>
+        <div id="pagination" class="pagination"></div>
+      </div>
     </div>
   </section>
 
   <!-- 리뷰 섹션 -->
   <section id="reviews" class="section">
-    <h2>시공 후기</h2>
+    <h2>
+      <span class="section-kicker">Review</span>
+      시공 후기
+    </h2>
     <p class="section-lead">
       네이버 예약, 카카오톡 채널, 인스타그램 등을 통해 자주 들었던 후기들을 정리한 예시입니다.<br>
       실제 후기는 네이버 플레이스에서 확인하실 수 있습니다.
