@@ -1819,6 +1819,27 @@ function formatCaption(text) {
     <p><strong>대표자</strong> 우선찬 &nbsp; | &nbsp; <strong>연락처</strong> 010-5074-1018</p>
     <p><strong>주소</strong> 경기도 고양시 덕양구 의장로 146 1903호</p>
     <p>&copy; 2025 PROWRAP Interior Film. All rights reserved.</p>
+
+    
+<!-- 기업은행안심이체 인증마크 적용 시작-->
+<script>
+function onPopAuthMark(key)
+{
+   window.open('','AUTHMARK_POPUP','height=900, width=630, status=yes, toolbar=no, menubar=no, location=no');
+   document.AUTHMARK_FORM.authmarkinfo.value = key;
+   document.AUTHMARK_FORM.action='https://kiup.ibk.co.kr/uib/jsp/guest/esc/esc25/getAuthMark.jsp';
+   document.AUTHMARK_FORM.target='AUTHMARK_POPUP';
+   document.AUTHMARK_FORM.submit();
+}
+</script>
+
+<FORM name='AUTHMARK_FORM' METHOD='POST'>
+    <input type="hidden" name="authmarkinfo">
+</FORM>
+
+<a href="javascript:onPopAuthMark('5786121914deee67e7275959dd75cf72')"><img src='https://kiup.ibk.co.kr/IBK/uib/ecb/img/KO/esc/sub/imgIbkMark.gif' alt='인증마크' border='0'/></a>
+<!--기업은행안심이체 인증마크 적용 종료 -->									
+										
   </footer>
 
   <!-- 플로팅 카카오톡 / 전화 버튼 -->
